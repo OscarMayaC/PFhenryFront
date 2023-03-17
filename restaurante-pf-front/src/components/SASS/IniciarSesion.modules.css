@@ -6,3 +6,8 @@
     align-items: center;
     gap: 50px;
 }
+
+.login-bg {
+    background-color: whitesmoke;
+    background-size: cover;
+}
