@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 import "../SASS/IniciarSesion.modules.css"
@@ -7,7 +8,10 @@ import '../SASS/register.modules.css'
 
 
 
+
 const IniciarSesion = () => {
+
+    
 
     const responseMessage = (response) => {
         console.log(response)
@@ -16,6 +20,8 @@ const IniciarSesion = () => {
     const errorMessage = (error) =>  {
         console.log(error)
     }
+
+    
 
     return (
         <div className='login-bg'>
