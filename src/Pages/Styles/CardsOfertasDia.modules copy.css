@@ -1,0 +1,38 @@
+.cards-oferta-dia{
+    height: 300px;
+    width: 240px;
+    font-size: 8px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 30px;
+    z-index: 2;
+    text-align: center;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.247);
+    cursor: pointer;
+    transition: 500ms;
+    margin-right: 40px;
+  
+}
+
+.cards-oferta-dia:hover{
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
+    /* height: 45px; */
+    /* margin-top: 10px; */
+    background-color: grey;
+}
+
+.zona-imagenes-carta-oferta-dia{
+    width: 240px;
+    height: 30%;
+    padding-top: 50px;
+    background-color: grey;
+    border-radius: 30px 30px 0px 0px;
+    margin-top: -2px;
+    z-index: 1;
+}
+
+
+.zona-info-plato-texto-oferta-dia{
+    text-align: center;
+    font-size: 5px;
+}
