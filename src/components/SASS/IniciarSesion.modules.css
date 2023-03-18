@@ -1,0 +1,13 @@
+.main-container {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.login-bg {
+    background-color: whitesmoke;
+    background-size: cover;
+}
