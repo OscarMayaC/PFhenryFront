@@ -1,5 +1,6 @@
 {
-  "name": "restaurante-pf-front",
+
+  "name": "app-rosa-del-viento",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -45,5 +46,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lejesterdelacorte/PFhenryFront.git"
+  },
+  "author": "Grupo 14",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lejesterdelacorte/PFhenryFront/issues"
+  },
+  "homepage": "https://github.com/lejesterdelacorte/PFhenryFront#readme"
   }
-}
+
