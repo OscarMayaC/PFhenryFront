@@ -1,13 +1,13 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LandingPage from './components/LandingPage/LandingPage';
+import Reservation from './components/ReservationPage/Reservation';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">  
         <Routes>    
-          <Route exact path='/' Component={LandingPage} />
+          <Route exact path='/reservation' Component={Reservation}/>
         </Routes>
       </div>
     </BrowserRouter>
