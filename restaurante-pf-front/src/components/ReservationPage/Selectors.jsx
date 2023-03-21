@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 //import axios from 'axios';
-import { addMinutes, isToday, addDays } from 'date-fns';
+import { validationDate } from "./ValidationDate";
 import { LocalizationProvider, StaticDateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { converter } from "./FormatConverter";
+import { converter } from './FormatConverter';
 
 function Selectors(){
+
+    const [selectedDate, setSelectedDate] = useState(new Date());
+
+    const {today, day, minSelectableTime} = validationDate(selectedDate);
 
     const [newDateFormat, setNewDateFormat] = useState({
         date_start: '',
         time_start: '',
     });
 
-    const [selectedDate, setSelectedDate] = useState(new Date());
-    console.log(selectedDate)
-
     const [selectors, setSelectors] = useState({
-        date_start: '',
-        time_start: '',
         costumers_quantity:'',
         note: ''
     });
@@ -42,18 +41,7 @@ function Selectors(){
             //axios.post(http://localhost:3001/)
             console.log(`Date: ${newDateFormat.date_start}, Time: ${newDateFormat.time_start}, Persons: ${selectors.costumers_quantity}, Note: ${selectors.note}`);
         }
-    }
-
-    let today = new Date();
-    
-    const now = new Date();
-    const day = isToday(now);
-    let  minSelectableTime = addMinutes(now, 60);
-
-    if (now.getHours() >= 23) {
-        minSelectableTime = addMinutes(now, 60)
-        today = addDays(today, 1);
-    }
+    };
 
     return(
     <>
