@@ -7,30 +7,10 @@ import flechaIzquierda from '../../Pages/Misc/flecha-izquierda.png'
 import flechaDerecha from '../../Pages/Misc/flecha-derecha.png'
 import { Sort, filterDishByTag} from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+import flechaAbajo from '../../Pages/Misc/flecha-desplegable.png'
 
 
-// function mostrarDiv() {
-//     var div = document.getElementsByClassName("zona-cartas-platos-seleccionados");
 
-
-//     if (div[0].style.display === "grid") {
-//         div[0].style.display = "none";
-//       } else {
-//         div[0].style.display = "grid";
-//       }
-//     }
-
-const sliderLeft=()=>{
-    var slider = document.getElementsByClassName("zona-tags-del-dia")
-    slider[0].scrollLeft= -100
-    }
-
-
-const sliderRight=()=>{
-    var slider = document.getElementsByClassName("zona-tags-del-dia")
-    slider[0].scrollLeft= +650
-
-    }
 
 
 
@@ -44,28 +24,84 @@ const sliderRight=()=>{
         function handleFilterTag(e) {
           dispatch(filterDishByTag(e.target.value));
         }
+
+// MANEJADOR SLIDER IZQUIERDO, CON SELECCION GENERAL 
+
+        function handleSliderLeft(event) {
+
+          const buttonIdSlider = event.target.id;
+          sliderLeft(buttonIdSlider)
+        }
+
+        const sliderLeft=(buttonIdSlider)=>{
+          var slider = document.getElementsByClassName("zona-tags-del-dia")
+          slider[buttonIdSlider-1].scrollLeft= -100
+          }
+      
+
+// MANEJADOR SLIDER DERECHO, CON SELECCION GENERAL 
+      
+          function handleSliderRight(event) {
+
+            const buttonIdSlider = event.target.id;
+   
+            sliderRight(buttonIdSlider)
+          }
+
+      const sliderRight=(buttonIdSlider)=>{
+          var slider = document.getElementsByClassName("zona-tags-del-dia")
+          slider[buttonIdSlider-1].scrollLeft= +650
+      
+          }
+
+
+
+
+
+
+// MANEJADOR ACORDEON DESPLEGABLE GENERAL 
         
-// getElementsById
-        function mostrarDiv() {
+
+        function handleClick(event) {
+
+          const buttonId = event.target.id;
+          
+          mostrarDiv(buttonId)
+        
+
+        }
+        
+
+
+        function mostrarDiv(id) {
+       
             var div = document.getElementsByClassName("zona-cartas-platos-seleccionados");
-        
-        
-            if (div[0].style.display === "grid") {
-                div[0].style.display = "none";
+            var sectionDiv = document.getElementsByClassName("sections");
+            var idDesplegable = id - 1;
+          
+            if (div[idDesplegable].style.display === "grid") {
+                div[idDesplegable].style.display = "none";
+                sectionDiv[idDesplegable].style.height = "80px";
               } else {
-                div[0].style.display = "grid";
+                div[idDesplegable].style.display = "grid";
+                sectionDiv[idDesplegable].style.height = "100%";
               }
             }
         
-        
+    
+            // LLAMADA A LA ACCION ORDENAMIENTOS 
+            
     function onSelectsChange(e) {
         dispatch(Sort(e.target.value));
       }
 
 
+
+
+
         return (
             
-            <div className='sections' key={id}>
+            <div className='sections' key={id} id={id}>
             
                 <div className='zona-info-section'>      
                 <h1 className='titulo-seccion-carta' >{description}</h1>
@@ -73,7 +109,7 @@ const sliderRight=()=>{
          
                 <div className='zona-tags' key={id}>
             
-            <button onClick={sliderLeft} className='boton-flecha-izquierda-scroll-bar-tags'><img src={flechaIzquierda} className="flecha-izquierda-scroll-tags" alt='flecha-izquierda-scroll-tags'></img></button>
+            <button onClick={handleSliderLeft} className='boton-flecha-izquierda-scroll-bar-tags' key={id} id={id}><img src={flechaIzquierda} className="flecha-izquierda-scroll-tags" id={id} alt='flecha-izquierda-scroll-tags'></img></button>
            
            
             <div className='zona-tags-del-dia'>
@@ -92,7 +128,7 @@ const sliderRight=()=>{
               })}    
     
                          </div>
-                <button onClick={sliderRight} className='boton-flecha-derecha-scroll-bar-tags'><img src={flechaDerecha} className="flecha-derecha-scroll-tags" alt='flecha-derecha-scroll-tags'></img></button>
+                <button onClick={handleSliderRight} className='boton-flecha-derecha-scroll-bar-tags' id={id}><img src={flechaDerecha} className="flecha-derecha-scroll-tags" alt='flecha-derecha-scroll-tags' id={id}></img></button>
     
                 </div>   
 
@@ -108,7 +144,7 @@ const sliderRight=()=>{
                         <option value="MAYORPRECIO">Mayor precio</option>
                         <option value="MENORPRECIO">Menor precio</option>
                 </select>     
-                <button onClick={mostrarDiv} className="filter-buton-seccion">V</button>
+                <button onClick={handleClick} className="filter-buton-seccion" id={id} key={id}><img className="flecha-seccion-abajo" src={flechaAbajo} alt="desplegrar-hacia-abajo" id={id}></img></button>
                 </div>
               
 
@@ -133,7 +169,6 @@ const sliderRight=()=>{
               })}
               </div>
               </div>
-<div className='separacion-secciones'></div>
             </div>
             );
         };
