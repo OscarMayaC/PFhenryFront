@@ -6,8 +6,8 @@ import { OrbitControls, OrthographicCamera } from "@react-three/drei";
 
 function Reservation(){
 
-  const width = 10;
-  const height = 10;
+  const width = 20;
+  const height = 20;
 
   return(
     <div>
