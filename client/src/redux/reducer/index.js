@@ -1,4 +1,4 @@
-import{ SEARCH_NAME, GET_DISHES, GET_TAGS, GET_SECTIONS, SORT, FILTER_BY_TAG,} from '../actions/index'
+import{ SEARCH_NAME, GET_DISHES, GET_TAGS, GET_SECTIONS, SORT, FILTER_BY_TAG, CREATE_USER} from '../actions/index'
 
 const initialState = {
 allDishes:[],
@@ -64,6 +64,11 @@ function rootReducer(state = initialState, action) {
                   ...state,
                   Dishes: typeFiltered,
                 };
+
+              case CREATE_USER: 
+              return {
+                ...state
+              }
 
 
             default:

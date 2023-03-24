@@ -1,49 +1,68 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
+// import { loginUser } from '../../redux/actions';
 import "../SASS/IniciarSesion.modules.css"
-import { GoogleLogin } from '@react-oauth/google';
 import '../SASS/register.modules.css'
-
 
 
 
 const IniciarSesion = () => {
 
-    
+    // const dispatch = useDispatch();
+    // const history = useHistory();
 
-    const responseMessage = (response) => {
-        console.log(response)
-    };
 
-    const errorMessage = (error) =>  {
-        console.log(error)
+    const [input, setInput] = useState({
+        correo: "",
+        contraseña: "",
+    })
+
+    function handleChange(e) {
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        })
     }
 
-    
+    const handleSubmit = (e) => {
+        console.log("que ise el tio")        
+    }
 
     return (
         <div className='login-bg'>
-            <div>
-                <NavBar />
-            </div> 
-
-
+            <NavBar />
             <div className='main-container'>
-                <p>¿Cúal es tú número de teléfono o correo electrónico?</p>
-
-                <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
-
-                <form className=''>
-                    <input type="text" name="mail_tlf" placeholder="Ingrese su número o correo"></input>
-                    <button>Continuar</button>
+                <form className='body-form' onSubmit={(e) => handleSubmit(e)}>
+                    <div className='form-divs'>
+                        <label>Correo: </label>
+                            <input className='body-input'
+                                type="email"
+                                value={input.correo}
+                                name= "correo"
+                                placeholder='Ingrese su correo...'
+                                onChange={handleChange}
+                            />                  
+                   
+                        <label>Contraseña: </label>
+                            <input className='body-input'
+                                type="password"
+                                value={input.contraseña}
+                                name= "contraseña"
+                                placeholder='Ingrese su contraseña...'
+                                onChange={handleChange}
+                            />
+                    </div>
+                    <br />
+                    <button className='login-btn' type='submit'>Iniciar Sesion</button>
+                    <br />
+                    <p>
+                        <b> ¿Aún no tienes cuenta? <Link to="/register">Registrate</Link> aquí. </b>
+                    </p>
                 </form>
-                
-                <Link to="/register"><button className='register-btn'>Registarse</button></Link>
-                
-            </div>
-        </div>  
+            </div>          
+        </div>
     )
 }
 
