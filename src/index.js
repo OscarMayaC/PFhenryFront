@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./Pages/App";
 import reportWebVitals from "./reportWebVitals";
@@ -8,9 +8,10 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store";
 
-ReactDOM.render(
+ const root = ReactDOM.createRoot(document.getElementById("root"))
+ root.render(
   <BrowserRouter>
-    <GoogleOAuthProvider clientId="892958478339-vadla0jpfrvj1ui68gk3gk8turm5qu36.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="104728938297-vh2a2s2aptlj5vqcqaqb4ri7o25mfnmg.apps.googleusercontent.com">
       <Provider store={store}>
         <React.StrictMode>
           <App />
@@ -18,7 +19,5 @@ ReactDOM.render(
       </Provider>
     </GoogleOAuthProvider>
   </BrowserRouter>,
-
-  document.getElementById("root")
 );
 reportWebVitals();

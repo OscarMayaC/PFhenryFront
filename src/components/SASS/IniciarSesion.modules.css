@@ -1,13 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
 .main-container {
-    height: 500px;
+    height: 1000px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 20px;
 }
 
 .login-bg {
-    background-color: whitesmoke;
-    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family:'Montserrat', sans-serif;
+    background-image: url(C:\Users\manol\Desktop\PF_HENRY\PF_Henry\CLIENT\src\imgs\Fondo_1.png);
+    background-size: 100% ;
 }
+
+.login-btn{
+	border-radius: 20px;
+	border: 1px solid #FF4B2B;
+	background-color: #FF4B2B;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+}
+
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+.body-form {
+	background-color: whitesmoke;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 40%; 
+	text-align: center;
+}
+
+.body-input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+.form-divs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold; 
+    
+}
+/* .form-divs2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+} */
+
+/* .form-grid {
+
+    color: black ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-evenly;
+    max-width: 500px;
+    margin: 0 auto;
+    justify-content: center;
+    align-content: center;
+
+} */
+
+
