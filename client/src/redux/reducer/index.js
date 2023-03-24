@@ -1,15 +1,24 @@
-import{ SEARCH_NAME, GET_DISHES, GET_TAGS, GET_SECTIONS, SORT, FILTER_BY_TAG,} from '../actions/index'
+import{ SEARCH_NAME, GET_DISHES, GET_TAGS, GET_SECTIONS, SORT, FILTER_BY_TAG, ADD_PRODUCT_CART,} from '../actions/index'
 
 const initialState = {
 allDishes:[],
 allTags:[],
 sections:[],
 SearchDish:[],
-Dishes:[]
+Dishes:[],
+Carrito:[]
 }
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
+
+      case ADD_PRODUCT_CART:
+        return {
+          ...state,
+          Carrito: action.payload,
+        };
+
+
 
       case GET_SECTIONS:
         return {
@@ -38,15 +47,29 @@ function rootReducer(state = initialState, action) {
             case SORT:
               let orderedDishes = [...state.allDishes];
               orderedDishes = orderedDishes.sort((a, b) => {
-                if (a.name < b.name) {
-                  return action.payload === "ASCENDENTE" ? -1 : 1;
-                }
-                if (a.name > b.name) {
-                  return action.payload === "ASCENDENTE" ? 1 : -1;
+                if (action.payload === "ASCENDENTE_NOMBRE") {
+                  if (a.name < b.name) {
+                    return -1;
+                  }
+                  if (a.name > b.name) {
+                    return 1;
+                  }
+                  return 0;
+                } else if (action.payload === "DESCENDENTE_NOMBRE") {
+                  if (a.name < b.name) {
+                    return 1;
+                  }
+                  if (a.name > b.name) {
+                    return -1;
+                  }
+                  return 0;
+                } else if (action.payload === "ASCENDENTE_PRECIO") {
+                  return b.price - a.price;    
+                } else if (action.payload === "DESCENDENTE_PRECIO") {
+                 return a.price - b.price;
                 }
                 return 0; 
               });
-        
               return {
                 ...state,
                 allDishes:

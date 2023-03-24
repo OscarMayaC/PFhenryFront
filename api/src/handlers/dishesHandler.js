@@ -4,7 +4,6 @@ const { createDish, getDishById, getDishByName, getAllDishes, getDishByTags, edi
 
 //Funcion que se encarga de enviar los datos en base a lo que le llega.
 const getDishessHandler = async (req, res) => {
-  
   try {
     let response = null;
     switch (true) {
@@ -18,7 +17,6 @@ const getDishessHandler = async (req, res) => {
     }
     //Se llaman a tres funciones: getAllDishes(), getDishByName(), getDishesByTags()
     res.status(200).send(response);
- 
   } catch (error) {
     res.status(400).json({error: error.message});
   }

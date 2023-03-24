@@ -9,18 +9,22 @@
     flex-direction: column;
     justify-content: center;
     background-color: #CA3E49;
-    background-image: url("../Misc/rosa-del-viento-fondo.jpg");
-background-size: cover;
-background-repeat: no-repeat;
+
 }
+
+
+
 
 
 .contenedor-delivery-main{
     width: 100%;
-    height: 100%;
+    height: 659px;
     display: flex;
     flex-direction: column;
-margin-top: 240px;
+    justify-content: center;
+    background-image: url("../Misc/rosa-del-viento-fondo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 
 }
 
@@ -42,7 +46,6 @@ margin-top: 240px;
 
 .filtros-ordenamientos-zona{
     width: 100%;
-    /* height: 10px; */
     background-color: transparent;
     margin-top: 10px;
     display: flex;
@@ -59,7 +62,6 @@ margin-top: 240px;
     overflow-x: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    /* background-color: white; */
     align-items: center;
     gap:20px;
 }
@@ -70,7 +72,6 @@ margin-top: 240px;
     height: 70px;
     cursor: pointer;
     margin-right: 20px;
-    /* opacity: -10; */
 
 }
 
@@ -146,11 +147,12 @@ margin-top: 240px;
 
 .zona-opciones-busqueda-seleccion-delivery{
     padding-top: 10px;
-    height: 265px;
+    height: 275px;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
  
 }
 
@@ -177,7 +179,6 @@ margin-top: 240px;
     justify-content: left;
     align-items: center;
     margin-right: 30px;
-    /* transition: 500ms; */
     cursor: pointer;
 
 }
@@ -217,13 +218,6 @@ margin-top: 240px;
 /* ZONA BOTONES FILTROS  */
 
 .zona-botones-filtros-seleccion{
-    /* display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 30px;
-    height: 30px;
-    width: 300px;
-    background-color: red; */
     width: 800px;
     height: 100%;
     padding-left: 40px;
@@ -264,8 +258,6 @@ margin-top: 240px;
     width: 100%;
     background-color: rgb(196, 192, 192);
     margin-bottom: 40px;
-    
-    /* padding-top: -1000px; */
 
 }
 
@@ -336,21 +328,10 @@ margin-top: 240px;
 /* SECTIONS  */
 
 
-
-.section-zone{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 800px;
-    height: 100px;
-    background-color: red;
-    color: black;
-}
-
 .zona-secciones{
     background-color: #CA3E49;
     height: 100%;
-    margin-top: 150px;
+    /* margin-top: 150px; */
 }
 
 
@@ -362,16 +343,24 @@ margin-top: 240px;
     margin-top: 20px;
 }
 
-.texto-delivery-search{display: flex;
-flex-direction: column;
-margin-left: 150px;
+.zona-texto-delivery-search{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 150px;
+    width: 30%;
+    
 }
 
 .titulo-search-bar{
     font-size: 40px;
     font-weight: 900;
+    margin-top: -20px;
 }
 
 .p-searchbar{
     font-weight: 500;
+    margin-top: -10px;
 }
+
+

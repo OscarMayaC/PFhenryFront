@@ -46,39 +46,58 @@ const {
   Dishes,
   Section,
   Tags,
-  Pedido,
-  DetallePedido,
-  Oferta,
+  Order,
+  OrderDetail,
+  Offer,
   Token,
 } = sequelize.models;
 // Aca vendrian las relaciones
+
 // Product.hasMany(Reviews);}
-//Direccion.belongsToMany(Usuario, {through: "users_adress"});
-//Reserva.belongsToMany(Usuario, {through: "user_booking"});
-Dishes.belongsToMany(Tags, { through: "dishes_tags" });
-Tags.belongsToMany(Dishes, { through: "dishes_tags" });
-//Pedido.hasOne(Usuario);
-//Pedido.hasMany(DetallePedido);
-//DetallePedido.hasOne(Oferta);
-//DetallePedido.hasOne(Plato);
-//Usuario.hasOne(Token);
-Dishes.belongsTo(Section);
+
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);}
-Critic.belongsTo(User);
-User.hasMany(Critic)
-Address.belongsTo(User);
+
+// DISHES
+Dishes.hasMany(Critic);
+Dishes.belongsToMany(Tags, { through: "dishes_tags" });
+Dishes.belongsTo(Section);
+Dishes.hasMany(OrderDetail);
+
+//TAGS
+Tags.belongsToMany(Dishes, { through: "dishes_tags" });
+
+//ORDER
+Order.belongsTo(User);
+Order.hasMany(OrderDetail);
+
+//ORDER DETAIL
+OrderDetail.belongsTo(Order);
+OrderDetail.hasOne(Offer);
+
+//USER
+User.hasMany(Order);
+User.hasMany(Critic);
 User.hasMany(Address);
-// Reserva.belongsToMany(User, { through: "user_booking" });
-// Tags.belongsToMany(Dishes, { through: "dishes_tags" });
-//Pedido.hasOne(User);
-//Pedido.hasMany(DetallePedido);
-//DetallePedido.hasOne(Oferta);
-//DetallePedido.hasOne(Plato);
+User.hasMany(Booking);
 //User.hasOne(Token);
-//Plato.hasOne(Seccion);
+
+//BOOKING
 Booking.belongsTo(Table);
+Booking.belongsTo(User);
+
+//CRITIC
+Critic.belongsTo(User);
+
+//TOKEN
+//Token.belongsTo(User)
+
+//ADDRESS
+Address.belongsTo(User);
+
+//TABLE
 Table.hasMany(Booking);
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

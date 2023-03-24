@@ -1,4 +1,6 @@
 const { Booking, Table } = require("../db.js");
+const getTablesToCreateReservationFunction = require("./getTablesToCreateReservationFunction.js");
+
 
 
 const createTable = async (capacity) => {
@@ -20,41 +22,24 @@ const getAllBookingInThisTable = async (tableId) => {
 }
 
 const getTablesToCreateReservation = async (body) => {
-    const { fecha_inicio, hora_inicio, cantidad_comensales } = body;
-    const allTables = await Table.findAll();
-    for (let u = 0; u < allTables.length; u++) {
-        allTables[u].availability = true;
-    }
-    const tablesSuitableForCapacity = allTables.filter(tab => tab.capacity >= cantidad_comensales);
-    if (tablesSuitableForCapacity.length > 0) {
-        const allBookings = await Booking.findAll();
-        let startTimeHour = hora_inicio[0] + hora_inicio[1];
-        startTimeHour = parseInt(startTimeHour);
-        startTimeHour = startTimeHour * 60;
-        let startTimeMinute = hora_inicio[3] + hora_inicio[4];
-        startTimeMinute = parseInt(startTimeMinute)
-
-        const STARTMINUTES = startTimeHour + startTimeMinute;
-        for (let i = 0; i < allBookings.length; i++) {
-            if (allBookings[i].date_start === fecha_inicio) {
-                let startTimeHour = allBookings[i].time_start[0] + allBookings[i].time_start[1];
-                startTimeHour = parseInt(startTimeHour);
-                startTimeHour = startTimeHour * 60;
-                let startTimeMinute = allBookings[i].time_start[3] + allBookings[i].time_start[4];
-                startTimeMinute = parseInt(startTimeMinute)
-                startTimeHour = startTimeHour + startTimeMinute;
-                const FINISHBOOKING = startTimeHour + 119;
-                startTimeHour = startTimeHour - 119;
-                if (STARTMINUTES >= startTimeHour && STARTMINUTES <= FINISHBOOKING) {
-                    let TableOfThisBooking = tablesSuitableForCapacity.find(table => table.id === allBookings[i].tableId);
-                    TableOfThisBooking.availability = false;
-                }
-            }
-        }
-        return tablesSuitableForCapacity;
-    } else {
-        throw new Error("We do not have tables with the indicated capacity");
-    }
+    const tables = await getTablesToCreateReservationFunction(body);
+    return tables;
 }
 
-module.exports = { createTable, getTables, getAllBookingInThisTable, getTablesToCreateReservation };
+const deleteTable = async (tableId) => {
+    await Table.destroy({
+        where: { id: tableId }
+    });
+    return "Successfully deleted"
+}
+
+const putTable = async (body) => {
+    const { idTable, capacity } = body;
+    Table.update(
+        { capacity: capacity },
+        { where: { id: idTable } }
+    );
+    return "Successfully updated";
+}
+
+module.exports = { createTable, getTables, getAllBookingInThisTable, getTablesToCreateReservation, deleteTable, putTable };

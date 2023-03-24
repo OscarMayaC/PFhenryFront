@@ -6,7 +6,16 @@ export const GET_TAGS="GET_TAGS";
 export const GET_SECTIONS="GET_SECTIONS";
 export const SORT="SORT";
 export const FILTER_BY_TAG="FILTER_BY_TAG"
+export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART"
 
+export function carritoAgrego(product){
+
+      return {
+        type: "ADD_PRODUCT_CART",
+        payload: product,
+      }
+
+  }
 
 export function getAllSections() {
   return async function (dispatch) {
@@ -33,7 +42,7 @@ export function getAllTags() {
     });
   };
   }
-
+  // https://pfhenryback-production.up.railway.app/dishes  la ruta para dishes, mismo rutes pero cambia el url principal cambiar cuando se haga primer carga
 
     export function getAllDishes() {
     return async function (dispatch) {

@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
     "Critic",
     {
       //id generado automaticamente, sumando 1
-      tittle: {
+      title: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -16,8 +16,13 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
       score: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         allowNull: true,
+        validate: {
+          min: 1,
+          max: 5,
+        },
+        defaultValue: 5,
       },
     },
     {

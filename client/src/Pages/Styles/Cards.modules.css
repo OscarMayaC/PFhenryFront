@@ -12,7 +12,9 @@
     transition: 500ms;
     
 }
-
+.cantidad-plato-carta{
+    display: none;
+}
 .cards:hover{
     box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
     background-color: grey;
