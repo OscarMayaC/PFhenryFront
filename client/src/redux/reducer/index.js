@@ -1,8 +1,11 @@
-import{ SEARCH_NAME, GET_DISHES, GET_TAGS, GET_SECTIONS, SORT, FILTER_BY_TAG, CREATE_USER} from '../actions/index'
+import{ SEARCH_NAME, GET_DISHES, GET_TAGS, GET_SECTIONS, SORT, FILTER_BY_TAG, CREATE_USER, GET_USER_LOGIN} from '../actions/index'
 
 const initialState = {
 allDishes:[],
 allTags:[],
+isLoggedIn: false,
+email:"",
+password:"",
 sections:[],
 SearchDish:[],
 Dishes:[]
@@ -69,6 +72,13 @@ function rootReducer(state = initialState, action) {
               return {
                 ...state
               }
+              case GET_USER_LOGIN:
+                return{
+                  ...state,
+                  isLoggedIn: true,
+                  email: action.payload.email,
+                  password: action.payload.password
+                }
 
 
             default:
