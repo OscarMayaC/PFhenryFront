@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 //import axios from 'axios';
-import { validationDate } from "./ValidationDate";
 import { LocalizationProvider, StaticDateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { converter } from './FormatConverter';
+import { converter } from '../ReservationValidations/FormatConverter';
+import { Box } from "@mui/system";
+import { validationDate } from "../ReservationValidations/ValidationDate";
 
 function Selectors(){
 
@@ -47,6 +48,7 @@ function Selectors(){
     <>
     <form onSubmit={handleSubmit}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Box>
             <StaticDateTimePicker
             value={selectedDate}
             minDate={today}
@@ -59,6 +61,7 @@ function Selectors(){
                 }
               }}
             />
+        </Box>
         </LocalizationProvider>
 
         <div>
@@ -73,7 +76,7 @@ function Selectors(){
 
         <div>
         <label>Nota</label>
-            <input 
+            <textarea 
             type="text"
             name="note"
             value={selectors.note}
