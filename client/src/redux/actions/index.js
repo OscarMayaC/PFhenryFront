@@ -6,6 +6,27 @@ export const GET_TAGS="GET_TAGS";
 export const GET_SECTIONS="GET_SECTIONS";
 export const SORT="SORT";
 export const FILTER_BY_TAG="FILTER_BY_TAG"
+export const CREATE_USER="CREATE_USER"
+export const GET_USER_LOGIN="GET_USER_LOGIN"
+
+
+export function postUsers(payload) {
+  return async function(dispatch) {
+      let response = await axios.post("http://localhost:3001/users", payload);
+      return response
+  }
+}
+
+export function getUserByLogin(email, password) {
+  return async function(dispatch) {
+    let response = await axios.post("http://localhost:3001/users/login", {email: email, password: password})
+    console.log(response)
+    return dispatch({
+      type: GET_USER_LOGIN,
+      payload: response.data
+    })
+  }
+}
 
 
 export function getAllSections() {
