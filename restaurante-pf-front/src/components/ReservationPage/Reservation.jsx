@@ -26,7 +26,7 @@ function Reservation(){
         <ambientLight/>
         <OrbitControls />
         <Suspense fallback={null} onError={error => console.log(error)}>
-          <Mesas scale={[0.025, 0.025, 0.025]} {...props}/>
+          <Mesas scale={[0.025, 0.025, 0.025]}/>
         </Suspense>
       </Canvas>
     </div>
