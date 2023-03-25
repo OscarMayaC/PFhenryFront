@@ -5,14 +5,14 @@ export function converter(state){
         const dateSelector = state
         const newDate = new Date(dateSelector);
         const dateFormat = newDate.toLocaleDateString('en-CA');
-        newDateFormat.date_start = dateFormat
+        newDateFormat.fecha_inicio = dateFormat
     }
 
     if(state){
         const timeSelector = state
         const newTime = new Date(timeSelector);
         const timeFormat = newTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-        newDateFormat.time_start = timeFormat
+        newDateFormat.hora_inicio = timeFormat
     }
     return newDateFormat
 }

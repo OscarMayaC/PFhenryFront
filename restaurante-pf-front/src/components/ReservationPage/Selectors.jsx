@@ -17,6 +17,8 @@ function Selectors(){
         hora_inicio: '',
         cantidad_comensales: '',
     });
+    
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setNewDateFormat(converter(selectedDate));
@@ -29,10 +31,7 @@ function Selectors(){
             [name]: value
         }); 
     };
-
-    const dispatch = useDispatch();
     
-
     const handleSubmit = (event) => {
         event.preventDefault();
         if(newDateFormat.fecha_inicio && newDateFormat.hora_inicio && newDateFormat.cantidad_comensales){

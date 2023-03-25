@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import Selectors from "./Selectors";
 import { Canvas } from "@react-three/fiber";
-import Restaurant from "./Restaurant";
+import Mesas from "./Mesas";
 import { OrbitControls, OrthographicCamera } from "@react-three/drei";
 
 function Reservation(){
@@ -14,7 +14,7 @@ function Reservation(){
       <h1>Reservas</h1>
       <Selectors/>
 
-      <Canvas style={{ height: '90%' }}>
+      <Canvas style={{ height: window.innerHeight }}>
         <OrthographicCamera
         left={-width / 2}
         right={width / 2}
@@ -26,7 +26,7 @@ function Reservation(){
         <ambientLight/>
         <OrbitControls />
         <Suspense fallback={null} onError={error => console.log(error)}>
-          <Restaurant scale={[0.025, 0.025, 0.025]}/>
+          <Mesas scale={[0.025, 0.025, 0.025]} {...props}/>
         </Suspense>
       </Canvas>
     </div>

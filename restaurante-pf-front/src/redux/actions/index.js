@@ -4,7 +4,8 @@ import axios from 'axios';
 export const getTables = (body) => {
     return async(dispatch) => {
         try {
-            const availableTables = (await axios.get('https://pfhenryback-production.up.railway.app/tables/', { data: body })).data
+            const availableTables = await axios.get('https://pfhenryback-production.up.railway.app/tables/', body)
+            console.log(availableTables)
             dispatch({type: GET_AVAILABLE_TABLES, payload: availableTables})
         } catch (error) {
             console.log(error.response.data.error)
