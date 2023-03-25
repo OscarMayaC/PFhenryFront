@@ -16,7 +16,7 @@
     align-items: center;
     flex-direction: column;
     font-family:'Montserrat', sans-serif;
-    background-image: url(C:\Users\manol\Desktop\PF_HENRY\PF_Henry\CLIENT\src\imgs\Fondo_1.png);
+	background-image: url(../../imgs/Fondo_1.png);
     background-size: 100% ;
 }
 
