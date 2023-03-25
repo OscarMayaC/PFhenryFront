@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-//import axios from 'axios';
 import { LocalizationProvider, StaticDateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { converter } from '../ReservationValidations/FormatConverter';
-import { Box } from "@mui/system";
 import { validationDate } from "../ReservationValidations/ValidationDate";
+import { getTables } from "../../redux/actions/index.js";
+import { useDispatch } from "react-redux";
 
 function Selectors(){
 
@@ -13,13 +13,9 @@ function Selectors(){
     const {today, day, minSelectableTime} = validationDate(selectedDate);
 
     const [newDateFormat, setNewDateFormat] = useState({
-        date_start: '',
-        time_start: '',
-    });
-
-    const [selectors, setSelectors] = useState({
-        costumers_quantity:'',
-        note: ''
+        fecha_inicio: '',
+        hora_inicio: '',
+        cantidad_comensales: '',
     });
 
     useEffect(() => {
@@ -27,28 +23,27 @@ function Selectors(){
       }, [selectedDate]);
 
     const handleOnChange = (event) => {
-        const name = event.target.name
-        const value = event.target.value
-
-        setSelectors({
-            ...selectors,
+        const { name, value } = event.target;
+        setNewDateFormat({
+            ...newDateFormat,
             [name]: value
-        });
-    }
+        }); 
+    };
+
+    const dispatch = useDispatch();
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(newDateFormat.date_start && newDateFormat.time_start && selectors.costumers_quantity){
-            //axios.post(http://localhost:3001/)
-            console.log(`Date: ${newDateFormat.date_start}, Time: ${newDateFormat.time_start}, Persons: ${selectors.costumers_quantity}, Note: ${selectors.note}`);
-        }
+        if(newDateFormat.fecha_inicio && newDateFormat.hora_inicio && newDateFormat.cantidad_comensales){
+            dispatch(getTables(newDateFormat))
+        };
     };
 
     return(
     <>
     <form onSubmit={handleSubmit}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Box>
             <StaticDateTimePicker
             value={selectedDate}
             minDate={today}
@@ -61,15 +56,14 @@ function Selectors(){
                 }
               }}
             />
-        </Box>
         </LocalizationProvider>
 
         <div>
         <label>Número de personas</label>
             <input 
             type="number"
-            name="costumers_quantity"
-            value={selectors.costumers_quantity}
+            name="cantidad_comensales"
+            value={newDateFormat.cantidad_comensales || ''}
             onChange={event => handleOnChange(event)}
             />
         </div>
@@ -78,8 +72,8 @@ function Selectors(){
         <label>Nota</label>
             <textarea 
             type="text"
-            name="note"
-            value={selectors.note}
+            name="nota"
+            value={newDateFormat.nota || ''}
             onChange={event => handleOnChange(event)}
             />
         </div>

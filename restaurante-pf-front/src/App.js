@@ -6,7 +6,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">  
-        <Routes>    
+        <Routes>
           <Route exact path='/reservation' Component={Reservation}/>
         </Routes>
       </div>
