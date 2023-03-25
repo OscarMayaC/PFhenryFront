@@ -28,7 +28,7 @@
 
 .register-bg {
     height: 100vh;
-    background-image: url(C:\Users\manol\Desktop\PF_HENRY\PF_Henry\CLIENT\src\imgs\fondo-register-login.png);
+    background-image: url(../../imgs/fondo-register-login.png);
     background-size: cover;
 }
 
