@@ -57,43 +57,92 @@ font-weight: 570;
 
 }
 
-.button-delivery-seccion-landing{
+
+.zona-boton-reservar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     width: 200px;
     height: 42px;
     font-size: 20px;
+    border-radius: 10px;
+    background-color: white;
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+
+.zona-boton-delivery{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 200px;
+    height: 42px;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: white;
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
     margin-right: 60px;
-    border-radius: 10px;
-    border-color: transparent;
-    cursor: pointer;
-    transition: 0.3s;
+}
+.icon-boton-delivery{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+.icon-boton-reserva{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.link-reservar{
+    text-decoration: none;
+    color: black;
+}
+
+
+.texto-reservar-boton{
+font-size: 20px;
+margin-right: 10px;
 
 }
 
-.button-reserva-mesa-seccion-landing{
-    width: 200px;
-    height: 42px;
+
+.link-delivery{
+    text-decoration: none;
+    color: black;
+}
+
+.texto-delivery-boton{
     font-size: 20px;
-    border-radius: 10px;
-    border-color: transparent;
-    cursor: pointer;
-    transition: 0.3s;
+    margin-right: 10px;
 }
-
 /* SU HOVER  */
 
-.button-delivery-seccion-landing:hover{
+.zona-boton-delivery:hover{
     background-color: grey;
     box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
     height: 45px;
     margin-top: 7px;
 }
 
-.button-reserva-mesa-seccion-landing:hover{
+
+.zona-boton-reservar:hover{
     background-color: grey;
     box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
     height: 45px;
     margin-top: 7px;
 }
+
 
 
 

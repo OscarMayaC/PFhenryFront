@@ -1,0 +1,42 @@
+
+
+.carta-carrito-en-compras{
+    width: 180px;
+    height: 180px;
+    background-color: grey;
+    display:block;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.zona-imagenes-carta-en-carrito-compras{
+    width: 180px;
+    height: 120px; 
+    background-color: red;
+    
+}
+.zona-info-plato-texto-en-carrito-compras{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.boton-quitar-en-carrito-compras{
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    transition: 500ms;
+    align-items: center;
+    text-align: center;
+    font-weight: 800;
+}
+.boton-quitar-en-carrito-compras:hover{
+    background-color: red;
+}
+.titulo-plato-carta-en-carrito-compras{
+    font-size: 25px;
+    font-weight: 600;
+}

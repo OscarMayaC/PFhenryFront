@@ -11,6 +11,10 @@ export const GET_USER_LOGIN = "GET_USER_LOGIN";
 export const GET_DETAILS = "GET_DETAILS";
 export const POST_CRITIC = "POST_CRITIC";
 export const GET_AVAILABLE_TABLES = 'GET_AVAILABLE_TABLES';
+export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART"
+export const AGREGAR_AL_CARRITO = 'AGREGAR_AL_CARRITO';
+export const AUMENTO_CART = 'AUMENTO_CART';
+
 
 export function postUsers(payload) {
   return async function (dispatch) {
@@ -33,6 +37,33 @@ export function getUserByLogin(email, password) {
   };
 }
 
+export const agregarAlCarrito = (producto) => {
+  return {
+    type: "AGREGAR_AL_CARRITO",
+    payload: producto,
+  };
+};
+
+
+// UNO PARA AUMENTAR QUANTITY OTRO PARA RESTAR 
+// UNO PARA SACAR PRODUCTO CON ID ESPECIFICO DE Carrito 
+
+export const aumentarIndiceCart=()=>{
+  return {
+    type: "AUMENTO_CART",
+    payload: 1,
+  };
+}
+
+// export function carritoAgrego(product){
+
+//       return {
+//         type: "ADD_PRODUCT_CART",
+//         payload: product,
+//       }
+
+//   }
+
 export function getAllSections() {
   return async function (dispatch) {
     var json = await axios.get("http://localhost:3001/sections");
@@ -53,7 +84,7 @@ export function getAllTags() {
       payload: json.data,
     });
   };
-}
+};
 
 export function getAllDishes() {
   return async function (dispatch) {
@@ -64,6 +95,7 @@ export function getAllDishes() {
     });
   };
 }
+
 
 export function Sort(order) {
   return {
