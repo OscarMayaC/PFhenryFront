@@ -14,7 +14,6 @@ root.render(
       <App />
     </React.StrictMode>
   </Provider>
-
 );
 
 // If you want to start measuring performance in your app, pass a function
