@@ -3,7 +3,7 @@
     width: 380px;
     height: 340px;
     background-color: #eff0ea;
-    opacity: 0.3;
+    opacity: 0.9;
     backdrop-filter: blur(6px);
     border-radius: 17px;
     text-align: center;
@@ -20,7 +20,6 @@
 .card:hover {
     border: 1px solid white;
     transform: scale(1.05);
-    opacity: 0.9;
 }
 
 .card:active {
