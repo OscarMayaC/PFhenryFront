@@ -14,7 +14,7 @@ function Reservation(){
       <h1>Reservas</h1>
       <Selectors/>
 
-      <Canvas style={{ height: window.innerHeight }}>
+      <Canvas style={{ height: '90%' }}>
         <OrthographicCamera
         left={-width / 2}
         right={width / 2}
@@ -24,6 +24,7 @@ function Reservation(){
         far={100}
         />
         <ambientLight/>
+        <pointLight />
         <OrbitControls />
         <Suspense fallback={null} onError={error => console.log(error)}>
           <Mesas scale={[0.025, 0.025, 0.025]}/>
