@@ -1,3 +1,2 @@
-
-node_modules/.cache/default-development/2.pack filter=lfs diff=lfs merge=lfs -text
-
+*.bin filter=lfs diff=lfs merge=lfs -text
+*.gltf filter=lfs diff=lfs merge=lfs -text
