@@ -3,5 +3,3 @@ node_modules/
 
 # eslint cache
 .eslintcachenode_modules
-
-./next
