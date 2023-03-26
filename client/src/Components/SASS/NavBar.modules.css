@@ -1,0 +1,202 @@
+.navbar-main-contenedor{
+    height: 60px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #CA3E49;
+
+}
+
+
+
+/* ZONA IZQUIERDA DE LA NAVBAR   */
+
+/* CONTENEDOR  */
+
+.navbar-left-zone{
+    width: 50%;
+    height: 100%;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    padding-left: 2%;
+    z-index: 2;
+    background-color: transparent;
+}
+
+/* ELEMENTOS  */
+
+.navbar-circulo-logo-fondo{
+display: flex;
+justify-content: center;
+
+}
+
+
+.circulo-navbar{
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: black;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.247);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.navbar-logo-left{
+    width: 55px;
+    height: 55px;
+    margin-left: -1.6px;
+    margin-top: -1.5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.circulo-navbar:hover{
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
+    height: 52px;
+    margin-top: 10px;
+}
+
+
+
+.logo-texto-navbar-left{
+    font-size: 30px;
+    font-weight: 350;
+    cursor:default;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+
+
+
+/* -----------------------------------------------------------------------  */
+
+
+/* ZONA DERECHA DE LA NAVBAR   */
+
+/* CONTENEDOR  */
+.navbar-right-zone{
+    width: 50%;
+    height: 100%;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    padding-right: 2%;
+    z-index: 2;
+    background-color: transparent;
+
+}
+
+/* ELEMENTOS  */
+
+
+.navbar-button-sobre-nosotros{
+    height: 40px;
+    width: 160px;
+    border-radius: 30px;
+    border-color: transparent;
+    box-shadow: 0px 3px rgba(0, 0, 0, 0.247);
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    /* z-index: 10; */
+}
+
+.navbar-button-reseñas{
+    height: 40px;
+    width: 160px;
+    border-radius: 30px;
+    border-color: transparent;
+    box-shadow: 0px 3px rgba(0, 0, 0, 0.247);
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    /* z-index: 10; */
+}
+
+
+
+
+/* BOTON INCIAR SESION  */
+
+
+.navbar-button-iniciar-sesion{
+    height: 40px;
+    width: 160px;
+    border-radius: 30px;
+    border-color: transparent;
+    box-shadow: 0px 3px rgba(0, 0, 0, 0.247);
+    color: black;
+    font-weight: 600;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    /* z-index: 10; */
+}
+
+
+.contenedor-button-navbar-inciarsesion{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+
+.txt-navbar-iniciarsesion{
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+}
+.navbar-iniciar-user-icon{
+    margin-right: 2px;
+    height: 16px;
+    width: 20px;
+}
+
+
+/* BOTONES HOVER  */
+
+.navbar-button-iniciar-sesion:hover{
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
+    height: 45px;
+    margin-top: 10px;
+    background-color: grey;
+}
+
+.navbar-button-reseñas:hover{
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
+    height: 45px;
+    margin-top: 10px;
+    background-color: grey;
+}
+
+.navbar-button-sobre-nosotros:hover{
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
+    height: 45px;
+    margin-top: 10px;
+    background-color: grey;
+}
+
+
+
+
+
