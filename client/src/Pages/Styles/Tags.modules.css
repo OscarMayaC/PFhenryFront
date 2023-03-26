@@ -1,0 +1,77 @@
+.zona-tags{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.boton-flecha-izquierda-scroll-bar-tags{
+    background-color: transparent;
+    border: none;
+    height: 70px;
+    cursor: pointer;
+    margin-right: 20px;
+    /* opacity: -10; */
+
+}
+
+
+.zona-ofertas-del-dia{
+    width: 800px;
+    height: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    /* background-color: white; */
+    align-items: center;
+    gap:20px;
+}
+
+
+.boton-seleccion-tags{
+    height: 35px;
+    width: 150px;
+    border-radius: 30px;
+    border-color: transparent;
+    transition: 500ms;
+    cursor: pointer;
+    color: black;
+}
+.boton-seleccion-tags:hover{
+    background-color: grey;
+}
+
+
+.flecha-izquierda-scroll-tags{
+    width: 22px;
+    height: 22px;
+    opacity: 0.5;
+}
+
+.flecha-derecha-scroll-tags{
+    width: 22px;
+    height: 22px;
+    opacity: 0.5;
+}
+
+
+.flecha-izquierda-scroll-tags:hover{
+    opacity: 1;
+}
+
+.flecha-derecha-scroll-tags:hover{
+    opacity: 1;
+}
+
+
+.boton-flecha-derecha-scroll-bar-tags{
+    background-color: transparent;
+    border: none;
+    height: 70px;
+    cursor: pointer;
+    margin-right: 20px;
+}
