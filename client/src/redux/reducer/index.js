@@ -8,7 +8,8 @@ import {
     CREATE_USER,
     GET_USER_LOGIN,
     GET_DETAILS,
-    POST_CRITIC
+    POST_CRITIC,
+    GET_AVAILABLE_TABLES
   } from "../actions/index";
   
   const initialState = {
@@ -21,7 +22,8 @@ import {
     sections: [],
     SearchDish: [],
     Dishes: [],
-    detail:[]
+    detail:[],
+    tables: [],
   };
   
   function rootReducer(state = initialState, action) {
@@ -102,7 +104,11 @@ import {
             return{
               ...state
             }    
-  
+      case GET_AVAILABLE_TABLES:
+        return{
+            ...state,
+            tables: action.payload
+        };
       default:
         return state;
     }

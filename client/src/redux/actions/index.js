@@ -10,6 +10,7 @@ export const CREATE_USER = "CREATE_USER";
 export const GET_USER_LOGIN = "GET_USER_LOGIN";
 export const GET_DETAILS = "GET_DETAILS";
 export const POST_CRITIC = "POST_CRITIC";
+export const GET_AVAILABLE_TABLES = 'GET_AVAILABLE_TABLES';
 
 export function postUsers(payload) {
   return async function (dispatch) {
@@ -121,3 +122,15 @@ export function filterDishByTag(payload) {
     payload,
   };
 }
+
+export const getTables = (body) => {
+  return async(dispatch) => {
+      try {
+          const availableTables = await axios.get('https://pfhenryback-production.up.railway.app/tables/', body)
+          console.log(availableTables)
+          dispatch({type: GET_AVAILABLE_TABLES, payload: availableTables})
+      } catch (error) {
+          console.log(error.response.data.error)
+      }
+  };
+};

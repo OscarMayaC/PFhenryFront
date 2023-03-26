@@ -9,6 +9,8 @@ import Nosotros from "../Components/SobreNosotros/Nosotros";
 import IniciarSesion from "../components/IniciarSesion/IniciarSesion";
 import Register from "../components/Register/Register";
 import Detalles from "../Components/Detail/details";
+import Reservation from './components/ReservationPage/Reservation';
+
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
       <Route exact path="/IniciarSesion" component={IniciarSesion} />
       <Route exact path="/Register" component={Register} />
       <Route exact path="/detalles" component={Detalles} />
+      <Route exact path='/reservation' component={Reservation}/>
     </div>
   );
 }
