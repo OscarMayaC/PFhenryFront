@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/cardReseñas.css';
+import '../css/cardTestimonios.css';
 
 
-const CardReseñas = ({name, titulo, opinion, imagen}) => {
+const CardTestimonios = ({name, titulo, opinion, imagen}) => {
 
   return (
     <div className='card'>
@@ -16,4 +16,4 @@ const CardReseñas = ({name, titulo, opinion, imagen}) => {
   )
 }
 
-export default CardReseñas;
+export default CardTestimonios;

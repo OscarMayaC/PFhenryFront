@@ -1,6 +1,6 @@
 import "./Styles/App.css";
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Landing from "../Pages/Landing";
 import NavBar from "../Components/NavBar";
 import Delivery from "../Pages/Delivery";
@@ -19,6 +19,7 @@ function App() {
       <Route exact path="/sobrenosotros" component={Nosotros} />
       <Route exact path="/IniciarSesion" component={IniciarSesion} />
       <Route exact path="/Register" component={Register} />
+      
     </div>
   );
 }
