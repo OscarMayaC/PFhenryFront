@@ -24,10 +24,9 @@ function Reservation(){
         far={100}
         />
         <ambientLight/>
-        <pointLight/>
         <OrbitControls />
         <Suspense fallback={null} onError={error => console.log(error)}>
-          <Mesas scale={[0.05, 0.05, 0.05]}/>
+          <Mesas scale={[0.025, 0.025, 0.025]}/>
         </Suspense>
       </Canvas>
     </div>
