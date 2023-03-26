@@ -1,29 +1,56 @@
 .main-form-register {
-    height: 700px;
+    height: 80vh;
     display: flex;
-    font-weight: bold;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 15px;
-    background-size: cover;
+    gap: 20px;
+}
+
+.body-register-form {
+	background-color: whitesmoke;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 55%; 
+	text-align: center;
+}
+
+.body-input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
 }
 
 .register-bg {
-    background-color: whitesmoke;
+    height: 100vh;
+    background-image: url(../../imgs/fondo-register-login.png);
     background-size: cover;
 }
 
+.form-divs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold; 
+    
+}
+
 .register-btn{
-    height: 40px;
-    width: 120px;
-    border-radius: 30px;
-    border-color: transparent;
-    box-shadow: 0px 3px rgba(0, 0, 0, 0.247);
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.3s;
-    /* z-index: 10; */
+    border-radius: 20px;
+	border: 1px solid #FF4B2B;
+	background-color: #FF4B2B;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+    
 }
