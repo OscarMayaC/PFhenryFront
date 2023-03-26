@@ -1,0 +1,77 @@
+.base{
+    background: url('../../imgs/comida5.jpg'); 
+    position:absolute;
+    width: 100%;
+    background-color: white; 
+    height: auto; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+.logosss{
+    width: 350px;
+    height: 350px; 
+    /*animation-name: ani;
+    animation-duration: 7s;
+    animation-timing-function: linear ;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse; */
+
+} 
+
+/*@keyframes ani {
+    0%{border: 1px solid #ca3e49;}
+    50%{border: 1px solid black;}
+    100%{border: 1px solid rgb(76, 22, 78);}
+    } */
+    
+
+.im{
+    border: 1px solid rgb(57, 69, 83);
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.50);
+    margin: 15px;
+    padding: 5px;
+    position: relative;
+    align-items: center;
+    justify-content:center;
+}
+
+.rosa{
+    color:rgb(76, 22, 78);
+    font-family: cursive;
+    font-size: 400%;
+}
+
+.info{
+    left: 40px;
+    right: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    float: center;
+    align-content: center;
+    flex-wrap: wrap;
+    margin: 10px;
+    justify-items: stretch;
+}
+
+.detail{
+    box-sizing: border-box;
+    width: 550px;
+    height: max-content;
+    background-color:  #b47e58 ;
+    opacity: 0.7;
+    border: 1px solid rgb(57, 69, 83);
+    backdrop-filter: blur(6px);
+    border-radius: 17px;
+    text-align: center;
+    align-items: center;
+    justify-content:center;
+    user-select: none;
+    font-weight: bolder;
+    margin: 15px;
+    padding: 5px;
+}
+
+
