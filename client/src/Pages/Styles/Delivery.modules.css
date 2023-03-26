@@ -364,3 +364,10 @@
 }
 
 
+.link-card-detail{
+    z-index: 12;
+}
+
+.div-card{
+    z-index: 1;
+}

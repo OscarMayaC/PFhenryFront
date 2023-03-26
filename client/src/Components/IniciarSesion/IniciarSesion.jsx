@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import NavBar from '../NavBar/NavBar';
+import NavBar from '../../Components/NavBar';
 import { getUserByLogin } from '../../redux/actions';
 import "../SASS/IniciarSesion.modules.css"
 import '../SASS/register.modules.css'

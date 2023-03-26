@@ -68,8 +68,9 @@ function Delivery() {
 {allSearchDish?.map((e) => {
  
                 return (
-                  <div key={e.id}>
-                    <Link to={"/delivery/" + e.id}>
+                  <div key={e.id} className="div-card">
+                    <Link to={"/delivery/detalles/" + e.id} className="link-card-detail">
+                      console.log(e.id)
                       <Cards
                         key={e.id}
                         id={e.id}

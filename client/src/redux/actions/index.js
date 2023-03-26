@@ -18,14 +18,14 @@ export const AUMENTO_CART = 'AUMENTO_CART';
 
 export function postUsers(payload) {
   return async function (dispatch) {
-    let response = await axios.post("http://localhost:3001/users", payload);
+    let response = await axios.post("https://pfhenryback-production.up.railway.app/users", payload);
     return response;
   };
 }
 
 export function getUserByLogin(email, password) {
   return async function (dispatch) {
-    let response = await axios.post("http://localhost:3001/users/login", {
+    let response = await axios.post("https://pfhenryback-production.up.railway.app/users/login", {
       email: email,
       password: password,
     });
@@ -66,7 +66,7 @@ export const aumentarIndiceCart=()=>{
 
 export function getAllSections() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/sections");
+    var json = await axios.get("https://pfhenryback-production.up.railway.app/sections");
     // console.log(json.data)
     dispatch({
       type: "GET_SECTIONS",
@@ -77,7 +77,7 @@ export function getAllSections() {
 
 export function getAllTags() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/tags");
+    var json = await axios.get("https://pfhenryback-production.up.railway.app/tags");
     // console.log(json.data)
     dispatch({
       type: "GET_TAGS",
@@ -88,7 +88,7 @@ export function getAllTags() {
 
 export function getAllDishes() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/dishes");
+    var json = await axios.get("https://pfhenryback-production.up.railway.app/dishes");
     dispatch({
       type: "GET_DISHES",
       payload: json.data,
@@ -106,7 +106,7 @@ export function Sort(order) {
 
 export function postDish(payload) {
   return async function () {
-    const response = await axios.post("http://localhost:3001/dishes", payload);
+    const response = await axios.post("https://pfhenryback-production.up.railway.app/dishes", payload);
     return response;
   };
 }
@@ -114,7 +114,7 @@ export function postDish(payload) {
 export function searchDish(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/dishes?name=" + name);
+      var json = await axios.get("https://pfhenryback-production.up.railway.app/dishes?name=" + name);
       return dispatch({
         type: "SEARCH_NAME",
         payload: json.data,
@@ -129,7 +129,7 @@ export function getDetail(id){
   console.log(id);
   return async function(dispatch){
       try{
-      let json = await axios.get(`http://localhost:3001/dishes/${id}`);
+      let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/${id}`);
       return dispatch({
           type: 'GET_DETAILS',
           payload: json.data
@@ -142,7 +142,7 @@ export function getDetail(id){
 
 export function postCritic(payload){
   return async function(dispatch){
-      const json = await axios.post("http://localhost:3001/critics/", payload);
+      const json = await axios.post("https://pfhenryback-production.up.railway.app/critics/", payload);
       console.log(json);
       return json;
   }

@@ -28,7 +28,7 @@ function Landing() {
                  <h1 className='texto-delivery-boton'>Delivery! </h1><img src={deliveryMoto} alt="delivery-moto" className="icon-boton-delivery"></img>
             </div>
               </Link>
-              <Link to="/reservar" className='link-reservar'>
+              <Link to="/reservation" className='link-reservar'>
                   <div className='zona-boton-reservar'>
                       <h1 className='texto-reservar-boton'>Reservar! </h1>
                       <img src={mesaReserva} alt="delivery-moto" className="icon-boton-reserva"></img>
