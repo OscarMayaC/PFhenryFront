@@ -7,15 +7,36 @@ export const GET_SECTIONS="GET_SECTIONS";
 export const SORT="SORT";
 export const FILTER_BY_TAG="FILTER_BY_TAG"
 export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART"
+export const AGREGAR_AL_CARRITO = 'AGREGAR_AL_CARRITO';
+export const AUMENTO_CART = 'AUMENTO_CART';
 
-export function carritoAgrego(product){
 
-      return {
-        type: "ADD_PRODUCT_CART",
-        payload: product,
-      }
+export const agregarAlCarrito = (producto) => {
+  return {
+    type: "AGREGAR_AL_CARRITO",
+    payload: producto,
+  };
+};
 
-  }
+
+// UNO PARA AUMENTAR QUANTITY OTRO PARA RESTAR 
+// UNO PARA SACAR PRODUCTO CON ID ESPECIFICO DE Carrito 
+
+export const aumentarIndiceCart=()=>{
+  return {
+    type: "AUMENTO_CART",
+    payload: 1,
+  };
+}
+
+// export function carritoAgrego(product){
+
+//       return {
+//         type: "ADD_PRODUCT_CART",
+//         payload: product,
+//       }
+
+//   }
 
 export function getAllSections() {
   return async function (dispatch) {

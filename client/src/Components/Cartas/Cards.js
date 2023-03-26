@@ -1,33 +1,104 @@
 import React from 'react';
 import '../../Pages/Styles/Cards.modules.css'
 // import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
-import { carritoAgrego } from '../../redux/actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { agregarAlCarrito} from '../../redux/actions/index';
+// import { aumentarIndiceCart} from '../../redux/actions/index';
+
+
+
+// let carrito=[];
+let quantity=1;
+//  export let quantityCart = 0;
 
 export default function Cards({id, name, description, image, price, nationality}) {
-        
-        const Carrito = useSelector((state) => state.Carrito)
+    const dispatch = useDispatch();
+    const carrito = useSelector((state) => state.Carrito);
+    // const indiceCarrito = useSelector((state) => state.Quantity);
+    // const QuantityStore = useSelector((state) => state.Quantity)
+// SET ITEM 
+       const saveLocal=()=>{
+        localStorage.setItem("carrito",JSON.stringify(carrito));
+        };
 
-       const [count, useCount] = useState(0)
-        
-        // const saveLocal=()=>{
-        // localStorage.setItem("carrito",JSON.stringify());
-        // };
+      
+          
+            // const agregarProducto = () => {
+            //   dispatch(agregarAlCarrito({ id, name,description, price, image, nationality, quantity }));
+            // };
+          
+
+// GET ITEM 
+
+        // const getLocal=()=>{
+        //     JSON.parse(localStorage.getItem("carrito"))
+        // }
 
 
-    const sumarAcarrito=()=>{
-        const quantity=1
+// FUNCION CALCULADORA DE CANTIDAD DE PRODUCTO
+// function buscarPorId(id, array) {
+//     // Iterar sobre el array y buscar el elemento con la propiedad "id" igual al valor que se le pasa como argumento
+//     for (let i = 0; i < array.length; i++) {
+//     if (array[i].id === id) {
+//         // Si se encuentra un elemento con el "id" buscado, retornarlo
+//         return array[i].quantity;
+//         console.log(array[i].quantity)
+//     }
+//     }}
 
-        // carritoAgrego({id, name ,description, image,price, nationality})
-        Carrito.push({id, name ,description, image,price, nationality, quantity});
- 
-        const numCompras = document.getElementsByClassName("numero-cantidad-compras-carrito")
-        const cantCompras = numCompras[0].innerHTML= count
-        console.log(cantCompras)
-        console.log(Carrito)
 
-    }
+
+
+
+// FUNCTION GUARDADORA DE PRODUCTOS 
+
+
+
+             const sumarAcarrito=()=>{
+                  
+                  const repeat = carrito.some ((repeatProduct)=> repeatProduct.id === id);
+
+                  if(repeat){
+                    carrito.forEach((prod)=>{
+                        if(prod.id === id){
+                            prod.quantity++;
+                            quantity++;
+                            
+                           }
+                    });
+                    // dispatch(aumentarIndiceCart())
+                    // console.log(indiceCarrito)
+                    // SUBIR ACTUALIZACION DE PRODUCTOS A LOCALSTORAGE ATRAVEZ DE GLOBAL CARRITO 
+                    saveLocal()
+
+                    // AUMENTAR CANTIDAD EN EL TEXTO DE CARRITO 
+                    const cartCounterElement = document.getElementsByClassName("numero-cantidad-compras-carrito");
+                    cartCounterElement[0].textContent = quantity.toString();
+                    }else{
+                    
+                    dispatch(agregarAlCarrito({ id, name, price, image, quantity }));
+                    // dispatch(aumentarIndiceCart())
+                    quantity++;
+
+                    // console.log(indiceCarrito)
+
+                    
+                    // SUBIR ACTUALIZACION DE PRODUCTOS A LOCALSTORAGE ATRAVEZ DE GLOBAL CARRITO 
+                    saveLocal()
+
+
+                    // AUMENTAR CANTIDAD EN EL TEXTO DE CARRITO 
+                    const cartCounterElement = document.getElementsByClassName("numero-cantidad-compras-carrito");
+                    cartCounterElement[0].textContent = quantity.toString();
+                    // console.log(id)
+                    // console.log(carrito[id].quantity)
+                    // if(console.log(buscarPorId(id, carrito))===undefined){return 1}else{return console.log(buscarPorId(id, carrito))}
+                   
+                    // UNA ACCION QUE SUME 1 CANTIDAD AL CARRITO en el store 
+                }
+
+
+                                }
 
 
     return (

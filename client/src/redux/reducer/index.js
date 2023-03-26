@@ -1,4 +1,4 @@
-import{ SEARCH_NAME, GET_DISHES, GET_TAGS, GET_SECTIONS, SORT, FILTER_BY_TAG, ADD_PRODUCT_CART,} from '../actions/index'
+import{ SEARCH_NAME, GET_DISHES, GET_TAGS, GET_SECTIONS, SORT, FILTER_BY_TAG, AGREGAR_AL_CARRITO,AUMENTO_CART,} from '../actions/index'
 
 const initialState = {
 allDishes:[],
@@ -6,19 +6,26 @@ allTags:[],
 sections:[],
 SearchDish:[],
 Dishes:[],
-Carrito:[]
+Carrito:[],
+Quantity:0,
 }
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
-
-      case ADD_PRODUCT_CART:
+      
+      case AGREGAR_AL_CARRITO:
         return {
           ...state,
-          Carrito: action.payload,
+          Carrito: [...state.Carrito, action.payload],
+          // Quantity:[...state.Quantity, action.payload.quantity],
         };
 
-
+        case AUMENTO_CART:
+          return {
+            ...state,
+            // Carrito: [...state.Carrito, action.payload],
+            Quantity:[...state.Quantity + action.payload],
+          };
 
       case GET_SECTIONS:
         return {

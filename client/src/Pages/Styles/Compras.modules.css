@@ -231,7 +231,7 @@
     border-color: black;
     border-style: solid;
     border-radius: 30px 30px 0 0;
-    margin-top: 10%;
+    margin-top: -5%;
 }
 
 .izquierda-carrito-detalles-precio-usuario{
@@ -244,4 +244,70 @@
 
 .detalle-usuario-compras{
     width: 40%;
+}
+.detalle-precio-descuento-final{
+    font-size: 12px;
+}
+.detalle-usuario-compras{
+    font-size: 12px;
+}
+
+/* .izquierda-carrito-renderizado-miniatura-productos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+} */
+ 
+.izquierda-carrito-renderizado-miniatura-productos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+} 
+
+.boton-flecha-izquierda-scroll-bar-carrito{
+    background-color: transparent;
+    border: none;
+    height: 70px;
+    cursor: pointer;
+    margin-right: 20px;
+ 
+}
+
+.flecha-izquierda-scroll-carrito{
+    width: 22px;
+    height: 22px;
+    opacity: 0.5;
+}
+
+.izquierda-carrito-renderizado-miniatura-productos-seleccionados{
+    width: 500px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    /* background-color: white; */
+    align-items: center;
+    gap:20px;
+    
+}
+
+.boton-flecha-derecha-scroll-bar-carrito{
+    background-color: transparent;
+    border: none;
+    height: 70px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.flecha-derecha-scroll-carrito{
+    width: 22px;
+    height: 22px;
+    opacity: 0.5;
 }

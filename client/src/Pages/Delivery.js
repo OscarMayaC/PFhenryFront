@@ -7,9 +7,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { getAllDishes, getAllTags, getAllSections} from "../redux/actions/index";
-import CartaCarritoCompra from '../Components/Cartas/CartaCarritoCompra';
+// import CartaCarritoCompra from '../Components/Cartas/CartaCarritoCompra';
 
-let carrito = [];
+// let carrito = [];
 
 
 function Delivery() {
@@ -18,28 +18,33 @@ function Delivery() {
     const allTags = useSelector((state) => state.allTags)
     const sections = useSelector((state) => state.sections)
     const allSearchDish = useSelector((state) => state.SearchDish)
-    const Carrito = useSelector((state) => state.Carrito)
+    // const Carrito = useSelector((state) => state.Carrito)
 // ESTADOS PARA CARRITO 
-
+// const getLocal=()=>{
+//   JSON.parse(localStorage.getItem("carrito"))
+// }
 
 // LOCAL STORAGE 
 
 // set item 
-const saveLocal=()=>{
-localStorage.setItem("carrito",JSON.stringify(carrito));
-};
+// const saveLocal=()=>{
+// localStorage.setItem("carrito",JSON.stringify(carrito));
+// };
 // get item 
 
 
 
 
 
+  // const carrito = getLocal()
+
 
     useEffect(() => {
         dispatch(getAllDishes());
         dispatch(getAllTags());
         dispatch(getAllSections());
-
+        // carrito()
+        // console.log(Carrito)
       }, [dispatch]);
 
     return (
@@ -102,22 +107,7 @@ localStorage.setItem("carrito",JSON.stringify(carrito));
                   </div>
                               {/* ZONA DE DESPLIEGUE PRE COMPRA DE PRODUCTOS */}
 
-            <div className='desplegable-carrito'> 
-<h1> soy la lista de compras</h1>
-{Carrito?.map((p)=>{
-    return(<>
-    <CartaCarritoCompra name={p.name} image={p.image} price={p.price}/>
-    
-    </>)
-})}
-
-<Link to={"/carrito"} className="link-carrito-compras"> 
-    <button className='boton-carrito-ir-nav'>IR A CARRITO</button>
-</Link>
-
-
-
-        </div>
+ 
         </div>
     );
 }

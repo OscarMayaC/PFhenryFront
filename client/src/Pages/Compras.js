@@ -1,7 +1,61 @@
 import React from 'react';
 import '../Pages/Styles/Compras.modules.css'
 import motoDeliveryPerfil from '../Pages/Misc/delivery-moto-perfil.png'
+import { useSelector } from 'react-redux';
+// import Cards from '../Components/Cartas/Cards';
+// import cartaCarrito from '../Components/Cartas/cartaCarrito';
+import flechaIzquierda from '../Pages/Misc/flecha-izquierda.png'
+import flechaDerecha from '../Pages/Misc/flecha-derecha.png'
+import CartaCarrito from '../Components/Cartas/CartaCarrito';
 function Compras(props) {
+    const carrito = useSelector((state) => state.Carrito)
+
+    // SUMA PRECIOS CARRITO NO FINAL 
+    const sumaPrecios = carrito.reduce((total, producto) => {
+        return total + producto.price;
+      }, 0);
+
+// GENERADOR ALEATORIO DE COSTO ENVIO 
+      function generarNumeroAleatorio() {
+        return Math.floor((300 - 100 + 1) * Math.random() + 100);
+      }
+      
+      const numeroAleatorio = generarNumeroAleatorio();
+                         
+
+
+    //   GENERADOR ALEATORIO DE TIEMPO DE LLEGADA PEDIDO 
+
+    function generarNumeroAleatorioEnvio() {
+        return Math.floor((60 - 15 + 1) * Math.random() + 15);
+      }
+      
+      const numeroAleatorioEnvio = generarNumeroAleatorioEnvio();
+      // MANEJADOR SLIDER IZQUIERDO, CON SELECCION GENERAL 
+
+                          function handleSliderLeft(event) {
+
+                            var slider = document.getElementsByClassName("izquierda-carrito-renderizado-miniatura-productos-seleccionados")
+                            slider[0].scrollLeft= -100
+                            
+  
+                                                      }
+
+    
+                  
+
+            // MANEJADOR SLIDER DERECHO, CON SELECCION GENERAL 
+                  
+                      function handleSliderRight(event) {
+                        var slider = document.getElementsByClassName("izquierda-carrito-renderizado-miniatura-productos-seleccionados")
+                        slider[0].scrollLeft= +770
+                                                        }
+
+
+
+
+
+
     return (
         <div className='compras-carrito-main'>
             <div className='zona-izquierda-carrito'>
@@ -10,19 +64,47 @@ function Compras(props) {
                     </div>
                 <div className='izquierda-carrito-detalles-precio-usuario'>
                                 <div className='detalle-usuario-compras'>
-                                    <h1>Usuario</h1>
+                                    <h1>Usuario: User</h1>
                                 </div>
                                 <div className='detalle-precio-descuento-final'>
-                                    <h1>Precio:</h1>
-                                    <h1>Descuento:</h1>
-                                    <h1>Precio final:</h1>
+                                    <h1>Precio: ${sumaPrecios}</h1>
+                                    <h1>Descuento: 0%</h1>
+                                    <h1>Precio final: ${sumaPrecios + numeroAleatorio}</h1>
                                 </div>
                 </div>
+
+
                 <div className='izquierda-carrito-renderizado-miniatura-productos'>
-                    <h1>AQUI IMG CARTA MINI</h1>
-                    <h1>AQUI IMG CARTA MINI</h1>
-                    <h1>AQUI IMG CARTA MINI</h1>
-                </div>
+                 
+            <button onClick={handleSliderLeft} className='boton-flecha-izquierda-scroll-bar-carrito'>
+              <img src={flechaIzquierda} className="flecha-izquierda-scroll-carrito" alt='flecha-izquierda-scroll-carrito'></img>
+            </button>
+      
+      
+                      <div className='izquierda-carrito-renderizado-miniatura-productos-seleccionados'>
+
+                                                                    {carrito?.map((e) => {
+                                                return (
+                                                <div key={e.id}>                                               
+                                                    <CartaCarrito
+                                                        key={e.id}
+                                                        id={e.id}
+                                                        name={e.name}                                                
+                                                        image={e.image}
+                                                        price={e.price}
+                                                        quantity={e.quantity}                                                
+                                                    />                                          
+                                                </div>
+                                                );
+                                                })}
+                      </div>
+                      
+            <button onClick={handleSliderRight} className='boton-flecha-derecha-scroll-bar-carrito'>
+                <img src={flechaDerecha} className="flecha-derecha-scroll-carrito" alt='flecha-derecha-scroll-carrito'></img>
+            </button>
+
+</div>   
+ 
                 <div className='izquierda-carrito-final-detalles-compra'>
                     <div className='costo-de-envio-compra'></div>
                     <div className='costo-de-envio-compra-resultado-precio-total'></div>
@@ -39,12 +121,12 @@ function Compras(props) {
                             <div className='div-llega-en-mas-tiempo-y-costo-envio'>
                                     <div className='llega-en-texto-mas-tiempo-aprox'>
                                         <h1 className='texto-llega-en'>Te llega en</h1>
-                                        <h1 className='minutos-llega-aprox'>15-30 min</h1>
+                                        <h1 className='minutos-llega-aprox'>{numeroAleatorioEnvio}-{numeroAleatorioEnvio + 30} min</h1>
                                     </div>
 
                                     <div className='div-envio-mas-precio'>
                                         <h1 className='envio-texto'>Envio</h1>
-                                        <h1 className='precio-envio'>$159</h1>
+                                        <h1 className='precio-envio'>${numeroAleatorio}</h1>
                                     </div>
                             </div>
                 </div>
