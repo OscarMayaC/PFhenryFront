@@ -8,6 +8,8 @@ export const SORT = "SORT";
 export const FILTER_BY_TAG = "FILTER_BY_TAG";
 export const CREATE_USER = "CREATE_USER";
 export const GET_USER_LOGIN = "GET_USER_LOGIN";
+export const GET_DETAILS = "GET_DETAILS";
+export const POST_CRITIC = "POST_CRITIC";
 
 export function postUsers(payload) {
   return async function (dispatch) {
@@ -88,6 +90,29 @@ export function searchDish(name) {
       return alert("No se encontró el plato");
     }
   };
+}
+
+export function getDetail(id){
+  console.log(id);
+  return async function(dispatch){
+      try{
+      let json = await axios.get(`http://localhost:3001/dishes/${id}`);
+      return dispatch({
+          type: 'GET_DETAILS',
+          payload: json.data
+      })
+  }catch(error){
+      console.log(error);
+  }
+  }
+}
+
+export function postCritic(payload){
+  return async function(dispatch){
+      const json = await axios.post("http://localhost:3001/critics/", payload);
+      console.log(json);
+      return json;
+  }
 }
 
 export function filterDishByTag(payload) {
