@@ -11,32 +11,10 @@ import '../SASS/register.modules.css'
 const IniciarSesion = () => {
 
     const dispatch = useDispatch();
-    // const history = useHistory();
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    // const [input, setInput] = useState({
-    //     email: "",
-    //     password: "",
-    // })
-
-    // function handleChange(e) {
-    //     setEmail({
-    //         ...email,
-    //         [e.target.name]: e.target.value
-    //     })
-    //     setPassword({
-    //         ...password,
-    //         [e.target.name]: e.target.value
-    //     })
-    // }
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     dispatch(getUserByLogin(email, password))
-    //     console.log(getUserByLogin())
-    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
