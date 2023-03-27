@@ -7,10 +7,10 @@ import Delivery from "../Pages/Delivery";
 import Reseñas from "../Components/Reseñas/Reseñas";
 import Nosotros from "../Components/SobreNosotros/Nosotros";
 import Compras from "../Pages/Compras";
-import IniciarSesion from "../components/IniciarSesion/IniciarSesion";
-import Register from "../components/Register/Register";
+import IniciarSesion from "../Components/IniciarSesion/IniciarSesion";
+import Register from "../Components/Register/Register";
 import Detalles from "../Components/Detail/details";
-import Reservation from './components/ReservationPage/Reservation';
+import Reservation from '../Components/ReservationPage/Reservation';
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
       <Route exact path="/Register" component={Register} />
       <Route exact path="/carrito" component={NavBar} />
       <Route exact path="/carrito" component={Compras} />
-      <Route exact path="/detalles" component={Detalles} />
+      <Route exact path="/detalles/:id" component={Detalles} />
       <Route exact path='/reservation' component={Reservation}/>
 
     </div>

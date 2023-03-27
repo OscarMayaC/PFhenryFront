@@ -41,7 +41,7 @@ export default function CartaCarritoCompra({id, name, image, price, quantity}) {
                 <div className='info-importante-carrito-previsualizacion'>
                      <h1 className='titulo-plato-carrito-previsualizacion' >{name}</h1>
                      {/* <p className='cantidad-plato-carrito-previsualizacion'>x{quantity}</p> */}
-                     <p className='precio-plato-carrito-previsualizacion'>${price}</p>
+                     <p className='precio-plato-carrito-previsualizacion'>€{price}</p>
                 </div>
                 <div className='botones-agregar-o-quitar-mas-del-mismo-al-carro'>
                 <button className="boton-agregar-uno-mas-carrito-previsualizacion-izquierda">-</button>

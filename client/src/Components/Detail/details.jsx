@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import NavBar from "../../components/NavBar/NavBar";
+import NavBar from "../../Components/NavBar";
 import "../css/details.css";
 import CardDetail from "./cardDetail";
 import CardReseñas from "../Reseñas/CardReseñas";
@@ -96,13 +96,13 @@ const Detalles = (props) => {
                 <div className="carta">
 
                 <CardDetail
-                    nombre={myDish[0].name}
+                    nombre={myDish.name}
                     calificacion="9"
-                    imagen={myDish[0].image}
+                    imagen={myDish.image}
                     tags={tags}
-                    descripcion={myDish[0].description}
-                    precio={myDish[0].price}
-                    nacionalidad={myDish[0].nacionality}
+                    descripcion={myDish.description}
+                    precio={myDish.price}
+                    nacionalidad={myDish.nacionality}
                 />
 
                 </div>
