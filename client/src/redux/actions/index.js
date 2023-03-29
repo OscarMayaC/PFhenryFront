@@ -50,7 +50,7 @@ export const agregarAlCarrito = (producto) => {
 // UNO PARA AUMENTAR QUANTITY OTRO PARA RESTAR 
 // UNO PARA SACAR PRODUCTO CON ID ESPECIFICO DE Carrito 
 
-export const aumentarIndiceCart=()=>{
+export const aumentarIndiceCart = () => {
   return {
     type: "AUMENTO_CART",
     payload: 1,
@@ -127,26 +127,26 @@ export function searchDish(name) {
   };
 }
 
-export function getDetail(id){
+export function getDetail(id) {
   console.log(id);
-  return async function(dispatch){
-      try{
+  return async function (dispatch) {
+    try {
       let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/${id}`);
       return dispatch({
-          type: 'GET_DETAILS',
-          payload: json.data
+        type: 'GET_DETAILS',
+        payload: json.data
       })
-  }catch(error){
+    } catch (error) {
       console.log(error);
-  }
+    }
   }
 }
 
-export function postCritic(payload){
-  return async function(dispatch){
-      const json = await axios.post("https://pfhenryback-production.up.railway.app/critics/", payload);
-      console.log(json);
-      return json;
+export function postCritic(payload) {
+  return async function (dispatch) {
+    const json = await axios.post("https://pfhenryback-production.up.railway.app/critics/", payload);
+    console.log(json);
+    return json;
   }
 }
 
@@ -180,3 +180,22 @@ export const postBooking = (body) => {
     }
   };
 };
+
+export function saveBookingsUser(bookings) {
+  return {
+    type: "saveBookingsUser",
+    payload: bookings
+  }
+}
+
+export function deleteBookingUser(idBooking, idUser) {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`https://pfhenryback-production.up.railway.app/bookings/${idBooking}`);
+      const refreshBookings = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/${idUser}`);
+      dispatch(saveBookingsUser(refreshBookings.data));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}

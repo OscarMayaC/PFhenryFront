@@ -6,7 +6,7 @@ import flechaAbajo from '../../Pages/Misc/flecha-desplegable.png'
 import Cards from '../Cartas/Cards';
 import { useSelector, useDispatch } from "react-redux";
 import { Sort, filterDishByTag} from '../../redux/actions';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 
@@ -159,7 +159,7 @@ export default function FullSeccion({id, description}) {
                                         {allDishesSeccion?.map((e) => {
                                             return (
                                               <div key={e.id}>
-                                                <Link to={"/detalles/" +e.id}>
+                                               
                                                   <Cards
                                                     key={e.id}
                                                     id={e.id}
@@ -169,7 +169,7 @@ export default function FullSeccion({id, description}) {
                                                     price={e.price}
                                                     nationality={e.nationality}
                                                   />
-                                                </Link>
+                                       
                                               </div>
                                             );
                                           })}
