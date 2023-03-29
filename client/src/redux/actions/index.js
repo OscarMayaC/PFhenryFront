@@ -180,8 +180,24 @@ export function deleteBookingUser(idBooking, idUser) {
       await axios.delete(`https://pfhenryback-production.up.railway.app/bookings/${idBooking}`);
       const refreshBookings = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/${idUser}`);
       dispatch(saveBookingsUser(refreshBookings.data));
+      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings`);
+      dispatch(saveAllBookingsAdmin(refreshBookingsAdmin.data));
     } catch (error) {
       console.log(error);
     }
+  }
+}
+
+export function saveIdBookingUpdate(idBooking) {
+  return {
+    type: "saveIdBookingUpdate",
+    payload: idBooking
+  }
+}
+
+export function saveAllBookingsAdmin(bookings) {
+  return {
+    type: "saveAllBookingsAdmin",
+    payload: bookings
   }
 }
