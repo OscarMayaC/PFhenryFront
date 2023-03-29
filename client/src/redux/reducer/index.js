@@ -11,7 +11,9 @@ import {
     GET_USER_LOGIN,
     GET_DETAILS,
     POST_CRITIC,
-    GET_AVAILABLE_TABLES
+    GET_AVAILABLE_TABLES,
+    POST_BOOKING,
+    POST_BOOKING_ERROR
   } from "../actions/index";
   
 
@@ -27,6 +29,7 @@ const initialState = {
   Dishes: [],
   detail:[],
   tables: [],
+  reserva: [],
   Carrito:[],
   Quantity:0,
 };
@@ -143,6 +146,16 @@ case GET_SECTIONS:
         return{
             ...state,
             tables: action.payload
+        };
+      case POST_BOOKING:
+        return{
+          ...state,
+          reserva: action.payload
+        };
+      case POST_BOOKING_ERROR:
+        return{
+          ...state,
+          reserva: action.payload
         };
       default:
         return state;

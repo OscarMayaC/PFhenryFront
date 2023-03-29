@@ -11,7 +11,9 @@ export const GET_USER_LOGIN = "GET_USER_LOGIN";
 export const GET_DETAILS = "GET_DETAILS";
 export const POST_CRITIC = "POST_CRITIC";
 export const GET_AVAILABLE_TABLES = 'GET_AVAILABLE_TABLES';
-export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART"
+export const POST_BOOKING = 'POST_BOOKING';
+export const POST_BOOKING_ERROR = 'POST_BOOKING_ERROR';
+export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART";
 export const AGREGAR_AL_CARRITO = 'AGREGAR_AL_CARRITO';
 export const AUMENTO_CART = 'AUMENTO_CART';
 
@@ -158,11 +160,23 @@ export function filterDishByTag(payload) {
 export const getTables = (body) => {
   return async(dispatch) => {
       try {
-          const availableTables = await axios.get('https://pfhenryback-production.up.railway.app/tables/', body)
-          console.log(availableTables)
+          const availableTables = (await axios.post('https://pfhenryback-production.up.railway.app/tables/', body)).data
           dispatch({type: GET_AVAILABLE_TABLES, payload: availableTables})
       } catch (error) {
           console.log(error.response.data.error)
       }
+  };
+};
+
+export const postBooking = (body) => {
+  return async (dispatch) => {
+    try {
+      const reservationCreated = (await axios.post('https://pfhenryback-production.up.railway.app/bookings/', body)).data
+      console.log(reservationCreated)
+      dispatch({type: POST_BOOKING, payload: reservationCreated})
+    } catch (error) {
+      dispatch({type: POST_BOOKING_ERROR, payload: error.response.data.error})
+      console.log(error.response.data.error)
+    }
   };
 };
