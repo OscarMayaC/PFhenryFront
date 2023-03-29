@@ -11,6 +11,7 @@ import IniciarSesion from "../Components/IniciarSesion/IniciarSesion";
 import Register from "../Components/Register/Register";
 import Detalles from "../Components/Detail/details";
 import Reservation from '../Components/ReservationPage/Reservation';
+import MisReservas from "../Components/ReservationPage/MisReservas.jsx";
 
 
 function App() {
@@ -26,8 +27,8 @@ function App() {
       <Route exact path="/carrito" component={NavBar} />
       <Route exact path="/carrito" component={Compras} />
       <Route exact path="/detalles/:id" component={Detalles} />
-      <Route exact path='/reservation' component={Reservation}/>
-
+      <Route exact path='/reservation' component={Reservation} />
+      <Route exact path='/misreservas' component={MisReservas} />
     </div>
   );
 }
