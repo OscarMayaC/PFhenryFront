@@ -29,9 +29,11 @@ const initialState = {
   detail: [],
   tables: [],
   reserva: [],
-  Carrito:[],
-  Quantity:0,
-  bookingsUser: []
+  Carrito: [],
+  Quantity: 0,
+  bookingsUser: [],
+  bookingUpdateId: null,
+  allBookingsAdmin: []
 };
 
 
@@ -172,6 +174,16 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         bookingsUser: action.payload
+      };
+    case "saveIdBookingUpdate":
+      return {
+        ...state,
+        bookingUpdateId: action.payload
+      };
+    case "saveAllBookingsAdmin":
+      return {
+        ...state,
+        allBookingsAdmin: action.payload
       };
     default:
       return state;

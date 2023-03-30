@@ -12,7 +12,7 @@ import Register from "../Components/Register/Register";
 import Detalles from "../Components/Detail/details";
 import Reservation from '../Components/ReservationPage/Reservation';
 import MisReservas from "../Components/ReservationPage/MisReservas.jsx";
-
+import ReservasAdmin from "../Components/ReservationPage/ReservasAdmin";
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
       <Route exact path="/detalles/:id" component={Detalles} />
       <Route exact path='/reservation' component={Reservation} />
       <Route exact path='/misreservas' component={MisReservas} />
+      <Route exact path='/reservasadmin' component={ReservasAdmin} />
     </div>
   );
 }

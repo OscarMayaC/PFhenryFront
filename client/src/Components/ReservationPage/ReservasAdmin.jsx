@@ -1,22 +1,20 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import CardBooking from './CardBooking';
-import { useDispatch, useSelector } from 'react-redux';
-import { saveBookingsUser } from '../../redux/actions';
+import { saveAllBookingsAdmin } from '../../redux/actions';
 
-export default function MisReservas() {
 
+export default function () {
     const dispatch = useDispatch();
 
 
     useEffect(() => {
-        //de momento se harcodea el id del usuario en lo que se conoce como se guardara en
-        //el local storage.
-        fetch(`https://pfhenryback-production.up.railway.app/bookings/8`)
+        fetch(`https://pfhenryback-production.up.railway.app/bookings`)
             .then((response) => response.json())
             .then((bookings) => {
                 if (bookings) {
-                    dispatch(saveBookingsUser(bookings));
+                    dispatch(saveAllBookingsAdmin(bookings));
                 } else {
                     console.log(bookings);
                 }
@@ -27,7 +25,7 @@ export default function MisReservas() {
 
     }, []);
 
-    const bookings = useSelector((state) => state.bookingsUser)
+    const bookings = useSelector((state) => state.allBookingsAdmin)
 
 
     return (
