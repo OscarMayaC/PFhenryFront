@@ -1,37 +1,76 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from '../Pages/Misc/logo.png'
 import user from '../Pages/Misc/user.png'
 import '../Pages/Styles/NavBar.modules.css'
 import { Link } from "react-router-dom";
-import carroCompras from '../Pages/Misc/carro-de-compras.png'
-import { useSelector } from 'react-redux';
+import carroCompras from '../Pages/Misc/anadir-a-la-cesta.png'
+import { useSelector, useDispatch } from 'react-redux';
 import CartaCarritoCompra from './Cartas/CartaCarritoCompra';
-// import store from '../redux/store/index';
-// import { quantityCart } from './Cartas/Cards';
+import { actualizarTotalQuantity } from '../redux/actions';
+// import { crearOrden } from '../redux/actions';
+import { useState } from 'react';
+
 
 export default function NavBar() {
-    // const Carrito = useSelector((state) => state.Carrito)
-  
+    const dispatch = useDispatch();
+    const totalQuantity = useSelector(state => state.totalQuantityCart);
+    const carrito = useSelector(state => state.Carrito);
+
+    console.log(carrito)
+    const [Items, setItems] = useState([]);
 
 
-  const carrito = useSelector(state => state.Carrito);
 
-//   useEffect(() => {
-//     const unsubscribe = store.subscribe(() => {
-//     //   const newCarrito = store.getState().carrito;
-//       // Aquí se puede realizar cualquier acción necesaria cuando el carrito cambia
-   
-//     });
-//   CON ESTE FUNCIONABA A TIEMPO EL RENDERIZADO DE LOS COMOPONENTES EN NAVBAR PERO PARECE QUE SOLO ERA EL USESELECTOR 
-//     return () => {
-//       unsubscribe();
-//     };
-//   }, []);
+    // window.addEventListener('storage', (event) => {
+    //     if (event.key === 'carrito') {
+    //         const items = JSON.parse(localStorage.getItem('carrito')) || [];
+    //         dispatch(actualizarTotalQuantity(items));
+    //          setCarritoItems(items)
+    //     }
+    //   });
+    // suscribir a carrito 
+    // console.log("soy items " + Items)
 
-//  console.log(carrito)
+    // ITEMS TIENE TODO LO QUE LOCALSTORAGE
+    useEffect(() => {
+        // const items = JSON.parse(localStorage.getItem('carrito')) || [];
+        // dispatch(actualizarTotalQuantity(items));
+        // setCarritoItems(items)
+      
+    const storedItems = JSON.parse(localStorage.getItem('carrito')) || [];
+    setItems(storedItems);
+    dispatch(actualizarTotalQuantity(carrito));
+    // Agregar listener para actualizar estado cuando se modifique el localStorage
+    window.addEventListener('storage', handleStorageChange);
+
+    // Cleanup function para remover listener al desmontar el componente
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    }
+
+        
+      }, [dispatch, carrito]);
+
+      
+      function handleStorageChange(event) {
+        if (event.key === 'carrito') {
+          const storedItems = JSON.parse(event.newValue) || [];
+          setItems(storedItems);
+        }
+      }
+
+
+
+function crearOrdenes (){
+    console.log(carrito)
+}
+
+
+
     function handleClick(event) {   
         const buttonId = event.target.id;
-        if(carrito.length>0){
+        console.log(Items)
+        if(Items.length>0){
         mostrarPreCarrito(buttonId)
     }else{
         window.alert('carrito vacio');
@@ -110,7 +149,7 @@ export default function NavBar() {
             <div className='navbar-right-zone'>
           
 
-                    <button className='navbar-button-carrito' onClick={handleClick}><h1 className='numero-cantidad-compras-carrito'></h1>
+                    <button className='navbar-button-carrito' onClick={handleClick}><h1 className='numero-cantidad-compras-carrito'>{totalQuantity}</h1>
                     <img src={carroCompras} alt="carrito-compras" className='icon-carro-compras-nav'></img>
                     </button> 
 
@@ -151,7 +190,7 @@ export default function NavBar() {
     </>)
 })}
 
-<Link to={"/carrito"} className="link-carrito-compras"> 
+<Link to={"/carrito"} className="link-carrito-compras" onClick={crearOrdenes}> 
     <button className='boton-carrito-ir-nav'>IR A CARRITO</button>
 </Link>
 

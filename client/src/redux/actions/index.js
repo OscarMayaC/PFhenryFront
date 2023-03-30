@@ -4,7 +4,7 @@ export const GET_DISHES = "GET_DISHES";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const GET_TAGS = "GET_TAGS";
 export const GET_SECTIONS = "GET_SECTIONS";
-export const SORT = "SORT";
+// export const SORT = "SORT";
 export const FILTER_BY_TAG = "FILTER_BY_TAG";
 export const CREATE_USER = "CREATE_USER";
 export const GET_USER_LOGIN = "GET_USER_LOGIN";
@@ -14,6 +14,123 @@ export const GET_AVAILABLE_TABLES = 'GET_AVAILABLE_TABLES';
 export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART"
 export const AGREGAR_AL_CARRITO = 'AGREGAR_AL_CARRITO';
 export const AUMENTO_CART = 'AUMENTO_CART';
+export const DISMINUYO_CART = 'DISMINUYO_CART';
+export const CREAR_ORDER = 'CREAR_ORDER';
+export const CREAR_ORDER_DETAIL = 'CREAR_ORDER_DETAIL';
+export const GET_DISH_ENTRADA = 'GET_DISH_BY_SECTION';
+export const GET_DISH_PEQUEÑA_BOTANA = 'GET_DISH_PEQUEÑA_BOTANA';
+export const GET_DISH_PRINCIPALES = 'GET_DISH_PRINCIPALES';
+export const GET_DISH_ACOMPAÑAMIENTOS = 'GET_DISH_ACOMPAÑAMIENTOS';
+export const GET_DISH_POSTRES = 'GET_DISH_POSTRES';
+export const GET_DISH_BEBIDAS = 'GET_DISH_BEBIDAS';
+// export const RESTAR_AL_CARRITO = 'RESTAR_AL_CARRITO';
+// export const SORT_ENTRADAS = 'SORT_ENTRADAS';
+// export const SORT_BOTANAS = 'SORT_BOTANAS';
+// export const SORT_PRINCIPALES = 'SORT_PRINCIPALES';
+// export const SORT_ACOMPAÑAMIENTOS = 'SORT_ACOMPAÑAMIENTOS';
+// export const SORT_POSTRES = 'SORT_POSTRES';
+
+
+
+export function filterDishByTag(tag) {
+  return {
+    type: FILTER_BY_TAG,
+    payload: tag,
+  };
+}
+
+
+export function getDishEntrada(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/1`)
+    
+    dispatch({
+      type: GET_DISH_ENTRADA,
+      payload: json.data,
+      
+
+    });
+  }
+}
+
+
+export function getDishBotana(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/2`)
+    dispatch({
+      type: GET_DISH_PEQUEÑA_BOTANA,
+      payload: json.data,
+
+    });
+  }
+}
+
+export function getDishPrincipales(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/3`)
+    dispatch({
+      type: GET_DISH_PRINCIPALES,
+      payload: json.data,
+
+    });
+  }
+}
+
+export function getDishAcompañamientos(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/4`)
+    dispatch({
+      type: GET_DISH_ACOMPAÑAMIENTOS,
+      payload: json.data,
+
+    });
+  }
+}
+
+export function getDishPostres(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/5`)
+    dispatch({
+      type: GET_DISH_POSTRES,
+      payload: json.data,
+
+    });
+  }
+}
+
+export function getDishBebidas(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/6`)
+    dispatch({
+      type: GET_DISH_BEBIDAS,
+      payload: json.data,
+
+    });
+  }
+}
+
+
+
+
+
+
+// este POST 
+
+export function crearOrden(payload) {
+  return async function (dispatch) {
+    let response = await axios.post("https://pfhenryback-production.up.railway.app/orderDetail", payload);
+    return response;
+  };
+}
+
+
+export function crearOrdenDetail(payload) {
+  return async function (dispatch) {
+    let response = await axios.post("https://pfhenryback-production.up.railway.app/orderdetails", payload);
+    return response;
+  };
+}
+
 
 
 export function postUsers(payload) {
@@ -37,24 +154,44 @@ export function getUserByLogin(email, password) {
   };
 }
 
+
+
+
+
 export const agregarAlCarrito = (producto) => {
   return {
-    type: "AGREGAR_AL_CARRITO",
+    type: AGREGAR_AL_CARRITO,
     payload: producto,
   };
 };
 
+// export const restarAlCarrito = (producto) => {
+//   return {
+//     type: RESTAR_AL_CARRITO,
+//     payload: producto,
+//   };
+// };
 
-// UNO PARA AUMENTAR QUANTITY OTRO PARA RESTAR 
-// UNO PARA SACAR PRODUCTO CON ID ESPECIFICO DE Carrito 
+
 
 export const aumentarIndiceCart=()=>{
   return {
-    type: "AUMENTO_CART",
-    payload: 1,
+    type: "AUMENTO_CART"
   };
 }
 
+
+export const disminuirIndiceCart=()=>{
+  return {
+    type: "DISMINUYO_CART"
+  };
+}
+
+
+export const actualizarTotalQuantity = (items) => ({
+  type: 'UPDATE_TOTAL_QUANTITY',
+  payload: items.reduce((acc, item) => acc + item.quantity, 0)
+});
 // export function carritoAgrego(product){
 
 //       return {
@@ -97,12 +234,52 @@ export function getAllDishes() {
 }
 
 
-export function Sort(order) {
-  return {
-    type: "SORT",
-    payload: order,
-  };
-}
+
+
+// export function SortEntradas(order) {
+  
+//   return {
+//     type: "SORT_ENTRADAS",
+//     payload: order,
+//   };
+// }
+
+
+// export function SortBotanas(order) {
+//   return {
+//     type: "SORT_BOTANAS",
+//     payload: order,
+//   };
+// }
+
+// export function SortPrincipales(order) {
+//   return {
+//     type: "SORT_PRINCIPALES",
+//     payload: order,
+//   };
+// }
+
+// export function SortAcompañamientos(order) {
+//   return {
+//     type: "SORT_ACOMPAÑAMIENTOS",
+//     payload: order,
+//   };
+// }
+
+// export function SortPostres(order) {
+//   return {
+//     type: "SORT_POSTRES",
+//     payload: order,
+//   };
+// }
+
+// export function SortBebidas(order) {
+//   return {
+//     type: "SORT_BEBIDAS",
+//     payload: order,
+//   };
+// }
+
 
 export function postDish(payload) {
   return async function () {
@@ -148,12 +325,7 @@ export function postCritic(payload){
   }
 }
 
-export function filterDishByTag(payload) {
-  return {
-    type: "FILTER_BY_TAG",
-    payload,
-  };
-}
+
 
 export const getTables = (body) => {
   return async(dispatch) => {

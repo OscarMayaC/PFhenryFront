@@ -7,8 +7,31 @@ import { useSelector } from 'react-redux';
 import flechaIzquierda from '../Pages/Misc/flecha-izquierda.png'
 import flechaDerecha from '../Pages/Misc/flecha-derecha.png'
 import CartaCarrito from '../Components/Cartas/CartaCarrito';
+import { crearOrden } from '../redux/actions';
+
+
 function Compras(props) {
     const carrito = useSelector((state) => state.Carrito)
+
+
+
+
+
+
+
+    function confirmacionCompra(event){
+        crearOrden({
+            OrderDetails: [carrito],
+            description:"casa azul, rejas amarillas",
+            UserID: 1,
+        })
+     }
+
+
+
+
+
+
 
     // SUMA PRECIOS CARRITO NO FINAL 
     const sumaPrecios = carrito.reduce((total, producto) => {
@@ -17,7 +40,7 @@ function Compras(props) {
 
 // GENERADOR ALEATORIO DE COSTO ENVIO 
       function generarNumeroAleatorio() {
-        return Math.floor((300 - 100 + 1) * Math.random() + 100);
+        return Math.floor((3 - 1 + 1) * Math.random() + 1);
       }
       
       const numeroAleatorio = generarNumeroAleatorio();
@@ -31,6 +54,11 @@ function Compras(props) {
       }
       
       const numeroAleatorioEnvio = generarNumeroAleatorioEnvio();
+
+
+
+
+
       // MANEJADOR SLIDER IZQUIERDO, CON SELECCION GENERAL 
 
                           function handleSliderLeft(event) {
@@ -153,7 +181,7 @@ function Compras(props) {
 
                 </div>
                
-                <div className='derecha-carrito-boton-pago'><button className='boton-pago-carrito'>Pagar</button></div>
+                <div className='derecha-carrito-boton-pago'><button className='boton-pago-carrito' onClick={confirmacionCompra}>CONFIRMAR COMPRA</button></div>
             </div>
         </div>
     );

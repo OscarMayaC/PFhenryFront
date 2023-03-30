@@ -5,10 +5,7 @@ import SearchBar from '../Components/SearchBar/SearchBar';
 import FullSeccion from '../Components/FullSeccion/FullSeccion';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllDishes, getAllTags, getAllSections} from "../redux/actions/index";
-// import CartaCarritoCompra from '../Components/Cartas/CartaCarritoCompra';
-
-// let carrito = [];
+import { getAllDishes, getAllTags, getAllSections, getDishEntrada, getDishBotana, getDishPrincipales, getDishAcompañamientos, getDishPostres,  getDishBebidas} from "../redux/actions/index";
 
 
 function Delivery() {
@@ -17,33 +14,18 @@ function Delivery() {
     const allTags = useSelector((state) => state.allTags)
     const sections = useSelector((state) => state.sections)
     const allSearchDish = useSelector((state) => state.SearchDish)
-    // const Carrito = useSelector((state) => state.Carrito)
-// ESTADOS PARA CARRITO 
-// const getLocal=()=>{
-//   JSON.parse(localStorage.getItem("carrito"))
-// }
-
-// LOCAL STORAGE 
-
-// set item 
-// const saveLocal=()=>{
-// localStorage.setItem("carrito",JSON.stringify(carrito));
-// };
-// get item 
-
-
-
-
-
-  // const carrito = getLocal()
-
-
+ 
     useEffect(() => {
         dispatch(getAllDishes());
         dispatch(getAllTags());
         dispatch(getAllSections());
-        // carrito()
-        // console.log(Carrito)
+        dispatch(getDishEntrada());
+        dispatch(getDishBotana());
+        dispatch(getDishPrincipales());
+        dispatch(getDishAcompañamientos());
+        dispatch(getDishPostres());
+        dispatch(getDishBebidas());
+
       }, [dispatch]);
 
     return (
@@ -106,10 +88,7 @@ function Delivery() {
                                       );
                                     })}
  
-                  </div>
-                              {/* ZONA DE DESPLIEGUE PRE COMPRA DE PRODUCTOS */}
-
- 
+                  </div> 
         </div>
     );
 }

@@ -285,7 +285,7 @@
 
 .izquierda-carrito-renderizado-miniatura-productos-seleccionados{
     width: 500px;
-    height: 200px;
+    height: 220px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
