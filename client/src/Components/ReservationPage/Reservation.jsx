@@ -14,6 +14,10 @@ function Reservation(){
   const height = 20;
   const canvasRef = useRef();
 
+  const { reserva } = useSelector(state => state)
+
+  const [showCardConfirmation, setShowCardConfirmation] = useState(false)
+
   const [errorMessage, setErrorMessage] = useState('');
   
   const [selectedMesaId, setSelectedMesaId] = useState(null);
@@ -41,6 +45,7 @@ function Reservation(){
 
   const handleConfirmTable = () => {
     setConfirmTable(true)
+    setShowCardConfirmation(true)
   };
 
 
@@ -48,7 +53,7 @@ function Reservation(){
     <div>
       <h1>Reservas</h1>
 
-      {confirmTable > 0 ? <CardConfirmation/> : (
+      {showCardConfirmation && Object.keys(reserva).length > 0 ? <CardConfirmation reserva={reserva} setShowCardConfirmation={setShowCardConfirmation}/> : (
       <div>
       <Selectors selectedMesaId={selectedMesaId} confirmTable={confirmTable}/>
       {errorMessage && <span>{errorMessage}</span>}
