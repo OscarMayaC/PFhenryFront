@@ -1,5 +1,5 @@
 import React from 'react'
-import { deleteBookingUser, saveIdBookingUpdate } from '../../redux/actions'
+import { deleteBookingUser, saveIdBookingUpdate, saveInfoBooking } from '../../redux/actions'
 import { useDispatch } from 'react-redux'
 import ConfirmationDeleteBooking from './AlertConfirmationDeleteBooking';
 import { useState, useEffect } from 'react';
@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 export default function CardBooking(props) {
 
     const history = useHistory();
+
 
     const [showButtons, setShowButtons] = useState(true);
     function buttonsController() {
@@ -38,8 +39,8 @@ export default function CardBooking(props) {
 
     function editBookingButton() {
         dispatch(saveIdBookingUpdate(props.idBooking));
-        //aqui ira el link del componente editar reserva una vez este listo
-        history.push("/");
+        dispatch(saveInfoBooking(props))
+        history.push('/reservation')
     }
 
     return (
@@ -62,7 +63,6 @@ export default function CardBooking(props) {
                     notCancelBooking={notCancelBooking}
                 />
             )}
-
         </div>
     )
 }

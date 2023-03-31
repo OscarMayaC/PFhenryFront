@@ -12,8 +12,14 @@ import {
     GET_DETAILS,
     POST_CRITIC,
     GET_AVAILABLE_TABLES,
-    GET_USER_INFO
+    GET_USER_INFO,
+    POST_BOOKING,
+    POST_BOOKING_ERROR,
+    SAVE_INFO_BOOKING,
+    PUT_BOOKING,
+    PUT_BOOKING_ERROR
   } from "../actions/index";
+  
   
 
 const initialState = {
@@ -29,11 +35,14 @@ const initialState = {
   Dishes: [],
   detail: [],
   tables: [],
+  reserva: [],
   Carrito: [],
   Quantity: 0,
   bookingsUser: [],
   bookingUpdateId: null,
-  allBookingsAdmin: []
+  allBookingsAdmin: [],
+  infoBooking: [],
+  responseBooking: []
 };
 
 
@@ -145,11 +154,6 @@ function rootReducer(state = initialState, action) {
             return{
               ...state
             }    
-      case GET_AVAILABLE_TABLES:
-        return{
-            ...state,
-            tables: action.payload
-        };
   
     case GET_SECTIONS:
       return {
@@ -157,16 +161,21 @@ function rootReducer(state = initialState, action) {
         sections: action.payload,
       };
 
-    case GET_DISHES:
-      return {
-        ...state,
-        allDishes: action.payload,
-      };
-    case GET_AVAILABLE_TABLES:
-      return {
-        ...state,
-        tables: action.payload
-      };
+      case GET_AVAILABLE_TABLES:
+        return{
+            ...state,
+            tables: action.payload
+        };
+      case POST_BOOKING:
+        return{
+          ...state,
+          reserva: action.payload
+        };
+      case POST_BOOKING_ERROR:
+        return{
+          ...state,
+          responseBooking: action.payload
+        };
     case "saveBookingsUser":
       return {
         ...state,
@@ -192,6 +201,21 @@ function rootReducer(state = initialState, action) {
         ...state,
         bookingsUser: action.payload
       };
+      case SAVE_INFO_BOOKING:
+      return {
+        ...state,
+        infoBooking: action.payload
+      };
+    case PUT_BOOKING:
+      return {
+        ...state,
+        responseBooking: action.payload
+      };
+    case PUT_BOOKING_ERROR:
+      return {
+        ...state,
+        responseBooking: action.payload
+      }
     default:
       return state;
   }
