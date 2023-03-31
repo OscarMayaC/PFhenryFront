@@ -16,7 +16,6 @@ function Reservation(){
   const canvasRef = useRef();
 
   const { reserva, infoBooking, responseBooking } = useSelector(state => state)
-  console.log(infoBooking)
   
   const [showCardConfirmation, setShowCardConfirmation] = useState(false)
 
