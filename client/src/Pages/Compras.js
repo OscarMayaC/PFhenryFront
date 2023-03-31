@@ -1,14 +1,16 @@
-import React from 'react';
+import React ,{ useState} from 'react';
 import '../Pages/Styles/Compras.modules.css'
 import motoDeliveryPerfil from '../Pages/Misc/delivery-moto-perfil.png'
-import { useSelector } from 'react-redux';
+import { useSelector, } from 'react-redux';
 // import Cards from '../Components/Cartas/Cards';
 // import cartaCarrito from '../Components/Cartas/cartaCarrito';
 import flechaIzquierda from '../Pages/Misc/flecha-izquierda.png'
 import flechaDerecha from '../Pages/Misc/flecha-derecha.png'
 import CartaCarrito from '../Components/Cartas/CartaCarrito';
+import axios from 'axios'
 function Compras(props) {
     const carrito = useSelector((state) => state.Carrito)
+    const [mostrarBoton, setMostrarBoton] = useState(false)
 
     // SUMA PRECIOS CARRITO NO FINAL 
     const sumaPrecios = carrito.reduce((total, producto) => {
@@ -49,7 +51,41 @@ function Compras(props) {
                       function handleSliderRight(event) {
                         var slider = document.getElementsByClassName("izquierda-carrito-renderizado-miniatura-productos-seleccionados")
                         slider[0].scrollLeft= +770
-                                                        }
+    }
+    const order = {
+        OrderDetails: carrito,
+        description: "casa blanca",
+        userId: 1
+    }
+    async function mercadopago() {
+        let mpID = 1
+         // renderizo el boton de mercadopago
+         const response = await axios.post('http://localhost:3001/orders', order)
+         mpID = response.data.mpId 
+
+        const addCheckout = async() => {
+          const mp = await new window.MercadoPago('TEST-802c7a27-7e8f-4757-80eb-d9b843bc0c2c', {
+            locale: 'es-AR'
+        })
+        setMostrarBoton(true)
+        await mp.checkout({
+                preference: {
+                  id: mpID,
+                },
+                render: {
+                  container: '.cho-container',
+                  label: 'Pagar',
+                }
+              });
+        }
+        
+      //con el preferenceID en mano creo el script y le inyecto el script de mercadopago
+        const script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = 'https://sdk.mercadopago.com/js/v2';
+           script.addEventListener('load', addCheckout); // Cuando cargue el script, se ejecutará la función addCheckout
+          document.body.appendChild(script);
+}                                                                                              
 
 
 
@@ -130,30 +166,31 @@ function Compras(props) {
                                     </div>
                             </div>
                 </div>
-                <div className='derecha-carrito-titulo-medio-pago'>MEDIO DE PAGO</div>
+                <div className='derecha-carrito-titulo-medio-pago'>DESCRIPCION</div>
                 
                 <div className='derecha-carrito-seleccion-pago'>
                        
                        
-                        <div className='checkbox-efectivo-carrito-derecha'>
-                            <input type="checkbox"  className="checkbox-efectivo-carrito-check" />
+                        {/* <div className='checkbox-efectivo-carrito-derecha'> */}
+                            {/* <input type="checkbox"  className="checkbox-efectivo-carrito-check" />
                             <h1 className='efectivo-texto-carrito-derecha'>Efectivo</h1>
                         </div>
                     
                         <div className='monto-cantidad-efectivo-carrito-derecha'>
-                            <h1 className='simbolo-efectivo-carrito-derecha'>$</h1>
+                            <h1 className='simbolo-efectivo-carrito-derecha'>$</h1> */}
                             <input type="text" className='cantidad-de-dinero-input'/>
-                        </div>
+                        {/* </div>
 
                         <div className='checkbox-tarjeta-carrito-derecha'>
                             <input type="checkbox" className='checkbox-tarjeta-carrito-check' />
-                            <h1 className='tarje-texto-carrito-derecha'>Debito o credito</h1>
-                        </div>
+                            <h1 className='tarje-texto-carrito-derecha'>Debito o credito</h1> */}
+                        {/* </div> */}
 
 
                 </div>
                
-                <div className='derecha-carrito-boton-pago'><button className='boton-pago-carrito'>Pagar</button></div>
+                { mostrarBoton ? '' : <div className='derecha-carrito-boton-pago'><button onClick={mercadopago} style={{"cursor": "pointer"}} className='boton-pago-carrito'>Confirmar compra</button></div> }
+                <div className='cho-container' ></div>
             </div>
         </div>
     );
