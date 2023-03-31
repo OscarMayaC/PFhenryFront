@@ -191,12 +191,21 @@ export function saveBookingsUser(bookings) {
   }
 }
 
+export function saveAllBookingsAdmin(bookings) {
+  return {
+    type: "saveAllBookingsAdmin",
+    payload: bookings
+  }
+}
+
 export function deleteBookingUser(idBooking, idUser) {
   return async (dispatch) => {
     try {
       await axios.delete(`https://pfhenryback-production.up.railway.app/bookings/${idBooking}`);
-      const refreshBookings = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/${idUser}`);
-      dispatch(saveBookingsUser(refreshBookings.data));
+      if (idUser) {
+        const refreshBookings = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/${idUser}`);
+        dispatch(saveBookingsUser(refreshBookings.data));
+      }
       const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings`);
       dispatch(saveAllBookingsAdmin(refreshBookingsAdmin.data));
     } catch (error) {
@@ -236,5 +245,43 @@ export function putBooking(newData, bookingUpdateId){
       console.log(error.response.data.error)
     }
   }
+}
+
+export function filterBookingsInThisDate(date, idUser) {
+  return async (dispatch) => {
+    try {
+      if (idUser) {
+        const bookinsInThisDate = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/bookingsInThisDate?date=${date}&idUser=${idUser}`);
+        dispatch({ type: "filterBookingsInThisDateUser", payload: bookinsInThisDate.data })
+      } else {
+        const bookinsInThisDate = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/bookingsInThisDate?date=${date}&idUser=`);
+        dispatch({ type: "filterBookingsInThisDateAdmin", payload: bookinsInThisDate.data })
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function refreshAdminBookings() {
+  return async (dispatch) => {
+    try {
+      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings`);
+      dispatch(saveAllBookingsAdmin(refreshBookingsAdmin.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function refreshUserBookings(idUser) {
+  return async (dispatch) => {
+    try {
+      const refreshBookings = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/${idUser}`);
+      dispatch(saveBookingsUser(refreshBookings.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 

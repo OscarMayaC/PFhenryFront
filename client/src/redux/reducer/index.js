@@ -173,7 +173,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         allBookingsAdmin: action.payload
       };
-    case SAVE_INFO_BOOKING:
+    case "filterBookingsInThisDateAdmin":
+      return {
+        ...state,
+        allBookingsAdmin: action.payload
+      };
+    case "filterBookingsInThisDateUser":
+      return {
+        ...state,
+        bookingsUser: action.payload
+      };
+      case SAVE_INFO_BOOKING:
       return {
         ...state,
         infoBooking: action.payload
@@ -191,8 +201,6 @@ function rootReducer(state = initialState, action) {
     default:
       return state;
   }
-
-
 }
 
 export default rootReducer;
