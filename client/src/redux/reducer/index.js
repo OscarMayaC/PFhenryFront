@@ -11,7 +11,8 @@ import {
     GET_USER_LOGIN,
     GET_DETAILS,
     POST_CRITIC,
-    GET_AVAILABLE_TABLES
+    GET_AVAILABLE_TABLES,
+    GET_USER_INFO
   } from "../actions/index";
   
 
@@ -22,6 +23,7 @@ const initialState = {
   email: "",
   password: "",
   userId: "",
+  user: [],
   sections: [],
   SearchDish: [],
   Dishes: [],
@@ -120,6 +122,7 @@ case GET_SECTIONS:
         return {
           ...state,
         };
+
       case GET_USER_LOGIN:
         return {
           ...state,
@@ -127,6 +130,12 @@ case GET_SECTIONS:
           email: action.payload.email,
           password: action.payload.password,
           userId: action.payload.id,
+        };
+
+      case GET_USER_INFO: 
+        return {
+          ...state,
+          user: action.payload
         };
 
       case GET_DETAILS:

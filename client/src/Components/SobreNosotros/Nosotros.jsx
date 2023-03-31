@@ -6,6 +6,7 @@ import NavBar from '../NavBar/NavBar';
 
 
 
+
 const Nosotros = () => {
      
 

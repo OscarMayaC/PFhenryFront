@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../Pages/Styles/Cards.modules.css'
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { agregarAlCarrito} from '../../redux/actions/index';
 // import { aumentarIndiceCart} from '../../redux/actions/index';
@@ -8,7 +8,7 @@ import { agregarAlCarrito} from '../../redux/actions/index';
 
 
 // let carrito=[];
-let quantity=1;
+let quantity=0;
 //  export let quantityCart = 0;
 
 export default function Cards({id, name, description, image, price, nationality}) {
@@ -104,17 +104,26 @@ export default function Cards({id, name, description, image, price, nationality}
     return (
         <div className='cards'>
             
-            <div className='zona-imagenes-carta'>
-                <img src={image} alt='imagen de plato'></img>
+            <div className='zona-imagenes-carta-mas-boton'>
+                <img src={image} alt='imagen de plato' className='img-carta'></img>
+               
+                <div className='circulo-div-agregar-carrito'>
+                <button onClick={sumarAcarrito} className="boton-agregar-carrito-en-card">+</button>
+                </div>
+
             </div>
             <div className='zona-info-plato-texto'>
             <h1 className='titulo-plato-carta' >{name}</h1>
-                <p className='id-plato'>{id}</p>
+                {/* <p className='id-plato'>{id}</p> */}
               
                 <p className='descripcion-plato-carta'>{description}</p>
-                <p className='precio-plato'>{price}</p>
+                <p className='precio-plato'>€{price}</p>
                 <p className='nacionalidad-plato'>{nationality}</p>
-                <button onClick={sumarAcarrito} className="boton-agregar-carrito-en-card">Agregar a carrito</button>
+                <Link to={"/detalles/" +id} className="link-a-detalles-por-id">
+                    <div className='leer-mas-div'>
+                    <h1 className='leer-mas-txt'>Leer más</h1>
+                    </div>
+                    </Link>
             </div>
 
         </div>

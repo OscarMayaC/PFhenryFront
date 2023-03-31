@@ -11,6 +11,8 @@ import IniciarSesion from "../Components/IniciarSesion/IniciarSesion";
 import Register from "../Components/Register/Register"
 import Detalles from "../Components/Detail/details";
 import Reservation from "../Components/ReservationPage/Reservation"
+import Perfil from "../Components/Perfil/Perfil";
+
 
 
 function App() {
@@ -25,8 +27,9 @@ function App() {
       <Route exact path="/Register" component={Register} />
       <Route exact path="/carrito" component={NavBar} />
       <Route exact path="/carrito" component={Compras} />
-      <Route exact path="/detalles" component={Detalles} />
+      <Route exact path="/detalles/:id" component={Detalles} />
       <Route exact path='/reservation' component={Reservation}/>
+      <Route exact path="/perfil" component={Perfil} />
 
     </div>
   );

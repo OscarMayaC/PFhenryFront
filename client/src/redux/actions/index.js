@@ -14,6 +14,7 @@ export const GET_AVAILABLE_TABLES = 'GET_AVAILABLE_TABLES';
 export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART"
 export const AGREGAR_AL_CARRITO = 'AGREGAR_AL_CARRITO';
 export const AUMENTO_CART = 'AUMENTO_CART';
+export const GET_USER_INFO = "GET_USER_INFO";
 
 
 export function postUsers(payload) {
@@ -35,6 +36,20 @@ export function getUserByLogin(email, password) {
       payload: response.data,
     });
   };
+}
+
+export const getUsersForProfile = (payload) => {
+  return async function(dispatch) {
+    try {
+      let response = await axios.get(`https://pfhenryback-production.up.railway.app/users/${payload}` )
+    return dispatch({
+      type: GET_USER_INFO,
+      payload: response.data
+    })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export const agregarAlCarrito = (producto) => {

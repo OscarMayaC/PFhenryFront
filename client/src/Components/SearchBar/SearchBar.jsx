@@ -19,7 +19,7 @@ export default function SearchBar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(name === ""){ dispatch(searchDish(1))} else {
-    dispatch(searchDish(name))}
+    dispatch(searchDish(name.charAt(0).toUpperCase() + name.substring(1)))}
   }
 
   return (

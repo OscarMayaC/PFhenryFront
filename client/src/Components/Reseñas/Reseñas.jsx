@@ -5,6 +5,7 @@ import testimonios from './testimonios';
 import CardReseñas from './CardReseñas';
 import NavBar from '../NavBar/NavBar';
 
+
 const Reseñas = () => {
      
     let reseñas = testimonios();

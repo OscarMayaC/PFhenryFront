@@ -5,7 +5,6 @@ import SearchBar from '../Components/SearchBar/SearchBar';
 import FullSeccion from '../Components/FullSeccion/FullSeccion';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
 import { getAllDishes, getAllTags, getAllSections} from "../redux/actions/index";
 // import CartaCarritoCompra from '../Components/Cartas/CartaCarritoCompra';
 
@@ -68,8 +67,9 @@ function Delivery() {
 {allSearchDish?.map((e) => {
  
                 return (
-                  <div key={e.id}>
-                    <Link to={"/delivery/" + e.id}>
+                  <div key={e.id} className="div-card">
+
+             
                       <Cards
                         key={e.id}
                         id={e.id}
@@ -79,7 +79,7 @@ function Delivery() {
                         price={e.price}
                         nationality={e.nationality}
                       />
-                    </Link>
+          
                   </div>
                 );
               })}
@@ -87,6 +87,8 @@ function Delivery() {
 
                             </div>
                     </div>
+
+                    
             </div>
 
 
