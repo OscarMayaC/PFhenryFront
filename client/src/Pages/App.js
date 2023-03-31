@@ -8,11 +8,13 @@ import Reseñas from "../Components/Reseñas/Reseñas";
 import Nosotros from "../Components/SobreNosotros/Nosotros";
 import Compras from "../Pages/Compras";
 import IniciarSesion from "../Components/IniciarSesion/IniciarSesion";
-import Register from "../Components/Register/Register";
+import Register from "../Components/Register/Register"
 import Detalles from "../Components/Detail/details";
+import Perfil from "../Components/Perfil/Perfil";
 import Reservation from '../Components/ReservationPage/Reservation';
 import MisReservas from "../Components/ReservationPage/MisReservas.jsx";
 import ReservasAdmin from "../Components/ReservationPage/ReservasAdmin";
+
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
       <Route exact path="/carrito" component={NavBar} />
       <Route exact path="/carrito" component={Compras} />
       <Route exact path="/detalles/:id" component={Detalles} />
+      <Route exact path="/perfil" component={Perfil} />
       <Route exact path='/reservation' component={Reservation} />
       <Route exact path='/misreservas' component={MisReservas} />
       <Route exact path='/reservasadmin' component={ReservasAdmin} />
