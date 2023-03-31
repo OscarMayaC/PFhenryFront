@@ -6,6 +6,7 @@ import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from 'three'
 import { useSelector } from "react-redux";
 import CardConfirmation from "./CardConfirmation";
+import EditReservation from "./EditReservation";
 
 
 function Reservation(){
@@ -14,8 +15,9 @@ function Reservation(){
   const height = 20;
   const canvasRef = useRef();
 
-  const { reserva } = useSelector(state => state)
-
+  const { reserva, infoBooking, responseBooking } = useSelector(state => state)
+  console.log(infoBooking)
+  
   const [showCardConfirmation, setShowCardConfirmation] = useState(false)
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -41,6 +43,8 @@ function Reservation(){
     raycaster.setFromCamera(mouse, camera);
   }};
 
+  const [confirmSearchTables, setConfirmSearchTables] = useState(false)
+
   const [confirmTable, setConfirmTable] = useState(false)
 
   const handleConfirmTable = () => {
@@ -48,15 +52,20 @@ function Reservation(){
     setShowCardConfirmation(true)
   };
 
-
   return(
     <div>
       <h1>Reservas</h1>
+    
 
       {showCardConfirmation && Object.keys(reserva).length > 0 ? <CardConfirmation reserva={reserva} setShowCardConfirmation={setShowCardConfirmation}/> : (
+        
       <div>
-      <Selectors selectedMesaId={selectedMesaId} confirmTable={confirmTable}/>
+      {infoBooking.length > 0 ?
+      <EditReservation selectedMesaId={selectedMesaId} confirmTable={confirmTable} setConfirmSearchTables={setConfirmSearchTables}/> : 
+      <Selectors selectedMesaId={selectedMesaId} confirmTable={confirmTable} setConfirmSearchTables={setConfirmSearchTables}/>}
+
       {errorMessage && <span>{errorMessage}</span>}
+      {responseBooking && <span>{responseBooking}</span>}
       <Canvas style={{ height: '90%' }} ref={canvasRef}>
         <PerspectiveCamera
         left={-width / 2}
@@ -74,7 +83,9 @@ function Reservation(){
           confirmTable={confirmTable} 
           setSelectedMesaId={setSelectedMesaId} 
           selectedMesaId={selectedMesaId}
-          setErrorMessage={setErrorMessage}/>
+          setErrorMessage={setErrorMessage}
+          errorMessage={errorMessage}
+          confirmSearchTables={confirmSearchTables}/>
         </Suspense>
       </Canvas>
       {selectedMesaId !== null && !confirmTable ? <button onClick={handleConfirmTable}>Confirmar Mesa</button> : null}

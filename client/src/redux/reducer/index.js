@@ -13,7 +13,10 @@ import {
     POST_CRITIC,
     GET_AVAILABLE_TABLES,
     POST_BOOKING,
-    POST_BOOKING_ERROR
+    POST_BOOKING_ERROR,
+    SAVE_INFO_BOOKING,
+    PUT_BOOKING,
+    PUT_BOOKING_ERROR
   } from "../actions/index";
   
 const initialState = {
@@ -33,7 +36,9 @@ const initialState = {
   Quantity: 0,
   bookingsUser: [],
   bookingUpdateId: null,
-  allBookingsAdmin: []
+  allBookingsAdmin: [],
+  infoBooking: [],
+  responseBooking: []
 };
 
 
@@ -64,11 +69,10 @@ function rootReducer(state = initialState, action) {
             ...state,
             detail: action.payload,
           };
-      
       case POST_CRITIC:
             return{
               ...state
-            }    
+            };  
       case GET_AVAILABLE_TABLES:
         return{
             ...state,
@@ -82,7 +86,7 @@ function rootReducer(state = initialState, action) {
       case POST_BOOKING_ERROR:
         return{
           ...state,
-          reserva: action.payload
+          responseBooking: action.payload
         };
     case GET_DISHES:
       return {
@@ -154,22 +158,6 @@ function rootReducer(state = initialState, action) {
         password: action.payload.password,
         userId: action.payload.id,
       };
-
-    case GET_DETAILS:
-      return {
-        ...state,
-        detail: action.payload,
-      };
-
-    case POST_CRITIC:
-      return {
-        ...state
-      }
-    case GET_AVAILABLE_TABLES:
-      return {
-        ...state,
-        tables: action.payload
-      };
     case "saveBookingsUser":
       return {
         ...state,
@@ -185,6 +173,21 @@ function rootReducer(state = initialState, action) {
         ...state,
         allBookingsAdmin: action.payload
       };
+    case SAVE_INFO_BOOKING:
+      return {
+        ...state,
+        infoBooking: action.payload
+      };
+    case PUT_BOOKING:
+      return {
+        ...state,
+        responseBooking: action.payload
+      };
+    case PUT_BOOKING_ERROR:
+      return {
+        ...state,
+        responseBooking: action.payload
+      }
     default:
       return state;
   }

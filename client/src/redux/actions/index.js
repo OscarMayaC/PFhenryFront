@@ -13,9 +13,12 @@ export const POST_CRITIC = "POST_CRITIC";
 export const GET_AVAILABLE_TABLES = 'GET_AVAILABLE_TABLES';
 export const POST_BOOKING = 'POST_BOOKING';
 export const POST_BOOKING_ERROR = 'POST_BOOKING_ERROR';
+export const PUT_BOOKING = 'PUT_BOOKING';
+export const PUT_BOOKING_ERROR = 'PUT_BOOKING_ERROR';
 export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART";
 export const AGREGAR_AL_CARRITO = 'AGREGAR_AL_CARRITO';
 export const AUMENTO_CART = 'AUMENTO_CART';
+export const SAVE_INFO_BOOKING = 'SAVE_INFO_BOOKING';
 
 
 export function postUsers(payload) {
@@ -213,6 +216,25 @@ export function saveAllBookingsAdmin(bookings) {
   return {
     type: "saveAllBookingsAdmin",
     payload: bookings
+  }
+}
+
+export function saveInfoBooking(infoBooking){
+  return {
+    type: SAVE_INFO_BOOKING,
+    payload: infoBooking
+  }
+}
+
+export function putBooking(newData, bookingUpdateId){
+  return async (dispatch) => {
+    try {
+      const updatedReservation = (await axios.put(`https://pfhenryback-production.up.railway.app/bookings/${bookingUpdateId}`, newData)).data
+      dispatch({type: PUT_BOOKING, payload: updatedReservation})
+    } catch (error) {
+      dispatch({type: PUT_BOOKING_ERROR, payload: error.response.data.error})
+      console.log(error.response.data.error)
+    }
   }
 }
 
