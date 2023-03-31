@@ -1,6 +1,6 @@
 import {
-  AGREGAR_AL_CARRITO,
-  AUMENTO_CART,
+    AGREGAR_AL_CARRITO,
+    AUMENTO_CART,
     SEARCH_NAME,
     GET_DISHES,
     GET_TAGS,
@@ -27,35 +27,32 @@ const initialState = {
   sections: [],
   SearchDish: [],
   Dishes: [],
-  detail:[],
+  detail: [],
   tables: [],
-  Carrito:[],
-  Quantity:0,
+  Carrito: [],
+  Quantity: 0,
+  bookingsUser: [],
+  bookingUpdateId: null,
+  allBookingsAdmin: []
 };
 
 
 function rootReducer(state = initialState, action) {
-    switch (action.type) {
-      
-      case AGREGAR_AL_CARRITO:
-        return {
-          ...state,
-          Carrito: [...state.Carrito, action.payload],
-          // Quantity:[...state.Quantity, action.payload.quantity],
-        };
+  switch (action.type) {
 
-        case AUMENTO_CART:
-          return {
-            ...state,
-            // Carrito: [...state.Carrito, action.payload],
-            Quantity:[...state.Quantity + action.payload],
-          };
+    case AGREGAR_AL_CARRITO:
+      return {
+        ...state,
+        Carrito: [...state.Carrito, action.payload],
+        // Quantity:[...state.Quantity, action.payload.quantity],
+      };
 
-case GET_SECTIONS:
-  return {
-    ...state,
-    sections: action.payload,
-  };
+    case AUMENTO_CART:
+      return {
+        ...state,
+        // Carrito: [...state.Carrito, action.payload],
+        Quantity: [...state.Quantity + action.payload],
+      };
 
       case GET_DISHES:
         return {
@@ -153,11 +150,51 @@ case GET_SECTIONS:
             ...state,
             tables: action.payload
         };
-      default:
-        return state;
-    }
-
-       
-  }
   
-  export default rootReducer;
+    case GET_SECTIONS:
+      return {
+        ...state,
+        sections: action.payload,
+      };
+
+    case GET_DISHES:
+      return {
+        ...state,
+        allDishes: action.payload,
+      };
+    case GET_AVAILABLE_TABLES:
+      return {
+        ...state,
+        tables: action.payload
+      };
+    case "saveBookingsUser":
+      return {
+        ...state,
+        bookingsUser: action.payload
+      };
+    case "saveIdBookingUpdate":
+      return {
+        ...state,
+        bookingUpdateId: action.payload
+      };
+    case "saveAllBookingsAdmin":
+      return {
+        ...state,
+        allBookingsAdmin: action.payload
+      };
+    case "filterBookingsInThisDateAdmin":
+      return {
+        ...state,
+        allBookingsAdmin: action.payload
+      };
+    case "filterBookingsInThisDateUser":
+      return {
+        ...state,
+        bookingsUser: action.payload
+      };
+    default:
+      return state;
+  }
+}
+
+export default rootReducer;
