@@ -1,0 +1,13 @@
+.perfil-bg {
+    background-color:whitesmoke;
+    background-size: cover;
+    height: 100vh;
+}
+
+.h1-h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
