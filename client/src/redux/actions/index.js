@@ -11,9 +11,16 @@ export const GET_USER_LOGIN = "GET_USER_LOGIN";
 export const GET_DETAILS = "GET_DETAILS";
 export const POST_CRITIC = "POST_CRITIC";
 export const GET_AVAILABLE_TABLES = 'GET_AVAILABLE_TABLES';
-export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART"
+export const POST_BOOKING = 'POST_BOOKING';
+export const POST_BOOKING_ERROR = 'POST_BOOKING_ERROR';
+export const PUT_BOOKING = 'PUT_BOOKING';
+export const PUT_BOOKING_ERROR = 'PUT_BOOKING_ERROR';
+export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART";
 export const AGREGAR_AL_CARRITO = 'AGREGAR_AL_CARRITO';
 export const AUMENTO_CART = 'AUMENTO_CART';
+export const GET_USER_INFO = "GET_USER_INFO";
+export const SAVE_INFO_BOOKING = 'SAVE_INFO_BOOKING';
+
 
 
 export function postUsers(payload) {
@@ -35,6 +42,20 @@ export function getUserByLogin(email, password) {
       payload: response.data,
     });
   };
+}
+
+export const getUsersForProfile = (payload) => {
+  return async function(dispatch) {
+    try {
+      let response = await axios.get(`https://pfhenryback-production.up.railway.app/users/${payload}` )
+    return dispatch({
+      type: GET_USER_INFO,
+      payload: response.data
+    })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 export const agregarAlCarrito = (producto) => {
@@ -156,12 +177,24 @@ export function filterDishByTag(payload) {
 }
 
 export const getTables = (body) => {
+  return async(dispatch) => {
+      try {
+          const availableTables = (await axios.post('https://pfhenryback-production.up.railway.app/tables/', body)).data
+          dispatch({type: GET_AVAILABLE_TABLES, payload: availableTables})
+      } catch (error) {
+          console.log(error.response.data.error)
+      }
+  };
+};
+
+export const postBooking = (body) => {
   return async (dispatch) => {
     try {
-      const availableTables = await axios.get('https://pfhenryback-production.up.railway.app/tables/', body)
-      console.log(availableTables)
-      dispatch({ type: GET_AVAILABLE_TABLES, payload: availableTables })
+      const reservationCreated = (await axios.post('https://pfhenryback-production.up.railway.app/bookings/', body)).data
+      console.log(reservationCreated)
+      dispatch({type: POST_BOOKING, payload: reservationCreated})
     } catch (error) {
+      dispatch({type: POST_BOOKING_ERROR, payload: error.response.data.error})
       console.log(error.response.data.error)
     }
   };
@@ -170,13 +203,6 @@ export const getTables = (body) => {
 export function saveBookingsUser(bookings) {
   return {
     type: "saveBookingsUser",
-    payload: bookings
-  }
-}
-
-export function saveAllBookingsAdmin(bookings) {
-  return {
-    type: "saveAllBookingsAdmin",
     payload: bookings
   }
 }
@@ -201,6 +227,32 @@ export function saveIdBookingUpdate(idBooking) {
   return {
     type: "saveIdBookingUpdate",
     payload: idBooking
+  }
+}
+
+export function saveAllBookingsAdmin(bookings) {
+  return {
+    type: "saveAllBookingsAdmin",
+    payload: bookings
+  }
+}
+
+export function saveInfoBooking(infoBooking){
+  return {
+    type: SAVE_INFO_BOOKING,
+    payload: infoBooking
+  }
+}
+
+export function putBooking(newData, bookingUpdateId){
+  return async (dispatch) => {
+    try {
+      const updatedReservation = (await axios.put(`https://pfhenryback-production.up.railway.app/bookings/${bookingUpdateId}`, newData)).data
+      dispatch({type: PUT_BOOKING, payload: updatedReservation})
+    } catch (error) {
+      dispatch({type: PUT_BOOKING_ERROR, payload: error.response.data.error})
+      console.log(error.response.data.error)
+    }
   }
 }
 
@@ -241,3 +293,4 @@ export function refreshUserBookings(idUser) {
     }
   };
 }
+

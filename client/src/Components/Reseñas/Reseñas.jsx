@@ -3,7 +3,8 @@ import logo from '../../imgs/logo.png';
 import '../css/reseñas.css';
 import testimonios from './testimonios';
 import CardReseñas from './CardReseñas';
-import NavBar from '../../Components/NavBar';
+import NavBar from '../NavBar/NavBar';
+
 
 const Reseñas = () => {
      

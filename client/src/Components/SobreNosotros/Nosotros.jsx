@@ -2,7 +2,8 @@ import React from 'react';
 import logo from '../../imgs/logo.png';
 import '../css/NavBar.modules.css';
 import '../css/nosotros.css';
-import NavBar from '../../Components/NavBar';
+import NavBar from '../NavBar/NavBar';
+
 
 
 
