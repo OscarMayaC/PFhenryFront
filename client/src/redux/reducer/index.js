@@ -29,7 +29,9 @@ const initialState = {
   tables: [],
   Carrito: [],
   Quantity: 0,
-  bookingsUser: []
+  bookingsUser: [],
+  bookingUpdateId: null,
+  allBookingsAdmin: []
 };
 
 
@@ -146,6 +148,26 @@ function rootReducer(state = initialState, action) {
         tables: action.payload
       };
     case "saveBookingsUser":
+      return {
+        ...state,
+        bookingsUser: action.payload
+      };
+    case "saveIdBookingUpdate":
+      return {
+        ...state,
+        bookingUpdateId: action.payload
+      };
+    case "saveAllBookingsAdmin":
+      return {
+        ...state,
+        allBookingsAdmin: action.payload
+      };
+    case "filterBookingsInThisDateAdmin":
+      return {
+        ...state,
+        allBookingsAdmin: action.payload
+      };
+    case "filterBookingsInThisDateUser":
       return {
         ...state,
         bookingsUser: action.payload

@@ -1,23 +1,22 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
-import CardBooking from './CardBooking';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveBookingsUser, refreshUserBookings, filterBookingsInThisDate } from '../../redux/actions';
+import { useEffect } from 'react';
+import CardBooking from './CardBooking';
+import { saveAllBookingsAdmin, filterBookingsInThisDate, refreshAdminBookings } from '../../redux/actions';
+import { useState } from 'react';
 
-export default function MisReservas() {
 
+export default function () {
     const dispatch = useDispatch();
 
     const [datesWithBookings, setDatesWithBookings] = useState();
 
     useEffect(() => {
-        //de momento se harcodea el id del usuario en lo que se conoce como se guardara en
-        //el local storage.
-        fetch(`https://pfhenryback-production.up.railway.app/bookings/8`)
+        fetch(`https://pfhenryback-production.up.railway.app/bookings`)
             .then((response) => response.json())
             .then((bookings) => {
                 if (bookings) {
-                    dispatch(saveBookingsUser(bookings));
+                    dispatch(saveAllBookingsAdmin(bookings));
                 } else {
                     console.log(bookings);
                 }
@@ -25,9 +24,7 @@ export default function MisReservas() {
             .catch((err) => {
                 console.log(err.message);
             });
-        //de momento se harcodea el id del usuario en lo que se conoce como se guardara en
-        //el local storage.
-        fetch(`https://pfhenryback-production.up.railway.app/bookings/dates/8`)
+        fetch(`https://pfhenryback-production.up.railway.app/bookings/datesAdmin`)
             .then((response) => response.json())
             .then((dates) => {
                 if (dates) {
@@ -46,17 +43,13 @@ export default function MisReservas() {
         event.preventDefault();
         const { value } = event.target;
         if (value === "all") {
-            //de momento se harcodea el id del usuario en lo que se conoce como se guardara en
-            //el local storage.
-            return dispatch(refreshUserBookings(8));
+            return dispatch(refreshAdminBookings());
         } else {
-            //de momento se harcodea el id del usuario en lo que se conoce como se guardara en
-            //el local storage.
-            return dispatch(filterBookingsInThisDate(value, 8));
+            return dispatch(filterBookingsInThisDate(value));
         }
     }
 
-    const bookings = useSelector((state) => state.bookingsUser)
+    const bookings = useSelector((state) => state.allBookingsAdmin)
 
 
     return (
