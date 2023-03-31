@@ -191,13 +191,6 @@ export function saveBookingsUser(bookings) {
   }
 }
 
-export function saveAllBookingsAdmin(bookings) {
-  return {
-    type: "saveAllBookingsAdmin",
-    payload: bookings
-  }
-}
-
 export function deleteBookingUser(idBooking, idUser) {
   return async (dispatch) => {
     try {
