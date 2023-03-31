@@ -9,7 +9,7 @@ import * as THREE from 'three'
 import { useSelector } from 'react-redux';
 import { MeshPhongMaterial } from 'three';
 
-let mesaId = 1
+let mesaId = 9
 
 export const mesa1 = new THREE.Group();
 mesa1.userData = mesaId++
