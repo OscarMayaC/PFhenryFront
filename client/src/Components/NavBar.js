@@ -15,6 +15,7 @@ export default function NavBar() {
 
 
   const carrito = useSelector(state => state.Carrito);
+  const isLoggedIn = useSelector(state=> state.isLoggedIn)
 
 //   useEffect(() => {
 //     const unsubscribe = store.subscribe(() => {
@@ -121,6 +122,8 @@ export default function NavBar() {
                     <button className='navbar-button-sobre-nosotros'>Sobre nosotros!</button>
             </Link>
 
+            <Link to={"/reseñas"}> <button className='navbar-button-reseñas'>Reseñas!</button> </Link>
+
 
             <Link to={"/iniciarsesion"}>
                     <button className='navbar-button-iniciar-sesion'>
@@ -128,7 +131,7 @@ export default function NavBar() {
                     <div className='contenedor-button-navbar-inciarsesion'>
        
                     <img src={user} alt="img-user" className="navbar-iniciar-user-icon"  width="40px" height="40px"></img>
-                    <h1 className='txt-navbar-iniciarsesion'>Iniciar sesión!</h1> 
+                    <h2 className='txt-navbar-iniciarsesion'>Iniciar sesión!</h2> 
        
                     </div>
                    

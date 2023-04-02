@@ -6,7 +6,7 @@ import instagram from '../Pages/Misc/instagramRedondo.png'
 import facebook from '../Pages/Misc/facebookRedondo.png'
 import mesaReserva from '../Pages/Misc/mesa-del-restaurant.png'
 import deliveryMoto from '../Pages/Misc/delivery-moto.png'
-import NavBar from "../Components/NavBar"
+import NavBar from '../Components/NavBar';
 import { Link } from 'react-router-dom';
 
 

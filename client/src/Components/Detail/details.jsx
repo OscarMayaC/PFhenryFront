@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import NavBar from "../../Components/NavBar";
+import NavBar from "../NavBar/NavBar";
 import "../css/details.css";
 import CardDetail from "./cardDetail";
 import CardReseñas from "../Reseñas/CardReseñas";
