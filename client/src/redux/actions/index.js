@@ -36,18 +36,23 @@ export function getUserByLogin(email, password) {
       email: email,
       password: password,
     });
-    console.log(response.data);
+    console.log(response.data)
+    // console.log(response.data.id)
+    localStorage.setItem("userId", JSON.stringify(response.data.id))
+    localStorage.setItem("user", JSON.stringify(response.data))
     return dispatch({
       type: GET_USER_LOGIN,
-      payload: response.data,
+      payload: response,
     });
   };
 }
 
-export const getUsersForProfile = (payload) => {
+export const getUsersById = (id) => {
+  
   return async function(dispatch) {
     try {
-      let response = await axios.get(`https://pfhenryback-production.up.railway.app/users/${payload}` )
+      let response = await axios.get("https://pfhenryback-production.up.railway.app/users/" + id )
+      // console.log(response.data)
     return dispatch({
       type: GET_USER_INFO,
       payload: response.data
