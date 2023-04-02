@@ -5,10 +5,13 @@ import { converter } from '../ReservationValidations/FormatConverter';
 import { validationDate } from "../ReservationValidations/ValidationDate";
 import { getTables, postBooking } from "../../redux/actions/index.js";
 import { useDispatch, /*useSelector*/ } from "react-redux";
+import { useHistory } from "react-router";
 
 function Selectors(props){
 
     const { selectedMesaId, confirmTable, setConfirmSearchTables } = props
+
+    const history = useHistory();
 
     //const { userId } = useSelector(state => state)
 
@@ -72,6 +75,7 @@ function Selectors(props){
            selectedMesaId) 
         {
             dispatch(postBooking(infoReserva))
+            history.push('/confirmacion')
         };
     };
 

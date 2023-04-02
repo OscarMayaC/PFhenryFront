@@ -13,6 +13,7 @@ import Detalles from "../Components/Detail/details";
 import Reservation from '../Components/ReservationPage/Reservation';
 import MisReservas from "../Components/ReservationPage/MisReservas.jsx";
 import ReservasAdmin from "../Components/ReservationPage/ReservasAdmin";
+import CardConfirmation from "../Components/ReservationPage/CardConfirmation";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route exact path='/reservation' component={Reservation} />
       <Route exact path='/misreservas' component={MisReservas} />
       <Route exact path='/reservasadmin' component={ReservasAdmin} />
+      <Route exact path='/confirmacion' component={CardConfirmation} />
     </div>
   );
 }

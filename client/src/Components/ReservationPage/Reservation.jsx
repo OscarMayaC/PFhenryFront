@@ -5,7 +5,6 @@ import Mesas from "./Mesas";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from 'three'
 import { useSelector } from "react-redux";
-import CardConfirmation from "./CardConfirmation";
 import EditReservation from "./EditReservation";
 
 
@@ -15,13 +14,12 @@ function Reservation(){
   const height = 20;
   const canvasRef = useRef();
 
-  const { reserva, infoBooking, responseBooking } = useSelector(state => state)
-  
-  const [showCardConfirmation, setShowCardConfirmation] = useState(false)
+  const { infoBooking, responseBooking } = useSelector(state => state)
 
   const [errorMessage, setErrorMessage] = useState('');
   
   const [selectedMesaId, setSelectedMesaId] = useState(null);
+
 
   const CanvasComponent = () => {
     const { camera } = useThree();
@@ -48,18 +46,14 @@ function Reservation(){
 
   const handleConfirmTable = () => {
     setConfirmTable(true)
-    setShowCardConfirmation(true)
   };
 
   return(
     <div>
       <h1>Reservas</h1>
     
-
-      {showCardConfirmation && Object.keys(reserva).length > 0 ? <CardConfirmation reserva={reserva} setShowCardConfirmation={setShowCardConfirmation}/> : (
-        
       <div>
-      {infoBooking.length > 0 ?
+      {Object.keys(infoBooking).length > 0 ?
       <EditReservation selectedMesaId={selectedMesaId} confirmTable={confirmTable} setConfirmSearchTables={setConfirmSearchTables}/> : 
       <Selectors selectedMesaId={selectedMesaId} confirmTable={confirmTable} setConfirmSearchTables={setConfirmSearchTables}/>}
 
@@ -89,7 +83,6 @@ function Reservation(){
       </Canvas>
       {selectedMesaId !== null && !confirmTable ? <button onClick={handleConfirmTable}>Confirmar Mesa</button> : null}
     </div>
-    )}
   </div>
   )
 }

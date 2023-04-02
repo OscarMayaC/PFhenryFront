@@ -1,8 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
-function CardConfirmation(props){
+function CardConfirmation(){
 
-    const {reserva, setShowCardConfirmation} = props
+    const history = useHistory()
+
+    const { reserva } = useSelector(state => state)
 
     const response = []
 
@@ -23,7 +27,7 @@ function CardConfirmation(props){
     };
 
     const handleBackClick = () => {
-        setShowCardConfirmation(false)
+        history.goBack();
     };
 
     return (

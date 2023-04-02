@@ -12,7 +12,7 @@ import { MeshPhongMaterial } from 'three';
 let mesaId = 9
 
 export const mesa1 = new THREE.Group();
-mesa1.userData = mesaId++
+mesa1.userData.id = mesaId++
 export const mesa2 = new THREE.Group();
 mesa2.userData.id = mesaId++
 export const mesa3 = new THREE.Group();
@@ -93,6 +93,7 @@ export default function Mesas(props) {
   const selectMaterial = new MeshPhongMaterial({ color: '#004f80' })
   const availableMaterial = new MeshPhongMaterial({ color: '#008000' });
   const selectTable = new MeshPhongMaterial({color: '#a3a21b'})
+  const originalColor = new THREE.Color('#804000')
 
   const handleMesaClick = (id) => {
     if(confirmTable || !confirmSearchTables) {
@@ -146,7 +147,32 @@ export default function Mesas(props) {
     mesa35, 
     mesa36
   ]
-  
+
+  useEffect(() => {
+    renderMesas.forEach(mesa => {
+      mesa.children.forEach(child => {
+        if (child.isMesh) {
+          // Restaurar el color del material a su valor original
+          child.material.color.set(originalColor);
+        }
+      });
+    });
+  }, [])
+
+  useEffect(() => {
+    if (infoBooking.tableId) {
+      renderMesas.forEach((mesa) => {
+        if (mesa.userData.id === infoBooking.tableId) {
+          mesa.children.forEach((child) => {
+            if (child.isMesh) {
+              child.material = selectTable;
+          }});
+        }
+      });
+    }
+  }, [infoBooking.tableId]);
+
+
       let mesasDisponibles = []
   
       tables.forEach(table => {
@@ -192,19 +218,6 @@ export default function Mesas(props) {
           })
         }
       });
-
-      useEffect(() => {
-        if (infoBooking.tableId) {
-          renderMesas.forEach((mesa) => {
-            if (mesa.userData.id === infoBooking.tableId) {
-              mesa.children.forEach((child) => {
-                if (child.isMesh) {
-                  child.material = selectTable;
-              }});
-            }
-          });
-        }
-      }, [infoBooking.tableId]);
 
   mesa1.add(nodes.Mesh6618_1248);
   mesa1.add(nodes.Mesh6618_1249);
