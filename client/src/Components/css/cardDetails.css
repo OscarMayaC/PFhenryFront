@@ -2,7 +2,7 @@
     display: flex;
     width: 100%;
     height: 400px;
-    background-color: #ca3e49;
+    background-color: #ca3e4a8d;
     border-radius: 64px;
     margin: 15px;
     padding: 5px;
@@ -32,15 +32,34 @@
     text-align: center;
 }
 
-.foto{
-    weight: 600px;
-    height: 350px;
+.header-detail{
+    text-align: left;
+}
+
+.title-detail{
+    font-size: 30px;
+    display: inline-block;
+    vertical-align: top;
+}
+.score-detail{
+    background-color: blueviolet;
+    color: white;
     border-radius: 17px;
-    margin-top: 10px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 5px 15px 5px 15px;
+    margin-left: 10px;
+    margin-bottom: 10px !important;
+    margin-top: 9px !important;
+}
+.foto{
+    width: auto;
+    height: 300px;
+    border-radius: 17px;
 }
 
 .precioBandera{
-    width: 500px;
+    width: 124px;
     height: 100px;
     display: flex;
     flex-direction:row;
@@ -54,21 +73,23 @@
 }
 
 .bandera{
-    weight: 300px;
+    width: 300px;
     height: 100px;
     position: relative;
     float: right;
 }
 .des{
-    width:500px;
-    height: 100px;
-    overflow: scroll;
+
+    width: 431px;
+    height: 144px;
+    overflow: auto;
+
 }
 
 .bt-com{
   font-family:Verdana,Helvetica;
   color:white;
-  background:rgb(76, 22, 78);;
+  background:blueviolet;
   width: 120px;
   height:50px;
   border-radius: 10px;
@@ -94,12 +115,37 @@
     align-items:center;
 
 }
-
+.detail-tags{
+    margin-bottom: 5px;
+    list-style: none;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 19px;
+    background-color: aquamarine;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 5px;
+}
 .abajo{
+    left: 7%;
     width:500px;
     height: 70px;
     position: relative;
     flex-direction:row;
     justify-content: left;
     align-items: center;
+}
+.detail-price {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: lightpink;
+    padding: 2px 0px 5px 0px;
+    width: 145px;
+    height: 29px;
+    position: relative;
+    left: 56%;
+    bottom: 38%;
+    margin: 41px 5px 5px 5px;
+    border-radius: 35px;
 }
