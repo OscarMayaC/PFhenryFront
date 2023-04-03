@@ -1,12 +1,17 @@
+.detail-body{
+  background-image: url("../../Pages/Misc/rosa-del-viento-fondo.jpg");
+  background-size: cover;
+}
 .dReseñas{
   display: flex;
   width: 100%;
   height: 500px;
-  background-color: #ca3e49;
+  background-color: #ca3e4a8d;
   border-radius: 64px;
   flex-direction: row;
   justify-content: center;
 }
+
 
 .reseñaIzquierda{
   width: 50%;
@@ -55,7 +60,9 @@
    margin:40px;
    padding: 15px;
  }
-
+.detail-tags-zone {
+  margin-top: 24px;
+}
  .error{
   color: red;
   font-size: small;

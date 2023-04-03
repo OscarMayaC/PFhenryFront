@@ -1,0 +1,42 @@
+.perfil-info-main {
+    display: none;
+    flex-direction: column;
+    width: end;
+    height: 600px;
+    padding-top: 80px;
+    padding-left: 50px;
+    
+}
+
+.perfil-info-main button {
+    border-radius: 30px;
+    border-color: transparent;
+    height: 30px;
+    width: 30px;
+    margin-right: 50px;
+
+}
+
+.btn-info-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid black;
+    
+}
+
+.btn-direcciones {
+    margin-left:1025px;
+    padding: 0;
+    position: relative;
+    background-color: black;
+    color: white;
+}
+
+.option-buttons {
+    background-color: black;
+    color:white;
+}
