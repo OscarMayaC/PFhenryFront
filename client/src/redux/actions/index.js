@@ -37,6 +37,7 @@ export function getUserByLogin(email, password) {
       password: password,
     });
     console.log(response.data);
+    localStorage.setItem("user", JSON.stringify(response.data))
     return dispatch({
       type: GET_USER_LOGIN,
       payload: response.data,
