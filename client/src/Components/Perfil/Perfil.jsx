@@ -86,11 +86,11 @@ const Perfil = () => {
     }
 
     useEffect(()=> {
-        dispatch(getUsersForProfile(id))
-        console.log(getUsersForProfile(id))
+        dispatch(getUsersById(storedUser))
+        // console.log(getUsersById(storedUser))
     }, [dispatch])
   
-    console.log(myUser)
+    // console.log(myUser)
 
 
      return (
