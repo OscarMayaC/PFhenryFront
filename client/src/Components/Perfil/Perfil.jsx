@@ -77,13 +77,21 @@ const Perfil = () => {
         
     }
 
+
     const handleLogout = (e) => {
         localStorage.removeItem("userId")
         localStorage.removeItem("user")
         localStorage.removeItem("userToken")
         history.push("/iniciarsesion")  
     }
-    
+
+    useEffect(()=> {
+        dispatch(getUsersForProfile(id))
+        console.log(getUsersForProfile(id))
+    }, [dispatch])
+  
+    console.log(myUser)
+
 
      return (
         <div className='perfil-bg'>
@@ -133,34 +141,3 @@ const Perfil = () => {
 
 
 export default Perfil
-
-
-
-{/* <aside>
-<img src={User} alt="user img" height="50px" width="70px" ></img>
-<h2>Name: {myUser.name}</h2>
-<h3>Email: myEmail </h3>
-<h3>Celular: myPhone</h3>
-</aside>
-
-<div>
-
-</div>
-
-<div className='delivery-profile'>
-<p><b>Delivery</b></p>
-<div>
-    <p>ID: <span id='id'></span></p>
-    <p>Fecha: <span id='date_start'></span></p>
-    <p>Hora del pedido: <span id='time_start'></span></p>
-    <p>Hora de llegada: <span id='date_delivery'></span></p>
-    <p>Precio: <span id='total_price'></span></p>
-    <p>Descripción: <span id='description'></span></p>
-    <p>Usuario del pedido: <span id='UserId'></span></p>
-</div>
-</div>
-
-<div className='reservas-profile'>
-<p><b>Reservas</b></p>
-
-</div> */}

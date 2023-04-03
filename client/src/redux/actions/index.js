@@ -42,6 +42,7 @@ export function getUserByLogin(email, password) {
     localStorage.setItem("userId", JSON.stringify(response.data.data.id))
     localStorage.setItem("user", JSON.stringify(response.data.data))
     localStorage.setItem("userToken", JSON.stringify(response.data.tokenSession))
+    localStorage.setItem("user", JSON.stringify(response.data))
     return dispatch({
       type: GET_USER_LOGIN,
       payload: response,
@@ -227,7 +228,7 @@ export function deleteBookingUser(idBooking, idUser) {
         const refreshBookings = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/${idUser}`);
         dispatch(saveBookingsUser(refreshBookings.data));
       }
-      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings`);
+      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/admin/`);
       dispatch(saveAllBookingsAdmin(refreshBookingsAdmin.data));
     } catch (error) {
       console.log(error);
@@ -287,7 +288,7 @@ export function filterBookingsInThisDate(date, idUser) {
 export function refreshAdminBookings() {
   return async (dispatch) => {
     try {
-      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings`);
+      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/admin/`);
       dispatch(saveAllBookingsAdmin(refreshBookingsAdmin.data));
     } catch (error) {
       console.log(error);

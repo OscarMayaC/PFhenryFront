@@ -14,6 +14,7 @@ import Reservation from '../Components/ReservationPage/Reservation';
 import MisReservas from "../Components/ReservationPage/MisReservas.jsx";
 import ReservasAdmin from "../Components/ReservationPage/ReservasAdmin";
 import Perfil from "../Components/Perfil/Perfil"
+import CardConfirmation from "../Components/ReservationPage/CardConfirmation";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Route exact path='/misreservas' component={MisReservas} />
       <Route exact path='/reservasadmin' component={ReservasAdmin} />
       <Route exact path="/perfil" component={Perfil} />
+      <Route exact path='/confirmacion' component={CardConfirmation} />
     </div>
   );
 }

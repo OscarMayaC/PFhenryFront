@@ -1,0 +1,62 @@
+body{
+    background-image: url('../../imgs/fondo.reserva.jpg');
+    background-size: cover;
+}
+
+.css-16b5y55-MuiPickersLayout-contentWrapper{
+    width: 350px;
+    height: 330px;
+    background-color: #FAECED;
+}
+
+.css-jhsfre-MuiGrid-root-MuiPickersToolbar-content{
+    width: 400px;
+}
+
+.css-flbe84-MuiDayCalendar-weekContainer{
+    height: 27px;
+}
+
+.css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected{
+    font-size: 25px;
+}
+
+.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root{
+    font-size: 25px;
+}
+
+.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root{
+    font-size: 2rem !important;
+}
+
+.css-1e4tpwf-MuiTypography-root-MuiPickersToolbarText-root-MuiDateTimePickerToolbar-separator{
+    font-size: 2rem !important;
+}
+
+.css-ollblj-MuiDateTimePickerToolbar-amPmSelection .MuiDateTimePickerToolbar-ampmLabel{
+    font-size: 0.8rem !important;
+}
+
+.css-12vly6n-MuiDateTimePickerToolbar-timeContainer{
+    width: 610px;
+}
+
+.css-12vly6n-MuiDateTimePickerToolbar-timeContainer{
+    padding-top: 25px;
+}
+
+.css-4pax7l-MuiPickersLayout-root{
+    padding-bottom: 25px;
+    padding-left: 20px;
+    background-color: #CF515B !important;
+}
+
+.customers{
+    position: relative;
+    padding-left: 500px;
+    bottom: 300px;
+}
+
+.modelo3d{
+    height: 600px;
+}
