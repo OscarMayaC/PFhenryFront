@@ -1,6 +1,6 @@
 import {
     AGREGAR_AL_CARRITO,
-    // RESTAR_AL_CARRITO,
+    DECREMENTAR_DEL_CARRITO,
     AUMENTO_CART,
     DISMINUYO_CART,
     SEARCH_NAME,
@@ -120,6 +120,18 @@ function rootReducer(state = initialState, action) {
       }
 
      
+
+      case DECREMENTAR_DEL_CARRITO:
+        const itemIndex = state.Carrito.findIndex(item => item.id === action.payload.id);
+        if (itemIndex >= 0) {
+          if (state.Carrito[itemIndex].quantity === 1) {
+            state.Carrito.splice(itemIndex, 1); // Eliminar el elemento del carrito si la cantidad es 1
+          } else {
+            state.Carrito[itemIndex].quantity -= 1; // Decrementar la cantidad si es mayor que 1
+          }
+        }
+        return { ...state, Carrito: [...state.Carrito] };
+
     //   case RESTAR_AL_CARRITO:
 
     //   const existingTakeItemIndex = state.Carrito.findIndex(item => item.id === action.payload.id);

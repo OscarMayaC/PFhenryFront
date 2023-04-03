@@ -1,0 +1,113 @@
+.dash-board-ofertas-del-dia-component{
+    display: none;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    /* border-left-color: 2px solid black; */
+    /* border-style: solid; */
+}
+
+/* PANEL TOP  */
+.dash-board-ofertas-del-dia-top-side-panel{
+    height:254px;
+    width: 515px;
+   margin-left: 3%;
+   margin-bottom: 2%;
+}
+
+/* PANEL BOTOM  */
+
+.dash-board-ofertas-del-dia-bottom-side-panel{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 50%;
+}
+
+
+/* PANEL IZQUIERDO  */
+.ofertas-del-dia-dash-board-admin-button-zone{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    background-color: white;
+    height:244px;
+    width: 215px;
+}
+
+.ofertas-del-dia-dash-board-admin-button-zone button{
+    width: 200px;
+    height: 40px;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 15px;
+    text-align: end;
+    margin-right: 4%;
+    transition: 500ms;
+    cursor: pointer;
+}
+.ofertas-del-dia-dash-board-admin-button-zone button:hover{
+    background-color: #CA3E49;
+    color: #530f15;
+    }
+    
+.dash-board-ofertas-del-dia-left-side-panel{
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items:flex-end;
+height: 100%;
+width: 34%;
+font-size: 10px;
+font-weight: 100;
+/* padding-top: 13%; */
+border-color: transparent;
+border-right-color: black;
+border-style: solid;
+border-left-color:black ;
+}
+
+
+
+/* PANEL DERECHO  */
+.dash-board-ofertas-del-dia-right-side-panel{
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.dash-board-ofertas-del-dia-scroll{
+    width: 100%;
+    margin-top: 3%;
+    height: 100%;
+    gap: 10px;
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+    overflow-y: auto;
+    align-items: center;
+  }
+  
+  
+  .ofertas-del-dia-scroll > * {
+      min-width: 200px;
+      box-sizing: border-box;
+    }
+
+
+    .dash-board-ofertas-del-dia-scroll-top-side-panel{
+        width: 900px;
+        margin-top: 3%;
+        height: 100%;
+        gap: 10px;
+        display: flex;
+        /* flex-wrap: wrap; */
+        flex-direction: row;
+        overflow-y: auto;
+        align-items: center;
+    }
+ 
+ 

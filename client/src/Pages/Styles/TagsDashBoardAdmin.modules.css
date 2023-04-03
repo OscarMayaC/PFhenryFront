@@ -1,0 +1,122 @@
+.dash-board-tags-component{
+    display: none;
+    /* background-color: brown; */
+    height: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* gap: 200px; */
+    /* border-left-color: black solid; */
+}
+
+.dash-board-tags-inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* flex-wrap: wrap; */
+    margin-bottom: 30px;
+    width: 80%;
+    height: 80%;
+    /* background-color: red; */
+}
+.dash-board-tags-form{
+    display: flex;
+    /* justify-content: s; */
+    width: 50%;
+}
+.dash-board-renderizado-tags{
+    width: 90%;
+    height: 90%;
+ flex-wrap: wrap;
+}
+.dash-board-tags-left{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dash-board-tags-right{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+/* BOTONES TAGS, EDITS, AGREGAR Y ELIMINAR */
+
+.dash-board-tags-boton-seleccion-tags{
+height: 35px;
+width: 200px;
+border-radius: 30px;
+border-color: transparent;
+transition: 500ms;
+/* cursor: pointer; */
+color: black;
+}
+
+.dash-board-tags-editar-boton{
+    height: 35px;
+    width: 35px;
+    border-radius: 30px;
+    border-color: transparent;
+    transition: 500ms;
+    cursor: pointer;
+    color: black;
+    margin-left: 10px;
+}
+
+.dash-board-tags-editar-boton:hover{
+    background-color: #CA3E49;
+color: white;
+}
+.dash-board-tags-eliminar-boton{
+    height: 35px;
+    width: 35px;
+    border-radius: 30px;
+    border-color: transparent;
+    transition: 500ms;
+    cursor: pointer;
+    color: black;
+    margin-left: 10px;
+}
+.dash-board-tags-eliminar-boton:hover{
+    background-color: #CA3E49;
+    color: white;
+}
+.dash-board-tags-agregar-boton{
+    height: 45px;
+    width: 100px;
+    border-radius: 30px;
+    border-color: transparent;
+    transition: 500ms;
+    cursor: pointer;
+    color: black;
+    margin-left: 20px;
+}
+.dash-board-tags-agregar-boton:hover{
+    background-color: #CA3E49;
+    color: white;
+}
+
+/* INPUT  */
+
+.dash-board-tags-input{
+    height: 35px;
+    width: 190px;
+    border-radius: 5px;
+    /* border-color: transparent; */
+    transition: 500ms;
+    /* cursor: pointer; */
+    color: black;
+}
+
+.dash-board-tags-titulo{
+    font-size: 25px;
+/* margin-bottom: 50px; */
+}

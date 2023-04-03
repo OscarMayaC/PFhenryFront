@@ -23,7 +23,7 @@ export const GET_DISH_PRINCIPALES = 'GET_DISH_PRINCIPALES';
 export const GET_DISH_ACOMPAÑAMIENTOS = 'GET_DISH_ACOMPAÑAMIENTOS';
 export const GET_DISH_POSTRES = 'GET_DISH_POSTRES';
 export const GET_DISH_BEBIDAS = 'GET_DISH_BEBIDAS';
-// export const RESTAR_AL_CARRITO = 'RESTAR_AL_CARRITO';
+export const DECREMENTAR_DEL_CARRITO = 'DECREMENTAR_DEL_CARRITO';
 // export const SORT_ENTRADAS = 'SORT_ENTRADAS';
 // export const SORT_BOTANAS = 'SORT_BOTANAS';
 // export const SORT_PRINCIPALES = 'SORT_PRINCIPALES';
@@ -165,12 +165,12 @@ export const agregarAlCarrito = (producto) => {
   };
 };
 
-// export const restarAlCarrito = (producto) => {
-//   return {
-//     type: RESTAR_AL_CARRITO,
-//     payload: producto,
-//   };
-// };
+export const restarAlCarrito = (producto) => {
+  return {
+    type: DECREMENTAR_DEL_CARRITO,
+    payload: producto,
+  };
+};
 
 
 

@@ -1,0 +1,100 @@
+
+/* MAIN COMPONENT STYLES  */
+.dash-board-admin-main-component{
+    margin: 0;
+    padding: 0;
+
+}
+
+.dash-board-admin-inner-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* LEFT ZONE STYLES  */
+.dash-board-admin-inner-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: white;
+    width: 30%;
+    height: 589px;
+}
+.dash-board-admin-button-zone{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    background-color: white;
+    height:489px;
+    width: 100%;
+    
+    /* background-color: red; */
+}
+
+/* left zone botones  */
+.dash-board-admin-button-zone button{
+    width: 210px;
+    height: 40px;
+    background-color: transparent;
+    border-color: transparent;
+    font-size: 15px;
+    text-align: end;
+    margin-right: 4%;
+    transition: 500ms;
+    cursor: pointer;
+    
+}
+
+
+.dash-board-admin-button-zone button:hover{
+background-color: #CA3E49;
+color: #530f15;
+}
+
+/* left zone perfil minimo usuario  */
+
+
+.dash-board-admin-minimum-profile-data{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    /* background-color: orangered; */
+    height: 200px;
+    padding-right: 5%;
+    padding-bottom: 5%;
+}
+
+.dash-board-admin-img-user-admin{
+    width: 70px;
+    height: 50px;
+}
+
+.dash-board-admin-name-user-admin{
+    font-size: 20px;
+    
+}
+
+
+
+
+/* RIGHT ZONE STYLES  */
+.dash-board-admin-inner-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 70%;
+    height: 589px;
+    
+}
+
+/* inner right main component  */
+.dash-board-admin-component{
+    width: 90%;
+    height: 80%;
+    margin-top: 30px;
+}

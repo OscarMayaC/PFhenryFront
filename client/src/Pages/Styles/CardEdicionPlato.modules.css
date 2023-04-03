@@ -1,0 +1,89 @@
+/* VENTANA EDICION  */
+.dash-board-platos-ventana-edicion-plato-seleccionado-fondo{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.384);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+.dash-board-platos-ventana-edicion-plato-seleccionado{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    height: 50%;
+    width: 50%;
+    background-color: white;
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    z-index: 22;
+    padding-left: 3%;
+    padding-top: 3%;
+}
+
+.dash-board-platos-ventana-edicion-plato-seleccionado-form{
+    position: absolute;
+    width: 90%;
+    height: 100%;
+}
+
+
+.dash-board-ventana-form-div-titulo-plato{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+ 
+
+}
+
+.dash-board-ventana-txt-titulo-plato{
+    font-size: 25px;
+    font-weight: 400;
+    /* display: flex; */
+}
+
+.dash-board-ventana-form-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+
+}
+
+.dash-board-ventana-txt{
+    font-size: 15px;
+    font-weight: 400;
+    }
+
+    .dash-board-ventana-input{
+        height: 20px;
+        width: 300px;
+        border-color: #CA3E49;
+        border-radius: 6px;
+        border-style: solid;
+        }
+
+        .dash-board-ventana-form-div-botones{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            gap: 20px;
+        }
+
+        .dash-board-ventana-button{
+            height: 30px;
+            width: 140px;
+            border-radius: 5px;
+            border-color: transparent;
+            background-color: #CA3E49;
+            color: white;
+            transition: 500ms;
+        }
+        
+        .dash-board-ventana-button:hover{
+            background-color: #86121b;
+        }

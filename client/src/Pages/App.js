@@ -11,7 +11,7 @@ import IniciarSesion from "../Components/IniciarSesion/IniciarSesion";
 import Register from "../Components/Register/Register";
 import Detalles from "../Components/Detail/details";
 import Reservation from '../Components/ReservationPage/Reservation';
-
+import DashBoardAdmin from "./DashBoardAdmin";
 
 function App() {
   return (
@@ -27,7 +27,8 @@ function App() {
       <Route exact path="/carrito" component={Compras} />
       <Route exact path="/detalles/:id" component={Detalles} />
       <Route exact path='/reservation' component={Reservation}/>
-
+      <Route exact path="/admin" component={NavBar} />
+      <Route exact path="/admin" component={DashBoardAdmin} />
     </div>
   );
 }

@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import carroCompras from '../Pages/Misc/anadir-a-la-cesta.png'
 import { useSelector, useDispatch } from 'react-redux';
 import CartaCarritoCompra from './Cartas/CartaCarritoCompra';
-import { actualizarTotalQuantity } from '../redux/actions';
+// import { actualizarTotalQuantity, agregarAlCarrito} from '../redux/actions';
+import { actualizarTotalQuantity} from '../redux/actions';
 // import { crearOrden } from '../redux/actions';
 import { useState } from 'react';
 
@@ -16,30 +17,43 @@ export default function NavBar() {
     const totalQuantity = useSelector(state => state.totalQuantityCart);
     const carrito = useSelector(state => state.Carrito);
 
-    console.log(carrito)
     const [Items, setItems] = useState([]);
 
 
-
-    // window.addEventListener('storage', (event) => {
-    //     if (event.key === 'carrito') {
-    //         const items = JSON.parse(localStorage.getItem('carrito')) || [];
-    //         dispatch(actualizarTotalQuantity(items));
-    //          setCarritoItems(items)
+    // carrito.observe('length', function() {
+    //     if (carrito.length <= 0) {
+    //       btn[0].style.display = 'none';
+    //     } else {
+    //       btn[0].style.display = 'block';
     //     }
     //   });
-    // suscribir a carrito 
-    // console.log("soy items " + Items)
+
+    // let div = document.getElementsByClassName("desplegable-carrito");
+            
+    //         let link = document.getElementsByClassName("link-carrito-compras");
+            
 
     // ITEMS TIENE TODO LO QUE LOCALSTORAGE
     useEffect(() => {
-        // const items = JSON.parse(localStorage.getItem('carrito')) || [];
-        // dispatch(actualizarTotalQuantity(items));
-        // setCarritoItems(items)
       
+        if (carrito.length <= 0) {
+ 
+            let btn = document.getElementsByClassName("boton-carrito-ir-nav");;
+            if (btn) {
+              btn[0].style.display = 'none';
+            }
+          } else {
+            const btn = document.getElementsByClassName('boton-carrito-ir-nav');
+            if (btn) {
+              btn[0].style.display = 'flex';
+            }
+          }
+
     const storedItems = JSON.parse(localStorage.getItem('carrito')) || [];
     setItems(storedItems);
     dispatch(actualizarTotalQuantity(carrito));
+    // dispatch(agregarAlCarrito(storedItems));
+    // console.log(carrito)
     // Agregar listener para actualizar estado cuando se modifique el localStorage
     window.addEventListener('storage', handleStorageChange);
 
@@ -61,17 +75,13 @@ export default function NavBar() {
 
 
 
-function crearOrdenes (){
-    console.log(carrito)
-}
-
-
-
     function handleClick(event) {   
         const buttonId = event.target.id;
         console.log(Items)
         if(Items.length>0){
         mostrarPreCarrito(buttonId)
+        
+
     }else{
         window.alert('carrito vacio');
         console.log("carritoVacio")}       
@@ -183,14 +193,14 @@ function crearOrdenes (){
 
         <div className='desplegable-carrito'> 
 
-{carrito?.map((p)=>{
-    return(<>
-    <CartaCarritoCompra id={p.id} name={p.name} image={p.image} price={p.price} quantity={p.quantity}/>
-    
-    </>)
+  {carrito?.map((p)=>{
+      return(<>
+      <CartaCarritoCompra id={p.id} name={p.name} image={p.image} price={p.price} quantity={p.quantity}/>
+      
+      </>)
 })}
 
-<Link to={"/carrito"} className="link-carrito-compras" onClick={crearOrdenes}> 
+<Link to={"/carrito"} className="link-carrito-compras"> 
     <button className='boton-carrito-ir-nav'>IR A CARRITO</button>
 </Link>
 
