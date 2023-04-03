@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
 import NavBar from '../NavBar';
 import '../SASS/perfil.modules.css'
 import { getUsersById } from '../../redux/actions';
@@ -8,22 +7,16 @@ import Pedidos from './Pedidos';
 import ReservasPerfil from './ReservasPerfil';
 import PerfilInfo from './PerfilInfo';
 import Criticas from './Criticas';
-import { getAllDishes } from '../../redux/actions';
+import { useHistory } from 'react-router';
 
 
 
 
 
 const Perfil = () => {
-    // const user = localStorage.getItem("user")
-    const myUser = useSelector((state) => state.userData)
-    const myId = useSelector((state) => state.userId)
-    const myState = useSelector((state) => state)
-    // console.log(myState)
-
-
 
     const dispatch = useDispatch();
+    const history = useHistory()
     // const { id } = useParams()
 
     const storedUser = JSON.parse(localStorage.getItem("userId")) //localStorage
@@ -33,38 +26,12 @@ const Perfil = () => {
     
     
 
-    useEffect(()=> {
-            
-            dispatch(getUsersById(storedUser))
-            // if(storedUser) {
-            //     const idEl = document.getElementById('id');
-            //     const fechaEl = document.getElementById('date_start');
-            //     const horaEl = document.getElementById('time_start');
-            //     const horalleEl = document.getElementById('date_delivery');
-            //     const precioEl = document.getElementById('total_price');
-            //     const descEl = document.getElementById('description');
-            //     const userEl = document.getElementById('UserId');
-            //     idEl.textContent = storedUser.id;
-            //     fechaEl.textContent = storedUser.date_start;
-            //     horaEl.textContent = storedUser.time_start;
-            //     horalleEl.textContent = storedUser.date_delivery;
-            //     precioEl.textContent = storedUser.total_price;
-            //     descEl.textContent = storedUser.description;
-            //     userEl.textContent = storedUser.UserId;
-            // }
-            
+    useEffect(()=> {            
+            dispatch(getUsersById(storedUser))            
     }, [dispatch])
 
-    console.log(myUser)
-    console.log(myUser.Orders)
-
-    // console.log(myState)
-    // console.log(myUser)
-    // console.log(myId)
 
     const handleClick = (e) => {
-
-        console.info(myId)
 
         let target = e.target.className
         // console.log(target)
@@ -110,6 +77,14 @@ const Perfil = () => {
         
     }
 
+    const handleLogout = (e) => {
+        localStorage.removeItem("userId")
+        localStorage.removeItem("user")
+        localStorage.removeItem("userToken")
+        history.push("/iniciarsesion")  
+    }
+    
+
      return (
         <div className='perfil-bg'>
             <NavBar />
@@ -121,11 +96,11 @@ const Perfil = () => {
                         <h1 className='float-user'></h1>
                     </div>
                     <h2>Información</h2>
-                    <button className='delivery-perfil' onClick={ handleClick}>Pedidos</button>
-                    <button className='bookings-perfil'onClick={ handleClick}>Reservas</button>
-                    <button className='critics-perfil'onClick={ handleClick}>Críticas</button>
-                    <button className='change-perfil'onClick={ handleClick}>Perfil</button>
-                    <button className='logout-perfil' onClick={ handleClick}>Cerrar sesión</button>
+                    <button className='delivery-perfil' onClick={ handleClick }>Pedidos</button>
+                    <button className='bookings-perfil'onClick={ handleClick }>Reservas</button>
+                    <button className='critics-perfil'onClick={ handleClick }>Críticas</button>
+                    <button className='change-perfil'onClick={ handleClick }>Perfil</button>
+                    <button className='logout-perfil' onClick={ (e) => handleLogout(e) }>Cerrar sesión</button>
                 </div>
                 <div className='right-side-perfil'>
 

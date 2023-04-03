@@ -48,6 +48,7 @@ justify-content: center;
     box-shadow: 0px 4px rgba(0, 0, 0, 0.247);
     cursor: pointer;
     transition: 0.3s;
+    
 }
 
 .navbar-logo-left{
@@ -165,7 +166,7 @@ justify-content: center;
     border-color: transparent;
     box-shadow: 0px 3px rgba(0, 0, 0, 0.247);
     color: black;
-    font-weight: 600;
+    font-weight: 500;
     align-items: center;
     cursor: pointer;
     transition: 0.3s;
@@ -183,7 +184,7 @@ justify-content: center;
 
 
 .txt-navbar-iniciarsesion{
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
     text-decoration: none;
 }
@@ -218,21 +219,24 @@ justify-content: center;
 }
 
 .icon-carro-compras-nav{
-    width: 23px;
-    height: 23px;
-    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
     z-index: 6;
 }
 
 
 .numero-cantidad-compras-carrito{
-    background-color: black;
+    /* background-color: black; */
     width: 35px;
     height: 20px;
     margin-bottom: 10px;
-    color: white;
+    position: relative;
+    bottom: 30%;
+    left: 70%;
+    color: black;
     border-radius: 80px;
-    font-size: 12px;
+    font-size: 17px;
     font-weight: 300;
     z-index: 5;
 }

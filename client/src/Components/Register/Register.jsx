@@ -4,6 +4,7 @@ import NavBar from '../NavBar/NavBar'
 import { postUsers } from '../../redux/actions'
 import { useHistory } from 'react-router-dom';
 import '../SASS/register.modules.css'
+import Swal from 'sweetalert2';
 
 
 
@@ -30,11 +31,16 @@ const Register = () => {
         e.preventDefault(e)
 
         try {
+            
             if(!input.name || !input.password || !input.email || !input.phoneNumber) {
-                return alert("Te faltan campos por rellenar!")
+                return Swal.fire({
+                    title: "Cuidado",
+                    text: "Faltan campos por rellenar",
+                    icon: "warning",    
+                    timer: 2000
+                })
             }
             disptach(postUsers(input));
-            alert("User created")
             setInput({
                 name: "",
                 password: "",
@@ -42,6 +48,12 @@ const Register = () => {
                 phoneNumber:"",
             })
             history.push("/iniciarsesion")
+            return Swal.fire ({
+                title:"Felicidades!",
+                text:"Registo completado",
+                icon: "success",
+                timer: 2000
+            })
         } catch (error) {
             console.log(error)
         }
