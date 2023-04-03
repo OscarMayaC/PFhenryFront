@@ -8,12 +8,12 @@ export default function MisReservas() {
 
     const dispatch = useDispatch();
 
+    const userId = JSON.parse(localStorage.getItem("userId"));
+
     const [datesWithBookings, setDatesWithBookings] = useState();
 
     useEffect(() => {
-        //de momento se harcodea el id del usuario en lo que se conoce como se guardara en
-        //el local storage.
-        fetch(`https://pfhenryback-production.up.railway.app/bookings/8`)
+        fetch(`https://pfhenryback-production.up.railway.app/bookings/${userId}`)
             .then((response) => response.json())
             .then((bookings) => {
                 if (bookings) {
@@ -25,9 +25,9 @@ export default function MisReservas() {
             .catch((err) => {
                 console.log(err.message);
             });
-        //de momento se harcodea el id del usuario en lo que se conoce como se guardara en
-        //el local storage.
-        fetch(`https://pfhenryback-production.up.railway.app/bookings/dates/8`)
+      
+
+        fetch(`https://pfhenryback-production.up.railway.app/bookings/dates/${userId}`)
             .then((response) => response.json())
             .then((dates) => {
                 if (dates) {
@@ -46,13 +46,9 @@ export default function MisReservas() {
         event.preventDefault();
         const { value } = event.target;
         if (value === "all") {
-            //de momento se harcodea el id del usuario en lo que se conoce como se guardara en
-            //el local storage.
-            return dispatch(refreshUserBookings(8));
+            return dispatch(refreshUserBookings(userId));
         } else {
-            //de momento se harcodea el id del usuario en lo que se conoce como se guardara en
-            //el local storage.
-            return dispatch(filterBookingsInThisDate(value, 8));
+            return dispatch(filterBookingsInThisDate(value, userId));
         }
     }
 

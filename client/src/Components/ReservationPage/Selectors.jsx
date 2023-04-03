@@ -5,12 +5,16 @@ import { converter } from '../ReservationValidations/FormatConverter';
 import { validationDate } from "../ReservationValidations/ValidationDate";
 import { getTables, postBooking } from "../../redux/actions/index.js";
 import { useDispatch, /*useSelector*/ } from "react-redux";
+import { useHistory } from "react-router";
+import '../css/reservation.css';
 
 function Selectors(props){
 
     const { selectedMesaId, confirmTable, setConfirmSearchTables } = props
 
-    //const { userId } = useSelector(state => state)
+    const history = useHistory();
+
+    const userId = JSON.parse(localStorage.getItem("userId"));
 
     const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -60,22 +64,23 @@ function Selectors(props){
             hora_inicio: newDateFormat.hora_inicio,
             cantidad_comensales: parseInt(newDateFormat.cantidad_comensales),
             mesa: parseInt(selectedMesaId),
-            idUser: 5,
+            idUser: userId,
             nota: newDateFormat.nota
         }
 
         if(newDateFormat.fecha_inicio && 
            newDateFormat.hora_inicio && 
            newDateFormat.cantidad_comensales && 
-           //userId && 
+           userId && 
            confirmTable && 
            selectedMesaId) 
         {
             dispatch(postBooking(infoReserva))
+            history.push('/confirmacion')
         };
     };
 
-    return(
+    return(       
     <>
     <form onSubmit={handleTableSubmit}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -88,12 +93,15 @@ function Selectors(props){
                 toolbar: {
                     toolbarTitle: 'SELECCIONA FECHA Y HORA',
                     toolbarFormat: 'EEEE, dd MMMM',
-                }
+                },
+                actionBar: {
+                    actions: [],
+                },
               }}
             />
         </LocalizationProvider>
 
-        <div>
+        <div className="customers">
         <label>Número de personas</label>
             <input 
             type="number"
