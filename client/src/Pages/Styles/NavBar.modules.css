@@ -1,0 +1,274 @@
+.navbar-main-contenedor{
+    height: 60px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
+
+/* ZONA IZQUIERDA DE LA NAVBAR   */
+
+/* CONTENEDOR  */
+
+.navbar-left-zone{
+    width: 50%;
+    height: 100%;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    padding-left: 2%;
+    z-index: 2;
+    background-color: transparent;
+}
+
+/* ELEMENTOS  */
+
+.navbar-circulo-logo-fondo{
+display: flex;
+justify-content: center;
+
+}
+
+
+.circulo-navbar{
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: black;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.247);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.navbar-logo-left{
+    width: 55px;
+    height: 55px;
+    margin-left: -1.6px;
+    margin-top: -1.5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.circulo-navbar:hover{
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
+    height: 52px;
+    margin-top: 10px;
+}
+
+
+
+.logo-texto-navbar-left{
+    font-size: 30px;
+    font-weight: 350;
+    cursor:default;
+}
+
+
+
+
+/* -----------------------------------------------------------------------  */
+
+
+/* ZONA DERECHA DE LA NAVBAR   */
+
+/* CONTENEDOR  */
+.navbar-right-zone{
+    width: 50%;
+    height: 100%;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    padding-right: 2%;
+    z-index: 2;
+    background-color: transparent;
+
+}
+
+/* ELEMENTOS  */
+
+
+.navbar-button-sobre-nosotros{
+    height: 40px;
+    width: 160px;
+    border-radius: 30px;
+    border-color: transparent;
+    box-shadow: 0px 3px rgba(0, 0, 0, 0.247);
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    /* z-index: 10; */
+}
+
+.navbar-button-reseñas{
+    height: 40px;
+    width: 160px;
+    border-radius: 30px;
+    border-color: transparent;
+    box-shadow: 0px 3px rgba(0, 0, 0, 0.247);
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    /* z-index: 10; */
+}
+
+
+.navbar-button-carrito{
+        height: 40px;
+        width: 60px;
+        border-radius: 30px;
+        border-color: transparent;
+        box-shadow: 0px 3px rgba(0, 0, 0, 0.247);
+        color: black;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.3s;
+        align-items: center;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        z-index: 6;
+}
+
+.link-carrito-compras{
+    display: flex;
+    text-decoration: none;
+    text-align: center;
+
+}
+/* BOTON INCIAR SESION  */
+
+
+.navbar-button-iniciar-sesion{
+    height: 40px;
+    width: 160px;
+    border-radius: 30px;
+    border-color: transparent;
+    box-shadow: 0px 3px rgba(0, 0, 0, 0.247);
+    color: black;
+    font-weight: 600;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+    /* z-index: 10; */
+}
+
+
+.contenedor-button-navbar-inciarsesion{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+
+.txt-navbar-iniciarsesion{
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+}
+.navbar-iniciar-user-icon{
+    margin-right: 2px;
+    height: 16px;
+    width: 20px;
+}
+
+
+/* BOTONES HOVER  */
+
+.navbar-button-iniciar-sesion:hover{
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
+    height: 45px;
+    margin-top: 10px;
+    background-color: grey;
+}
+
+.navbar-button-reseñas:hover{
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
+    height: 45px;
+    margin-top: 10px;
+    background-color: grey;
+}
+
+.navbar-button-sobre-nosotros:hover{
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
+    height: 45px;
+    margin-top: 10px;
+    background-color: grey;
+}
+
+.icon-carro-compras-nav{
+    width: 23px;
+    height: 23px;
+    margin-right: 5px;
+    z-index: 6;
+}
+
+
+.numero-cantidad-compras-carrito{
+    background-color: black;
+    width: 35px;
+    height: 20px;
+    margin-bottom: 10px;
+    color: white;
+    border-radius: 80px;
+    font-size: 12px;
+    font-weight: 300;
+    z-index: 5;
+}
+
+
+.desplegable-carrito{
+    display: none;
+    flex-direction: column;
+    background-color: rgba(119, 0, 0, 0);
+    width: 480px;
+    height:630px;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    padding-top: 60px;
+    z-index: 1;
+}
+
+.texto-prueba-desplegable{
+    display: none;
+}
+.boton-carrito-ir-nav{
+    display: none;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    background-color: red;
+    color: white;
+    border-color: transparent;
+    cursor: pointer;
+    transition: 500ms;
+    text-align: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.boton-carrito-ir-nav:hover{
+    background-color: brown;
+}
