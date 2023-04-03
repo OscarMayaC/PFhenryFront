@@ -13,10 +13,10 @@ const Perfil = () => {
     const dispatch = useDispatch();
     const {id} = useParams()
 
-    // useEffect(()=> {
-    //     console.log(getUsersForProfile(id))
-    //     dispatch(getUsersForProfile(id))
-    // }, [dispatch])
+    useEffect(()=> {
+        dispatch(getUsersForProfile(id))
+        console.log(getUsersForProfile(id))
+    }, [dispatch])
   
     console.log(myUser)
 
