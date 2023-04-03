@@ -10,7 +10,7 @@ function EditReservation(props){
 
     const { selectedMesaId, confirmTable, setConfirmSearchTables } = props
 
-    //const { userId } = useSelector(state => state)
+    const userId = JSON.parse(localStorage.getItem("userId"));
 
     const { infoBooking, bookingUpdateId, responseBooking } = useSelector(state => state)
 
@@ -60,12 +60,13 @@ function EditReservation(props){
             hora_inicio: newDateFormat.hora_inicio,
             cantidad_comensales: parseInt(dataBookingSaved.cantidad_comensales),
             mesa: parseInt(selectedMesaId),
-            idUser: 5,
+            idUser: userId,
             nota: dataBookingSaved.nota,
         }
         if(newDateFormat.fecha_inicio && 
             newDateFormat.hora_inicio && 
-            dataBookingSaved.cantidad_comensales && 
+            dataBookingSaved.cantidad_comensales &&
+            userId &&
             confirmTable && 
             selectedMesaId) 
         {

@@ -215,7 +215,7 @@ export function deleteBookingUser(idBooking, idUser) {
         const refreshBookings = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/${idUser}`);
         dispatch(saveBookingsUser(refreshBookings.data));
       }
-      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings`);
+      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/admin/`);
       dispatch(saveAllBookingsAdmin(refreshBookingsAdmin.data));
     } catch (error) {
       console.log(error);
@@ -275,7 +275,7 @@ export function filterBookingsInThisDate(date, idUser) {
 export function refreshAdminBookings() {
   return async (dispatch) => {
     try {
-      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings`);
+      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/admin/`);
       dispatch(saveAllBookingsAdmin(refreshBookingsAdmin.data));
     } catch (error) {
       console.log(error);

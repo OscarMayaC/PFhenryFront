@@ -6,6 +6,8 @@ import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from 'three'
 import { useSelector } from "react-redux";
 import EditReservation from "./EditReservation";
+import '../css/reservation.css';
+import NavBar from '../../Components/NavBar/NavBar';
 
 
 function Reservation(){
@@ -49,27 +51,31 @@ function Reservation(){
   };
 
   return(
-    <div>
+    <div className="reservas">
+      <NavBar/>
       <h1>Reservas</h1>
     
-      <div>
+      <div className="modelo3d"> 
       {Object.keys(infoBooking).length > 0 ?
       <EditReservation selectedMesaId={selectedMesaId} confirmTable={confirmTable} setConfirmSearchTables={setConfirmSearchTables}/> : 
       <Selectors selectedMesaId={selectedMesaId} confirmTable={confirmTable} setConfirmSearchTables={setConfirmSearchTables}/>}
 
       {errorMessage && <span>{errorMessage}</span>}
       {responseBooking && <span>{responseBooking}</span>}
-      <Canvas style={{ height: '90%' }} ref={canvasRef}>
+      <Canvas ref={canvasRef}>
         <PerspectiveCamera
-        left={-width / 2}
-        right={width / 2}
-        top={height / 2}
-        bottom={-height / 2}
+        position={[0, 2.5, 10]}
+        rotation={[0, Math.PI, 0]}
+        fov={60}
+        aspect={width / height}
         near={0.1}
-        far={100}
+        far={150}
         />
         <ambientLight/>
-        <pointLight />
+        <directionalLight
+        position={[30, 5, 20]} // mueve la luz hacia arriba y atrás
+        intensity={2}
+        />
         <OrbitControls />
         <Suspense fallback={null} onError={error => console.log(error)}>
           <Mesas scale={[0.025, 0.025, 0.025]} 
