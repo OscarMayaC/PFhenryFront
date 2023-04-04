@@ -33,13 +33,13 @@ const IniciarSesion = () => {
                 })
             } else {
                 dispatch(getUserByLogin(email, password));
-                // history.push("/")
-                // return Swal.fire({
-                //     title: "Éxito!!",
-                //     text: "Éxito al iniciar sesión",
-                //     icon: "success",
-                //     timer: 2000
-                // })
+                 history.push("/")
+                 return Swal.fire({
+                     title: "Éxito!!",
+                     text: "Éxito al iniciar sesión",
+                     icon: "success",
+                     timer: 2000
+                 })
                 
             }
             
