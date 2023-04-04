@@ -34,7 +34,7 @@ export function postUsers(payload) {
 export function getUserByLogin(email, password) {
   return async function (dispatch) {
     try {
-      let response = await axios.post("http://localhost:3001/login", {
+      let response = await axios.post("https://pfhenryback-production.up.railway.app/login", {
         email: email,
         password: password,
       });
