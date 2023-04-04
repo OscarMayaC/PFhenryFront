@@ -78,7 +78,7 @@ const IniciarSesion = () => {
                     <button className='login-btn' type='submit'>Iniciar Sesion</button>
                     <p>- O -</p>
                     <button className='git' onClick={() => {
-                        const popup = window.open("http://localhost:3001/login/github",
+                        const popup = window.open("http://localhost:3001/login/github", // esta ruta es /login/github
                             "targetWindow",
                             `
                             toolbar=no,
@@ -93,13 +93,16 @@ const IniciarSesion = () => {
                         );
 
                         window.addEventListener("message", (e) => {
-                            if(e.origin === "http://localhost:3001") {
+                            if(e.origin === "http://localhost:3001") { //esta ruta debe la principal del server
                                 if (e.data) {
                                     localStorage.setItem("user", JSON.stringify(e.data))
 
                                     popup?.close()
-                                    console.log(e.data)
-                                    console.log(e.data.emails[0].value)
+                                    console.log(e.data);
+                                    console.log(e.data.usuario);
+                                    console.log(e.data.token);
+                                    
+                                    
                                     
                                 }
                             }
