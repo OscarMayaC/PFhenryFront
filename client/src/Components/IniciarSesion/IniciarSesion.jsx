@@ -33,13 +33,13 @@ const IniciarSesion = () => {
                 })
             } else {
                 dispatch(getUserByLogin(email, password));
-                history.push("/")
-                return Swal.fire({
-                    title: "Éxito!!",
-                    text: "Éxito al iniciar sesión",
-                    icon: "success",
-                    timer: 2000
-                })
+                 history.push("/")
+                 return Swal.fire({
+                     title: "Éxito!!",
+                     text: "Éxito al iniciar sesión",
+                     icon: "success",
+                     timer: 2000
+                 })
                 
             }
             
@@ -78,7 +78,7 @@ const IniciarSesion = () => {
                     <button className='login-btn' type='submit'>Iniciar Sesion</button>
                     <p>- O -</p>
                     <button className='git' onClick={() => {
-                        const popup = window.open("http://localhost:3001/login/github",
+                        const popup = window.open("https://pfhenryback-production.up.railway.app/login/github", // esta ruta es /login/github
                             "targetWindow",
                             `
                             toolbar=no,
@@ -93,13 +93,19 @@ const IniciarSesion = () => {
                         );
 
                         window.addEventListener("message", (e) => {
-                            if(e.origin === "http://localhost:3001") {
+                            if(e.origin === "https://pfhenryback-production.up.railway.app") { //esta ruta debe la principal del server
                                 if (e.data) {
                                     localStorage.setItem("user", JSON.stringify(e.data))
+                                    localStorage.setItem("userId", JSON.stringify(e.data.usuario.id))
+                                    localStorage.setItem("userEmail", JSON.stringify(e.data.usuario.email))
+                                    localStorage.setItem("userToken", JSON.stringify(e.data.token))
 
                                     popup?.close()
-                                    console.log(e.data)
-                                    console.log(e.data.emails[0].value)
+                                    console.log(e.data);
+                                    console.log(e.data.usuario);
+                                    console.log(e.data.token);
+                                    
+                                    
                                     
                                 }
                             }
