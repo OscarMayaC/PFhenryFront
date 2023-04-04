@@ -33,13 +33,13 @@ const IniciarSesion = () => {
                 })
             } else {
                 dispatch(getUserByLogin(email, password));
-                history.push("/")
-                return Swal.fire({
-                    title: "Éxito!!",
-                    text: "Éxito al iniciar sesión",
-                    icon: "success",
-                    timer: 2000
-                })
+                // history.push("/")
+                // return Swal.fire({
+                //     title: "Éxito!!",
+                //     text: "Éxito al iniciar sesión",
+                //     icon: "success",
+                //     timer: 2000
+                // })
                 
             }
             
@@ -98,6 +98,7 @@ const IniciarSesion = () => {
                                     localStorage.setItem("user", JSON.stringify(e.data))
                                     localStorage.setItem("userId", JSON.stringify(e.data.usuario.id))
                                     localStorage.setItem("userEmail", JSON.stringify(e.data.usuario.email))
+                                    localStorage.setItem("userToken", JSON.stringify(e.data.token))
 
                                     popup?.close()
                                     console.log(e.data);
