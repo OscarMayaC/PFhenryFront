@@ -10,11 +10,17 @@
 
 /* TITULARES  */
 .dash-board-pedidos-titulos{
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     margin: 0;
     width: 100%;
-    height: 58px;
+    height: 58px; */
+    display: flex;
+flex-direction: row;
+margin: 0;
+width: 100%;
+height: 58px;
+border-top-color: transparent;
 }
 
 /* titulos  */
@@ -25,13 +31,26 @@
     margin: 0;
     padding: 8px;
     height: 40px;
-    width: 250px;
+    width: 168.5px;
     font-weight: 500;
     font-size: 20px;
     background-color: #CA3E49;
     color: whitesmoke;
 }
 
+.dash-board-pedidos-titles-description{
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 0;
+    padding: 8px;
+    height: 40px;
+    width: 193.5px;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: #CA3E49;
+    color: whitesmoke;
+}
 
 
 /* ZONA RENDERIZADO DE DATA  */
@@ -40,7 +59,7 @@
 display: flex;
 flex-direction: row;
 margin: 0;
-width: 100%;
+width: 78.5%;
 height: 58px;
 border-top-color: transparent;
 }
@@ -54,10 +73,20 @@ border-top-color: transparent;
     margin: 0;
     padding: 8px;
     height: 40px;
-    width: 250px;
+    width: 137.5px;
     font-weight: 500;
 }
 
+.dash-board-pedidos-data-description{
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 0;
+    padding: 8px;
+    height: 40px;
+    width: 157.5px;
+    font-weight: 500;
+}
 
 /* SCROLL  */
 

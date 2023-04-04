@@ -8,10 +8,14 @@ import Reseñas from "../Components/Reseñas/Reseñas";
 import Nosotros from "../Components/SobreNosotros/Nosotros";
 import Compras from "../Pages/Compras";
 import IniciarSesion from "../Components/IniciarSesion/IniciarSesion";
-import Register from "../Components/Register/Register";
+import Register from "../Components/Register/Register"
 import Detalles from "../Components/Detail/details";
+import Perfil from "../Components/Perfil/Perfil";
 import Reservation from '../Components/ReservationPage/Reservation';
 import DashBoardAdmin from "./DashBoardAdmin";
+import MisReservas from "../Components/ReservationPage/MisReservas.jsx";
+import ReservasAdmin from "../Components/ReservationPage/ReservasAdmin";
+
 
 function App() {
   return (
@@ -29,6 +33,10 @@ function App() {
       <Route exact path='/reservation' component={Reservation}/>
       <Route exact path="/admin" component={NavBar} />
       <Route exact path="/admin" component={DashBoardAdmin} />
+      <Route exact path="/perfil" component={Perfil} />
+      <Route exact path='/reservation' component={Reservation} />
+      <Route exact path='/misreservas' component={MisReservas} />
+      <Route exact path='/reservasadmin' component={ReservasAdmin} />
     </div>
   );
 }

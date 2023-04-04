@@ -1,7 +1,7 @@
-import React from 'react';
+import React ,{ useState} from 'react';
 import '../Pages/Styles/Compras.modules.css'
 import motoDeliveryPerfil from '../Pages/Misc/delivery-moto-perfil.png'
-import { useSelector } from 'react-redux';
+import { useSelector, } from 'react-redux';
 // import Cards from '../Components/Cartas/Cards';
 // import cartaCarrito from '../Components/Cartas/cartaCarrito';
 import flechaIzquierda from '../Pages/Misc/flecha-izquierda.png'
@@ -13,93 +13,28 @@ import axios from 'axios';
 
 function Compras(props) {
     const carrito = useSelector((state) => state.Carrito)
+    const [mostrarBoton, setMostrarBoton] = useState(false)
+
     // const [preferenceId, setPreferenceId] = useState(null);
 
 
 
 
-
-
-
-
-
-
-
-// function mercadoPagoBoton(){
-
-
-//   //pedido de prueba
-
-//    // renderizo el boton de mercadopago
-//   const addCheckout = async() => {
-//     const mp = await new window.MercadoPago('TEST-802c7a27-7e8f-4757-80eb-d9b843bc0c2c', {
-//       locale: 'es-AR'
-//   })
-
-//   mp.checkout({
-//           preference: {
-//             id: preferenceId,
-//           },
-//           render: {
-//             container: '.cho-container',
-//             label: 'Pagar',
-//           }
-//         });
-//         console.log(mp)
-//   }
-//   //hago la peticion al back para obtener el preferenceID
-
-  
-
-
-// //con el preferenceID en mano creo el script y le inyecto el script de mercadopago
-//   function exUseEffectDos(){
-//     if(preferenceId){
-//   const script = document.createElement('script');
-//     script.type = 'text/javascript';
-//     script.src = 'https://sdk.mercadopago.com/js/v2';
-//     script.addEventListener('load', addCheckout); // Cuando cargue el script, se ejecutará la función addCheckout
-//     document.body.appendChild(script);
-//     }
-// }
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function confirmacionCompra(event){
+// async function confirmacionCompra(event){
    
 
-       let payload = {        
-            OrderDetails: [carrito],
-            description:"casa azul, rejas amarillas",
-            UserID: 1,}
+//        let payload = {        
+//             OrderDetails: [carrito],
+//             description:"casa azul, rejas amarillas",
+//             UserID: 1,}
 
-        let response = await axios.post("https://pfhenryback-production.up.railway.app/orders", payload);
+//         let response = await axios.post("https://pfhenryback-production.up.railway.app/orders", payload);
     
   
-        console.log(response)
+//         console.log(response)
     
 
-     }
-
-
-
-
-
+//      }
 
 
     // SUMA PRECIOS CARRITO NO FINAL 
@@ -146,7 +81,41 @@ async function confirmacionCompra(event){
                       function handleSliderRight(event) {
                         var slider = document.getElementsByClassName("izquierda-carrito-renderizado-miniatura-productos-seleccionados")
                         slider[0].scrollLeft= +770
-                                                        }
+    }
+    const order = {
+        OrderDetails: carrito,
+        description: "casa blanca",
+        userId: 1
+    }
+    async function mercadopago() {
+        let mpID = 1
+         // renderizo el boton de mercadopago
+         const response = await axios.post('http://localhost:3001/orders', order)
+         mpID = response.data.mpId 
+
+        const addCheckout = async() => {
+          const mp = await new window.MercadoPago('TEST-802c7a27-7e8f-4757-80eb-d9b843bc0c2c', {
+            locale: 'es-AR'
+        })
+        setMostrarBoton(true)
+        await mp.checkout({
+                preference: {
+                  id: mpID,
+                },
+                render: {
+                  container: '.cho-container',
+                  label: 'Pagar',
+                }
+              });
+        }
+        
+      //con el preferenceID en mano creo el script y le inyecto el script de mercadopago
+        const script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = 'https://sdk.mercadopago.com/js/v2';
+           script.addEventListener('load', addCheckout); // Cuando cargue el script, se ejecutará la función addCheckout
+          document.body.appendChild(script);
+}                                                                                              
 
 
 
@@ -227,23 +196,44 @@ async function confirmacionCompra(event){
                                     </div>
                             </div>
                 </div>
+
                 <div className='derecha-carrito-titulo-medio-pago'>DESCRIPCIÓN</div>
+
                 
                 <div className='derecha-carrito-seleccion-pago'>
                        
                        
+
             
                         <div className='monto-cantidad-efectivo-carrito-derecha'>
                             {/* <h1 className='simbolo-efectivo-carrito-derecha'></h1> */}
-                            <input type="text" className='cantidad-de-dinero-input' placeholder='Porton doble azul, casa techo bordo'/>
+                            {/* <input type="text" className='cantidad-de-dinero-input' placeholder='Porton doble azul, casa techo bordo'/> */}
                         </div>
 
-                
+                        {/* <div className='checkbox-efectivo-carrito-derecha'> */}
+                            {/* <input type="checkbox"  className="checkbox-efectivo-carrito-check" />
+                            <h1 className='efectivo-texto-carrito-derecha'>Efectivo</h1>
+                        </div>
+                    
+                        <div className='monto-cantidad-efectivo-carrito-derecha'>
+                            <h1 className='simbolo-efectivo-carrito-derecha'>$</h1> */}
+                            <input type="text" className='cantidad-de-dinero-input'/>
+                        {/* </div>
+
+                        <div className='checkbox-tarjeta-carrito-derecha'>
+                            <input type="checkbox" className='checkbox-tarjeta-carrito-check' />
+                            <h1 className='tarje-texto-carrito-derecha'>Debito o credito</h1> */}
+                        {/* </div> */}
+
 
 
                 </div>
                
-                <div className='derecha-carrito-boton-pago'><button className='boton-pago-carrito' onClick={confirmacionCompra}>CONFIRMAR COMPRA</button></div>
+                {/* <div className='derecha-carrito-boton-pago'><button className='boton-pago-carrito' onClick={confirmacionCompra}>CONFIRMAR COMPRA</button></div> */}
+
+                { mostrarBoton ? '' : <div className='derecha-carrito-boton-pago'><button onClick={mercadopago} style={{"cursor": "pointer"}} className='boton-pago-carrito'>Confirmar compra</button></div> }
+                <div className='cho-container' ></div>
+
             </div>
         </div>
     );

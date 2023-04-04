@@ -17,9 +17,8 @@ import EditarAdmin from '../Components/DashBoardAdmin/EditarAdminDashBoardAdmin'
 
 
 
-
 function DashBoardAdmin() {
-
+ 
 
     const handleClick = (e) => {
 
@@ -32,7 +31,6 @@ function DashBoardAdmin() {
         let tagsDashBoardAdminBtn = document.getElementsByClassName("dash-board-tags-component")
         let ofertasDelDiaDashBoardAdminBtn = document.getElementsByClassName("dash-board-ofertas-del-dia-component")
         let editarAdminDashBoardAdminBtn = document.getElementsByClassName("dash-board-editar-admin-component")
-        // let cerrarSesionDashBoardAdminBtn = document.getElementsByClassName("")
         let platosEntradasBtn = document.getElementsByClassName('Entradas');
         let ofertasDelDiaBtn = document.getElementsByClassName('Entradas');
 

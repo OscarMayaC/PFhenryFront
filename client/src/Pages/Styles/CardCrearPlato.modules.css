@@ -87,3 +87,15 @@
         .dash-board-ventana-button:hover{
             background-color: #86121b;
         }
+        
+        .ul-tags-en-plato-nuevo{
+            display: flex;
+            flex-direction: row;
+            /* justify-content: center; */
+            height: 35px;
+
+        }
+
+        .li-tags-en-plato-nuevo{
+            margin-right: 20px;
+        }

@@ -61,7 +61,7 @@ function OfertasDelDiaDashBoardAdmin(props) {
                 {
                 ofertas?.map((p) => {
                     return (
-              <CardsOfertasDelDiaSacar id={p.id} name={p.name} description={p.description} image={p.image} price={p.price} nationality={p.nationality}></CardsOfertasDelDiaSacar>
+              <CardsOfertasDelDiaSacar key={p.id} id={p.id} name={p.name} description={p.description} image={p.image} price={p.price} nationality={p.nationality}></CardsOfertasDelDiaSacar>
                     )
                 })
             } 

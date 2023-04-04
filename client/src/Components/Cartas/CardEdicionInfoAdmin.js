@@ -6,7 +6,10 @@ function CardEdicionInfoAdmin(props) {
 
 
     let name = "Informacion Admin";
-    
+    function confirmarEdicion(e){
+        e.preventDefault();
+        toggleDiv();
+    }
 
     function cancelarEdicion(e){
         e.preventDefault();
@@ -32,13 +35,32 @@ function CardEdicionInfoAdmin(props) {
 
                 <div className="dash-board-ventana-form-div">
                 <h1 className='dash-board-ventana-txt'>Nombre:</h1>
-                <input className="dash-board-ventana-input" placeholder={name}></input>
+                <input className="dash-board-ventana-input" placeholder="Nombre nuevo..."></input>
                 </div>
+          
+                <div className="dash-board-ventana-form-div">
+                <h1 className='dash-board-ventana-txt'>Email:</h1>
+                <input className="dash-board-ventana-input" placeholder="Email nuevo..."></input>
+                </div>
+
+                <div className="dash-board-ventana-form-div">
+                <h1 className='dash-board-ventana-txt'>Telefono:</h1>
+                <input className="dash-board-ventana-input" placeholder="Telefono nuevo..."></input>
+                </div>
+          
+
+                <div className="dash-board-ventana-form-div">
+                <h1 className='dash-board-ventana-txt'>Direccion:</h1>
+                <input className="dash-board-ventana-input" placeholder="Direccion nueva..."></input>
+                </div>
+          
+
+            
           
 
                 <div className="dash-board-ventana-form-div-botones">
                 <button className='dash-board-ventana-button' onClick={cancelarEdicion}>CANCELAR</button>
-                <button className='dash-board-ventana-button'>CONFIRMAR</button>
+                <button className='dash-board-ventana-button' onClick={confirmarEdicion}>CONFIRMAR</button>
                 </div>
             </form>
         </div>

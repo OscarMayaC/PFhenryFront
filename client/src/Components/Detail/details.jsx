@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import NavBar from "../../Components/NavBar";
+import NavBar from "../NavBar/NavBar";
 import "../css/details.css";
 import CardDetail from "./cardDetail";
 import CardReseñas from "../Reseñas/CardReseñas";
 import testimonios from "../Reseñas/testimonios";
 import logo from '../../imgs/logo.png';
 import { getDetail, postCritic } from "../../redux/actions";
+import SimpleBar from 'simplebar-react';
+//import 'simplebar/dist/simplebar.min.css';
 
 //funcion que devuelve los mensajes de error del formulario
 function validate(input) {
@@ -43,8 +45,8 @@ const Detalles = (props) => {
     const [errors, setErrors] = useState({});
     
     let reseñas = testimonios();//aqui extraigo los testimonios por defecto
-    let tags=["tagComida1", "tagcomida2", "tagcomida3"];
-    
+    let myTags = [];
+
     const [input, setInput] = useState({
                 title: '',
                 content: '',
@@ -88,9 +90,21 @@ const Detalles = (props) => {
     }, [dispatch]);
 
     const myDish = useSelector((state) => state.detail);
+    const tags = myDish.tags;
+    if (tags) {
+        tags.forEach((e)=>{
+            const newEl = {
+                tagId: e.dishes_tags.tagId,
+                description: e.description
+            }
+            myTags.push(newEl);
+        })
+    }
+   // console.log(myDish);
+    console.log(myTags)
 
     return (
-        <div>
+        <div className="detail-body">
             <div> <NavBar /></div>
             <div className="">
                 <div className="carta">
@@ -99,7 +113,7 @@ const Detalles = (props) => {
                     nombre={myDish.name}
                     calificacion="9"
                     imagen={myDish.image}
-                    tags={tags}
+                    tags={myTags}
                     descripcion={myDish.description}
                     precio={myDish.price}
                     nacionalidad={myDish.nacionality}
@@ -116,20 +130,26 @@ const Detalles = (props) => {
 
 
                     <div className="criticas">
-                        {
-                            reseñas?.map((el) => {
-                                return (
-                                    <div>
-                                        <CardReseñas
-                                            name={el.name}
-                                            titulo={el.titulo}
-                                            opinion={el.opinion}
-                                            imagen={logo}
-                                        />
-                                    </div>
-                                )
-                            })
+                        <SimpleBar style={{ height: 200 }}>
+                        {   
+                            
+                                reseñas?.map((el) => {
+                                    return (
+                                        <div>
+                                                <CardReseñas
+                                                    name={el.name}
+                                                    titulo={el.titulo}
+                                                    opinion={el.opinion}
+                                                    imagen={logo}
+                                                />
+
+                                        </div>
+                                    )
+                                })
+                            
+                        
                         }
+                        </SimpleBar>
                     </div>
 
 

@@ -38,6 +38,10 @@
 
     "react": "^18.2.0",
 
+    "react-bootstrap": "^2.7.2",
+
+    "react-bootstrap-alert": "^1.0.7",
+
     "react-dom": "^18.2.0",
 
     "react-redux": "^7.2.3",
@@ -54,7 +58,11 @@
 
     "redux-thunk": "^2.4.2",
 
-    "sass": "^1.59.2",
+    "sass": "^1.60.0",
+
+    "simplebar-react": "^3.2.3",
+
+    "sweetalert2": "^11.7.3",
 
     "three": "^0.150.1",
 

@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState }from 'react';
 import '../../Pages/Styles/CardEdicionTag.modules.css'
-
+import { editTagAdmin } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 function CardEdicionTag(props) {
-
-
-    let name = "Contiene maní";
+    const dispatch = useDispatch();
+    // let ventanaEdicionTag = document.getElementsByClassName("dash-board-tags-ventana-edicion-tag-seleccionado")
+    const [description, setDescription] = useState("");
     
+
+
+    const handleDescriptionChange = (e) => {
+        const inputDescription = e.target.value;
+        // Puedes hacer cualquier validación que necesites aquí, como verificar que la descripción empiece con mayúscula, no contenga números, etc.
+        setDescription(inputDescription);
+      }
+
+      const handleEditTag = async (e) => {
+        e.preventDefault();
+        try {
+            dispatch(editTagAdmin({ id: 1, description: description }));
+          // Hacer algo con la respuesta, como actualizar la lista de etiquetas, etc.
+        //   console.log(response);
+          toggleDiv();
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
 
     function cancelarEdicion(e){
         e.preventDefault();
@@ -27,18 +48,19 @@ function CardEdicionTag(props) {
             <form className='dash-board-tags-ventana-edicion-tag-seleccionado-form'>
                 
                 <div className="dash-board-ventana-form-div-titulo-tag">
-                <h1 className='dash-board-ventana-txt-titulo-tag'>{name}</h1>
+                <h1 className='dash-board-ventana-txt-titulo-tag'>Modificación de tag</h1>
                 </div>
 
                 <div className="dash-board-ventana-form-div">
-                <h1 className='dash-board-ventana-txt'>Nombre:</h1>
-                <input className="dash-board-ventana-input" placeholder={name}></input>
+                <h1 className='dash-board-ventana-txt'>Nuevo nombre:</h1>
+                <input className="dash-board-ventana-input" value={description} onChange={handleDescriptionChange}></input>
+            
                 </div>
           
 
                 <div className="dash-board-ventana-form-div-botones">
                 <button className='dash-board-ventana-button' onClick={cancelarEdicion}>CANCELAR</button>
-                <button className='dash-board-ventana-button'>CONFIRMAR</button>
+                <button className='dash-board-ventana-button' onClick={handleEditTag}>CONFIRMAR</button>
                 </div>
             </form>
         </div>

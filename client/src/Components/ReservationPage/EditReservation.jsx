@@ -3,24 +3,31 @@ import { LocalizationProvider, StaticDateTimePicker } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { converter } from '../ReservationValidations/FormatConverter';
 import { validationDate } from "../ReservationValidations/ValidationDate";
-import { getTables, postBooking } from "../../redux/actions/index.js";
-import { useDispatch, /*useSelector*/ } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getTables, putBooking } from "../../redux/actions/index.js";
 
-function Selectors(props){
+function EditReservation(props){
 
     const { selectedMesaId, confirmTable, setConfirmSearchTables } = props
 
     //const { userId } = useSelector(state => state)
 
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const { infoBooking, bookingUpdateId, responseBooking } = useSelector(state => state)
+
+    const [dataBookingSaved, setDataBookingSaved] = useState({
+        fecha_inicio: infoBooking.date_start,
+        hora_inicio: infoBooking.time_start,
+        cantidad_comensales: infoBooking.costumers_quantity,
+        nota: infoBooking.note
+    })
+
+    const [selectedDate, setSelectedDate] = useState(new Date(`${infoBooking.date_start}T${infoBooking.time_start}`));
 
     const {today, day, minSelectableTime} = validationDate(selectedDate);
 
     const [newDateFormat, setNewDateFormat] = useState({
-        fecha_inicio: '',
-        hora_inicio: '',
-        cantidad_comensales: 0,
-        nota: ''
+        fecha_inicio: infoBooking.date_start,
+        hora_inicio: infoBooking.time_start
     });
     
     const dispatch = useDispatch();
@@ -29,58 +36,50 @@ function Selectors(props){
         setNewDateFormat(converter(selectedDate));
       }, [selectedDate]);
 
-    const handleOnChange = (event) => {
-        const { name, value } = event.target;
-        setNewDateFormat({
-            ...newDateFormat,
-            [name]: value
-        }); 
-    };
-    
+
     const handleTableSubmit = (event) => {
         event.preventDefault();
     
         const info = {
             fecha_inicio: newDateFormat.fecha_inicio, 
             hora_inicio: newDateFormat.hora_inicio, 
-            cantidad_comensales: parseInt(newDateFormat.cantidad_comensales)
+            cantidad_comensales: parseInt(dataBookingSaved.cantidad_comensales)
         }
 
-        if(newDateFormat.fecha_inicio && newDateFormat.hora_inicio && newDateFormat.cantidad_comensales){
+        if(newDateFormat.fecha_inicio && newDateFormat.hora_inicio && dataBookingSaved.cantidad_comensales){
             dispatch(getTables(info))
             setConfirmSearchTables(true)
         };
     };
 
-    const handleReservaSubmit = (event) => {
+    const handleEditReservaSubmit = (event) => {
         event.preventDefault();
 
-        const infoReserva = {
+        const editReserva = {
             fecha_inicio: newDateFormat.fecha_inicio,
             hora_inicio: newDateFormat.hora_inicio,
-            cantidad_comensales: parseInt(newDateFormat.cantidad_comensales),
+            cantidad_comensales: parseInt(dataBookingSaved.cantidad_comensales),
             mesa: parseInt(selectedMesaId),
             idUser: 5,
-            nota: newDateFormat.nota
+            nota: dataBookingSaved.nota,
         }
-
         if(newDateFormat.fecha_inicio && 
-           newDateFormat.hora_inicio && 
-           newDateFormat.cantidad_comensales && 
-           //userId && 
-           confirmTable && 
-           selectedMesaId) 
+            newDateFormat.hora_inicio && 
+            dataBookingSaved.cantidad_comensales && 
+            confirmTable && 
+            selectedMesaId) 
         {
-            dispatch(postBooking(infoReserva))
+            dispatch(putBooking(editReserva, bookingUpdateId))
         };
-    };
+    }
 
     return(
     <>
-    <form onSubmit={handleTableSubmit}>
+    <form onSubmit={handleTableSubmit} >
+        {responseBooking && <span>{responseBooking}</span>}
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDateTimePicker
-            value={selectedDate}
+            value={new Date(newDateFormat.fecha_inicio + 'T' + newDateFormat.hora_inicio)}
             minDate={today}
             minTime= {day ? minSelectableTime : null}
             onChange={(newDate) => setSelectedDate(newDate)}
@@ -97,10 +96,9 @@ function Selectors(props){
         <label>Número de personas</label>
             <input 
             type="number"
-            min="1"
             name="cantidad_comensales"
-            value={newDateFormat.cantidad_comensales || ''}
-            onChange={event => handleOnChange(event)}
+            value={dataBookingSaved.cantidad_comensales}
+            onChange={event => setDataBookingSaved({...dataBookingSaved, cantidad_comensales: event.target.value})}
             />
         </div>
 
@@ -109,22 +107,20 @@ function Selectors(props){
             <textarea 
             type="text"
             name="nota"
-            value={newDateFormat.nota || ''}
-            onChange={event => handleOnChange(event)}
+            value={dataBookingSaved.nota}
+            onChange={event => setDataBookingSaved({...dataBookingSaved, nota:event.target.value})}
             />
         </div>}
 
         <br/>
-
         {!confirmTable && <button type="submit">Buscar Mesas Disponibles</button>}
     </form>
 
-    <form onSubmit={handleReservaSubmit}>
-        {confirmTable && <button type="submit">Hacer reservación</button>}
+    <form onSubmit={handleEditReservaSubmit}>
+        {confirmTable && <button type="submit">Confirmar Nueva Reserva</button>}
     </form>
     </>
-
     )
 }
 
-export default Selectors;
+export default EditReservation;

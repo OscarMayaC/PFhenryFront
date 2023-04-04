@@ -19,13 +19,16 @@ import {
     GET_DISH_ACOMPAÑAMIENTOS,
     GET_DISH_POSTRES,
     GET_DISH_BEBIDAS,
-    // SORT_ENTRADAS,
-    // SORT_BOTANAS,
-    // SORT_PRINCIPALES,
-    // SORT_ACOMPAÑAMIENTOS,
-    // SORT_POSTRES,
-    // SORT_BEBIDAS
+    GET_USER_INFO,
+    POST_BOOKING,
+    POST_BOOKING_ERROR,
+    SAVE_INFO_BOOKING,
+    PUT_BOOKING,
+    PUT_BOOKING_ERROR,
+    RESERVAS_ADMIN,
+    ORDERS_ADMIN
   } from "../actions/index";
+
 
 const initialState = {
   allDishes: [],
@@ -34,12 +37,12 @@ const initialState = {
   email: "",
   password: "",
   userId: "",
+  user: [],
   sections: [],
   SearchDish: [],
   Dishes: [],
-  detail:[],
+  detail: [],
   tables: [],
-  Carrito:[],
   quantity:0,
   Entradas:[],
   EntradasFiltrado:[],
@@ -49,13 +52,39 @@ const initialState = {
   Acompañamientos:[],
   Postres:[],
   Bebidas:[],
-  TotalQuantityCart:0
+  TotalQuantityCart:0,
+  reserva: [],
+  Carrito: [],
+  Quantity: 0,
+  bookingsUser: [],
+  bookingUpdateId: null,
+  allBookingsAdmin: [],
+  infoBooking: [],
+  responseBooking: [],
+  reservasAdminTotal: [],
+  OrdersAdminTotal:[]
 };
 
 
 function rootReducer(state = initialState, action) {
+
     switch (action.type) {
 
+     
+      case  ORDERS_ADMIN:
+        return {
+          ...state,
+          OrdersAdminTotal: action.payload,
+        
+        };
+
+
+      case  RESERVAS_ADMIN:
+        return {
+          ...state,
+          reservasAdminTotal: action.payload,
+        
+        };
 
       case 'UPDATE_TOTAL_QUANTITY':
         return { ...state, totalQuantityCart: action.payload };
@@ -132,25 +161,6 @@ function rootReducer(state = initialState, action) {
         }
         return { ...state, Carrito: [...state.Carrito] };
 
-    //   case RESTAR_AL_CARRITO:
-
-    //   const existingTakeItemIndex = state.Carrito.findIndex(item => item.id === action.payload.id);
-    //   if (existingTakeItemIndex >= 0) {
-    //     state.Carrito[existingItemIndex].quantity -= 1;
-    //   } else {
-    //     state.Carrito.push(action.payload)
-    //   }
-    //   return { ...state, 
-    //     Carrito: [...state.Carrito]
-    // }
-
-
-
-
-
-
-             
-
 
         case AUMENTO_CART:
           return {
@@ -164,14 +174,14 @@ function rootReducer(state = initialState, action) {
             };
 
 
+    // case AGREGAR_AL_CARRITO:
+    //   return {
+    //     ...state,
+    //     Carrito: [...state.Carrito, action.payload],
+    //     // Quantity:[...state.Quantity, action.payload.quantity],
+    //   };
 
 
-
-case GET_SECTIONS:
-  return {
-    ...state,
-    sections: action.payload,
-  };
 
       case GET_DISHES:
         return {
@@ -191,209 +201,6 @@ case GET_SECTIONS:
           SearchDish: action.payload,
         };
   
-       
-
-          // case SORT_ENTRADAS:
-
-          //   let orderedEntradas = [...state.Entradas];
-
-          //   orderedEntradas = orderedEntradas.sort((a, b) => {
-          //     if (action.payload === "ASCENDENTE_NOMBRE") {
-          //       if (a.name < b.name) {
-          //         return -1;
-          //       }
-          //       if (a.name > b.name) {
-          //         return 1;
-          //       }
-          //       return 0;
-          //     } else if (action.payload === "DESCENDENTE_NOMBRE") {
-          //       if (a.name < b.name) {
-          //         return 1;
-          //       }
-          //       if (a.name > b.name) {
-          //         return -1;
-          //       }
-          //       return 0;
-          //     } else if (action.payload === "ASCENDENTE_PRECIO") {
-          //       return b.price - a.price;    
-          //     } else if (action.payload === "DESCENDENTE_PRECIO") {
-          //      return a.price - b.price;
-          //     }
-          //     return 0; 
-          //   });
-       
-          //   return {
-          //     ...state,
-          //     Entradas:
-          //       action.payload === "Filtro" ? state.Entradas : orderedEntradas
-          //   };
-    
-          // case SORT_BOTANAS:
-          //     let orderedBotanas = [...state.PequeñaBotana];
-          //     orderedBotanas = orderedBotanas.sort((a, b) => {
-          //       if (action.payload === "ASCENDENTE_NOMBRE") {
-          //         if (a.name < b.name) {
-          //           return -1;
-          //         }
-          //         if (a.name > b.name) {
-          //           return 1;
-          //         }
-          //         return 0;
-          //       } else if (action.payload === "DESCENDENTE_NOMBRE") {
-          //         if (a.name < b.name) {
-          //           return 1;
-          //         }
-          //         if (a.name > b.name) {
-          //           return -1;
-          //         }
-          //         return 0;
-          //       } else if (action.payload === "ASCENDENTE_PRECIO") {
-          //         return b.price - a.price;    
-          //       } else if (action.payload === "DESCENDENTE_PRECIO") {
-          //        return a.price - b.price;
-          //       }
-          //       return 0; 
-          //     });
-          //     return {
-          //       ...state,
-          //       PequeñaBotana:
-          //         action.payload === "Filtro" ? state.PequeñaBotana : orderedBotanas
-          //     };
-    
-          // case SORT_PRINCIPALES:
-          //       let orderedPrincipales = [...state.Principales];
-          //       orderedPrincipales = orderedPrincipales.sort((a, b) => {
-          //         if (action.payload === "ASCENDENTE_NOMBRE") {
-          //           if (a.name < b.name) {
-          //             return -1;
-          //           }
-          //           if (a.name > b.name) {
-          //             return 1;
-          //           }
-          //           return 0;
-          //         } else if (action.payload === "DESCENDENTE_NOMBRE") {
-          //           if (a.name < b.name) {
-          //             return 1;
-          //           }
-          //           if (a.name > b.name) {
-          //             return -1;
-          //           }
-          //           return 0;
-          //         } else if (action.payload === "ASCENDENTE_PRECIO") {
-          //           return b.price - a.price;    
-          //         } else if (action.payload === "DESCENDENTE_PRECIO") {
-          //          return a.price - b.price;
-          //         }
-          //         return 0; 
-          //       });
-          //       return {
-          //         ...state,
-          //         Principales:
-          //           action.payload === "Filtro" ? state.Principales : orderedPrincipales
-          //       };
-        
-          // case SORT_ACOMPAÑAMIENTOS:
-          //         let orderedAcompañamientos = [...state.Acompañamientos];
-          //         orderedAcompañamientos = orderedAcompañamientos.sort((a, b) => {
-          //           if (action.payload === "ASCENDENTE_NOMBRE") {
-          //             if (a.name < b.name) {
-          //               return -1;
-          //             }
-          //             if (a.name > b.name) {
-          //               return 1;
-          //             }
-          //             return 0;
-          //           } else if (action.payload === "DESCENDENTE_NOMBRE") {
-          //             if (a.name < b.name) {
-          //               return 1;
-          //             }
-          //             if (a.name > b.name) {
-          //               return -1;
-          //             }
-          //             return 0;
-          //           } else if (action.payload === "ASCENDENTE_PRECIO") {
-          //             return b.price - a.price;    
-          //           } else if (action.payload === "DESCENDENTE_PRECIO") {
-          //            return a.price - b.price;
-          //           }
-          //           return 0; 
-          //         });
-          //         return {
-          //           ...state,
-          //           Acompañamientos:
-          //             action.payload === "Filtro" ? state.Acompañamientos : orderedAcompañamientos
-          //         };
-                
-          // case SORT_POSTRES:
-          //           let orderedPostres = [...state.Postres];
-          //           orderedPostres = orderedPostres.sort((a, b) => {
-          //             if (action.payload === "ASCENDENTE_NOMBRE") {
-          //               if (a.name < b.name) {
-          //                 return -1;
-          //               }
-          //               if (a.name > b.name) {
-          //                 return 1;
-          //               }
-          //               return 0;
-          //             } else if (action.payload === "DESCENDENTE_NOMBRE") {
-          //               if (a.name < b.name) {
-          //                 return 1;
-          //               }
-          //               if (a.name > b.name) {
-          //                 return -1;
-          //               }
-          //               return 0;
-          //             } else if (action.payload === "ASCENDENTE_PRECIO") {
-          //               return b.price - a.price;    
-          //             } else if (action.payload === "DESCENDENTE_PRECIO") {
-          //              return a.price - b.price;
-          //             }
-          //             return 0; 
-          //           });
-          //           return {
-          //             ...state,
-          //             Postres:
-          //               action.payload === "Filtro" ? state.Postres : orderedPostres
-          //           };
-            
-          // case SORT_BEBIDAS:
-          //             let orderedBebidas = [...state.Bebidas];
-          //             orderedBebidas = orderedBebidas.sort((a, b) => {
-          //               if (action.payload === "ASCENDENTE_NOMBRE") {
-          //                 if (a.name < b.name) {
-          //                   return -1;
-          //                 }
-          //                 if (a.name > b.name) {
-          //                   return 1;
-          //                 }
-          //                 return 0;
-          //               } else if (action.payload === "DESCENDENTE_NOMBRE") {
-          //                 if (a.name < b.name) {
-          //                   return 1;
-          //                 }
-          //                 if (a.name > b.name) {
-          //                   return -1;
-          //                 }
-          //                 return 0;
-          //               } else if (action.payload === "ASCENDENTE_PRECIO") {
-          //                 return b.price - a.price;    
-          //               } else if (action.payload === "DESCENDENTE_PRECIO") {
-          //                return a.price - b.price;
-          //               }
-          //               return 0; 
-          //             });
-          //             return {
-          //               ...state,
-          //               Bebidas:
-          //                 action.payload === "Filtro" ? state.Bebidas : orderedBebidas
-          //             };      
-
-
-
-
-
-
-
 
 
 
@@ -421,6 +228,7 @@ case GET_SECTIONS:
         return {
           ...state,
         };
+
       case GET_USER_LOGIN:
         return {
           ...state,
@@ -428,6 +236,12 @@ case GET_SECTIONS:
           email: action.payload.email,
           password: action.payload.password,
           userId: action.payload.id,
+        };
+
+      case GET_USER_INFO: 
+        return {
+          ...state,
+          user: action.payload
         };
 
       case GET_DETAILS:
@@ -440,16 +254,71 @@ case GET_SECTIONS:
             return{
               ...state
             }    
+  
+    case GET_SECTIONS:
+      return {
+        ...state,
+        sections: action.payload,
+      };
+
       case GET_AVAILABLE_TABLES:
         return{
             ...state,
             tables: action.payload
         };
-      default:
-        return state;
-    }
-
-       
+      case POST_BOOKING:
+        return{
+          ...state,
+          reserva: action.payload
+        };
+      case POST_BOOKING_ERROR:
+        return{
+          ...state,
+          responseBooking: action.payload
+        };
+    case "saveBookingsUser":
+      return {
+        ...state,
+        bookingsUser: action.payload
+      };
+    case "saveIdBookingUpdate":
+      return {
+        ...state,
+        bookingUpdateId: action.payload
+      };
+    case "saveAllBookingsAdmin":
+      return {
+        ...state,
+        allBookingsAdmin: action.payload
+      };
+    case "filterBookingsInThisDateAdmin":
+      return {
+        ...state,
+        allBookingsAdmin: action.payload
+      };
+    case "filterBookingsInThisDateUser":
+      return {
+        ...state,
+        bookingsUser: action.payload
+      };
+      case SAVE_INFO_BOOKING:
+      return {
+        ...state,
+        infoBooking: action.payload
+      };
+    case PUT_BOOKING:
+      return {
+        ...state,
+        responseBooking: action.payload
+      };
+    case PUT_BOOKING_ERROR:
+      return {
+        ...state,
+        responseBooking: action.payload
+      }
+    default:
+      return state;
   }
-  
-  export default rootReducer;
+}
+
+export default rootReducer;

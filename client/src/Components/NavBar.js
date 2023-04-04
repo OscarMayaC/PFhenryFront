@@ -16,22 +16,9 @@ export default function NavBar() {
     const dispatch = useDispatch();
     const totalQuantity = useSelector(state => state.totalQuantityCart);
     const carrito = useSelector(state => state.Carrito);
-
+    const isLoggedIn = useSelector(state=> state.isLoggedIn)
     const [Items, setItems] = useState([]);
 
-
-    // carrito.observe('length', function() {
-    //     if (carrito.length <= 0) {
-    //       btn[0].style.display = 'none';
-    //     } else {
-    //       btn[0].style.display = 'block';
-    //     }
-    //   });
-
-    // let div = document.getElementsByClassName("desplegable-carrito");
-            
-    //         let link = document.getElementsByClassName("link-carrito-compras");
-            
 
     // ITEMS TIENE TODO LO QUE LOCALSTORAGE
     useEffect(() => {
@@ -72,7 +59,6 @@ export default function NavBar() {
           setItems(storedItems);
         }
       }
-
 
 
     function handleClick(event) {   
@@ -170,6 +156,8 @@ export default function NavBar() {
                     <button className='navbar-button-sobre-nosotros'>Sobre nosotros!</button>
             </Link>
 
+            <Link to={"/reseñas"}> <button className='navbar-button-reseñas'>Reseñas!</button> </Link>
+
 
             <Link to={"/iniciarsesion"}>
                     <button className='navbar-button-iniciar-sesion'>
@@ -177,7 +165,7 @@ export default function NavBar() {
                     <div className='contenedor-button-navbar-inciarsesion'>
        
                     <img src={user} alt="img-user" className="navbar-iniciar-user-icon"  width="40px" height="40px"></img>
-                    <h1 className='txt-navbar-iniciarsesion'>Iniciar sesión!</h1> 
+                    <h2 className='txt-navbar-iniciarsesion'>Iniciar sesión!</h2> 
        
                     </div>
                    
