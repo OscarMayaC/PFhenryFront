@@ -96,6 +96,8 @@ const IniciarSesion = () => {
                             if(e.origin === "http://localhost:3001") { //esta ruta debe la principal del server
                                 if (e.data) {
                                     localStorage.setItem("user", JSON.stringify(e.data))
+                                    localStorage.setItem("userId", JSON.stringify(e.data.usuario.id))
+                                    localStorage.setItem("userEmail", JSON.stringify(e.data.usuario.email))
 
                                     popup?.close()
                                     console.log(e.data);
