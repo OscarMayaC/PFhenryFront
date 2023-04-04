@@ -63,7 +63,11 @@ function Compras(props) {
         }
       
         const order = {
-            OrderDetails: carrito,
+            OrderDetails: [{
+                name: 'cualquiera',
+                price: 14,
+                quantity: 2
+            }],
             description: description,
             userId: 1
         }
@@ -90,6 +94,7 @@ function Compras(props) {
                   label: 'Pagar',
                 }
               });
+              console.log(1)
         }
         
       //con el preferenceID en mano creo el script y le inyecto el script de mercadopago
@@ -119,7 +124,7 @@ function handlerDescription(e){
                                     <h1>Usuario: User</h1>
                                 </div>
                                 <div className='detalle-precio-descuento-final'>
-                                    <h1>Precio: ${price}</h1>
+                                    <h1>Precio:  ${mostrarBoton ? price : 0}</h1>
                                     <h1>Descuento: 0%</h1>
                                     {/* <h1>Precio final: ${}</h1> */}
                                 </div>
@@ -173,7 +178,7 @@ function handlerDescription(e){
                             <div className='div-llega-en-mas-tiempo-y-costo-envio'>
                                     <div className='llega-en-texto-mas-tiempo-aprox'>
                                         <h1 className='texto-llega-en'>Tiempo estimado de llegada:</h1>
-                                        <h1 className='minutos-llega-aprox'>{time ? time : '15-45 min'}</h1>
+                                        <h1 className='minutos-llega-aprox'>{mostrarBoton ? time : '15-45 min'}</h1>
                                     </div>
 
                                     {/* <div className='div-envio-mas-precio'>
