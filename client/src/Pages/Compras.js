@@ -63,15 +63,10 @@ function Compras(props) {
         }
       
         const order = {
-            OrderDetails: [{
-                name: 'cualquiera',
-                price: 14,
-                quantity: 2
-            }],
+            OrderDetails: carrito,
             description: description,
             userId: 1
         }
-        console.log(carrito)
         let mpID = 1
          // renderizo el boton de mercadopago
         //  const response = await axios.post('http://localhost:3001/orders', order)
