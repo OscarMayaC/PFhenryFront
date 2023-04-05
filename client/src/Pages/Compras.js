@@ -261,7 +261,7 @@ function handlerDescription(e){
                 <div className='cho-container' ></div>
 
             </div>
-        </div>
+        
     );
 }
 

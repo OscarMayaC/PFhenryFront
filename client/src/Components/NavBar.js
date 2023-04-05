@@ -11,6 +11,7 @@ import { actualizarTotalQuantity} from '../redux/actions';
 
 
 export default function NavBar() {
+    const isLoggedIn = useSelector(state=> state.isLoggedIn)
     const dispatch = useDispatch();
     const totalQuantity = useSelector(state => state.totalQuantityCart);
     const carrito = useSelector(state => state.Carrito);
