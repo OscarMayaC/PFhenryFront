@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTags, crearTagAdmin} from '../../redux/actions';
+import { getAllTags, crearTagAdmin, idTag} from '../../redux/actions';
 import CardEliminarTag from '../Cartas/CardEliminarTag';
 import CardEdicionTag from '../Cartas/CardEdicionTag';
 import '../../Pages/Styles/TagsDashBoardAdmin.modules.css';
@@ -31,7 +31,7 @@ function TagsDashBoardAdmin(props) {
         dispatch(crearTagAdmin(nuevoTag));
         setTagInput('');
       setIsInputValid(false);
-    
+
       } else {
         alert("Solo se permiten valores de tipo texto");
       }
@@ -40,7 +40,7 @@ function TagsDashBoardAdmin(props) {
 
 
 
-  const editarTag = (event) => {
+  const editarTags = (event) => {
     let ventanaEditarTag = document.getElementsByClassName(
       'dash-board-tags-ventana-edicion-tag-seleccionado'
     );
@@ -49,20 +49,13 @@ function TagsDashBoardAdmin(props) {
     );
     ventanaEditarTag[0].style.display = 'flex';
     fondoEditarTag[0].style.display = 'flex';
+    const idTagkey = event.target.getAttribute('id');
+    dispatch(idTag(idTagkey))
+    console.log(idTagkey)
+    };
 
-    // OBTENER VALOR DEL BOTÓN "Contiene gluten" CORRESPONDIENTE
-    // const valorBoton = event.target.previousElementSibling.previousElementSibling.value;
-    // console.log(valorBoton);
 
-    // OBTENEDOR DE ID PROPIA DEL TAG A SU IZQUIERDA
-    const key = event.target.getAttribute('id');
-    console.log(key)
-    // ASIGNAR VALOR DE key AL ATRIBUTO id DEL ELEMENTO ventanaEliminarTag
-    ventanaEditarTag[0].setAttribute('id', key);
-    fondoEditarTag[0].setAttribute('id', key);
-  };
-
-  const eliminarTag = (event) => {
+  const eliminarTags = (event) => {
     // ABRIDOR DE VENTANA
     let ventanaEliminarTag = document.getElementsByClassName(
       'dash-board-tags-ventana-eliminar-tag-seleccionado'
@@ -73,16 +66,8 @@ function TagsDashBoardAdmin(props) {
     ventanaEliminarTag[0].style.display = 'flex';
     fondoEliminarTag[0].style.display = 'flex';
 
-    // OBTENER VALOR DEL BOTÓN "Contiene gluten" CORRESPONDIENTE
-    // const valorBoton = event.target.previousElementSibling.previousElementSibling.value;
-    // console.log(valorBoton);
-
-    // OBTENEDOR DE ID PROPIA DEL TAG A SU IZQUIERDA
-    const key = event.target.getAttribute('id');
-    console.log(key)
-    // ASIGNAR VALOR DE key AL ATRIBUTO id DEL ELEMENTO ventanaEliminarTag
-    ventanaEliminarTag[0].setAttribute('id', key);
-    fondoEliminarTag[0].setAttribute('id', key);
+    const idTagDelete = event.target.getAttribute('id');
+    dispatch(idTag(idTagDelete))
   };
 
 
@@ -90,26 +75,6 @@ function TagsDashBoardAdmin(props) {
   useEffect(() => {
     dispatch(getAllTags());
 
-
-    const botonesEliminar = document.querySelectorAll(".dash-board-tags-eliminar-boton");
-    botonesEliminar.forEach((boton) => {
-      boton.addEventListener("click", eliminarTag);
-    });
-  
-    const botonesEditar = document.querySelectorAll(".dash-board-tags-editar-boton");
-    botonesEditar.forEach((boton) => {
-      boton.addEventListener("click", editarTag);
-    });
-  
-    return () => {
-      botonesEliminar.forEach((boton) => {
-        boton.removeEventListener("click", eliminarTag);
-      });
-  
-      botonesEditar.forEach((boton) => {
-        boton.removeEventListener("click", editarTag);
-      });
-    };
 }, [dispatch]);
 
   return (
@@ -125,9 +90,9 @@ function TagsDashBoardAdmin(props) {
             return (
               <div className="dash-board-tags-div-seleccion" key={e.id}>    
                                          
-                                                         <button className='dash-board-tags-boton-seleccion-tags' value={e.description}>{e.description}</button>
-                                                         <button className='dash-board-tags-editar-boton' onClick={editarTag} id={e.id} key={e.id}>...</button>
-                                                         <button className='dash-board-tags-eliminar-boton' onClick={eliminarTag} id={e.id} key={e.id}>X</button>
+                                                         <button className='dash-board-tags-boton-seleccion-tags' value={e.description} key={e.id+"a"}>{e.description}</button>
+                                                         <button className='dash-board-tags-editar-boton' onClick={editarTags} id={e.id} key={e.id+"ab"}>...</button>
+                                                         <button className='dash-board-tags-eliminar-boton' onClick={eliminarTags} id={e.id} key={e.id+"abc"}>X</button>
                                                        </div>
                                                      );
                                                        })}   

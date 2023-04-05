@@ -2,30 +2,29 @@ import React, { useState }from 'react';
 import '../../Pages/Styles/CardEdicionTag.modules.css'
 import { editTagAdmin } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function CardEdicionTag(props) {
     const dispatch = useDispatch();
-    // let ventanaEdicionTag = document.getElementsByClassName("dash-board-tags-ventana-edicion-tag-seleccionado")
     const [description, setDescription] = useState("");
-    
+    const tag = useSelector((state) => state.idTag)
 
 
     const handleDescriptionChange = (e) => {
         const inputDescription = e.target.value;
-        // Puedes hacer cualquier validación que necesites aquí, como verificar que la descripción empiece con mayúscula, no contenga números, etc.
         setDescription(inputDescription);
       }
 
       const handleEditTag = async (e) => {
         e.preventDefault();
+        // console.log(tag +" "+ description)
         try {
-            dispatch(editTagAdmin({ id: 1, description: description }));
-          // Hacer algo con la respuesta, como actualizar la lista de etiquetas, etc.
-        //   console.log(response);
-          toggleDiv();
+            dispatch(editTagAdmin({ id:tag, description: description }));
+            toggleDiv();
         } catch (error) {
-          console.error(error);
+            console.error(error);
         }
+
       }
 
 

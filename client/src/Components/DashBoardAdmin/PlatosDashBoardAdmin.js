@@ -54,6 +54,7 @@ function PlatosDashBoardAdmin(props) {
         let fondoAgregar = document.getElementsByClassName("dash-board-platos-ventana-agregar-plato-seleccionado-fondo")
         ventanaAgregar[0].style.display="flex"
         fondoAgregar[0].style.display="flex"
+        // dispatch(crearPlatoAdmin())
     }
 
 
@@ -71,7 +72,7 @@ function PlatosDashBoardAdmin(props) {
                 sections?.map((p) => {
 
                     return (
-                        <button className={p.description} onClick={handleClick}>{p.description}</button>
+                        <button className={p.description} onClick={handleClick} key={p.id}>{p.description} </button>
                 
                     )
                 })
@@ -83,7 +84,7 @@ function PlatosDashBoardAdmin(props) {
                 {
                 platos?.map((p) => {
                     return (
-              <CardsAdmin id={p.id} name={p.name} description={p.description} image={p.image} price={p.price} nationality={p.nationality}></CardsAdmin>
+              <CardsAdmin id={p.id} key={p.id} name={p.name} description={p.description} image={p.image} price={p.price} nationality={p.nationality}></CardsAdmin>
                     )
                 })
             } 

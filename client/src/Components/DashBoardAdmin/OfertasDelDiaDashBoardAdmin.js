@@ -19,9 +19,10 @@ function OfertasDelDiaDashBoardAdmin(props) {
     const Acompañamientos = useSelector((state) => state.Acompañamientos)
     const Postres = useSelector((state) => state.Postres)
     const Bebidas = useSelector((state) => state.Bebidas)
+    const Ofertas = useSelector((state) => state.ofertasDelDia)
   
     const [platos, setPlatos] = useState(Entradas);
-    const ofertas =PequeñasBotanas
+   console.log(Ofertas) 
     const handleClick = (e) => {
 
         let target = e.target.className
@@ -59,7 +60,8 @@ function OfertasDelDiaDashBoardAdmin(props) {
 <div className='dash-board-ofertas-del-dia-top-side-panel'>
 <div className='dash-board-ofertas-del-dia-scroll-top-side-panel'>
                 {
-                ofertas?.map((p) => {
+                Ofertas?.map((p) => {
+                    
                     return (
               <CardsOfertasDelDiaSacar key={p.id} id={p.id} name={p.name} description={p.description} image={p.image} price={p.price} nationality={p.nationality}></CardsOfertasDelDiaSacar>
                     )
@@ -75,7 +77,7 @@ function OfertasDelDiaDashBoardAdmin(props) {
               {
                 sections?.map((p) => {
                     return (
-                        <button className={p.description} onClick={handleClick}>{p.description}</button>
+                        <button className={p.description} onClick={handleClick} key={p.id}>{p.description}</button>
                 
                     )
                 })

@@ -1,11 +1,12 @@
 import React from 'react';
 import '../../Pages/Styles/CardEliminarPlato.modules.css'
-
+import { eliminarPlatoAdmin } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 function CardEliminarPlato(props) {
 let name = "Empanadas Argentinas Veganas"
-
-
+const dispatch = useDispatch();
+const dish = useSelector((state) => state.idDish);
     function cancelarEliminar(e){
         e.preventDefault();
         toggleDiv();
@@ -18,7 +19,16 @@ let name = "Empanadas Argentinas Veganas"
         fondoEliminar[0].style.display="none"
     }
 
-    
+    function eliminarPlatoId(e){
+        e.preventDefault();
+        try {
+            dispatch(eliminarPlatoAdmin({ id:dish}));
+            toggleDiv();
+        } catch (error) {
+            console.error(error);
+        }
+
+      }
     return (
         <div className='dash-board-platos-ventana-eliminar-plato-seleccionado-fondo'>
         <div className='dash-board-platos-ventana-eliminar-plato-seleccionado'>
@@ -36,7 +46,7 @@ let name = "Empanadas Argentinas Veganas"
 
                 <div className="dash-board-ventana-form-div-botones">
                 <button className='dash-board-ventana-button' onClick={cancelarEliminar}>CANCELAR</button>
-                <button className='dash-board-ventana-button'>ELIMINAR</button>
+                <button className='dash-board-ventana-button' onClick={eliminarPlatoId}>ELIMINAR</button>
                 </div>
             </form>
         </div>

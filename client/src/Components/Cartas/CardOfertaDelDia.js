@@ -1,19 +1,34 @@
 import React from 'react';
 import '../../Pages/Styles/CardsOfertasDelDia.modules.css'
 
-// import { agregarAlCarrito } from '../../redux/actions';
-// import { useDispatch } from 'react-redux';
+import { agregarOfertasDelDia } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 
 export default function CardOfertaDelDia({id, name, description, image, price, nationality}) {
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-             const eliminarDeCarrito=()=>{
-            //     addToCartLocalStorage(id, name, price);
-            //    dispatch(agregarAlCarrito({id, name, price, quantity: 1 }))
-        console.log("hola") 
-        }
 
+const addToCartLocalStorage = (id, name, description, image, price, nationality) => {
+    const cartItems = JSON.parse(localStorage.getItem('ofertasDelDia')) || [];
+    const existingItemIndex = cartItems.findIndex(item => item.id === id);
+    if (existingItemIndex >= 0) {
+      cartItems[existingItemIndex].quantity += 1;
+    } else {
+      cartItems.push({id, name, description, image, price, nationality});
+      dispatch(agregarOfertasDelDia(cartItems))
+    }
+    localStorage.setItem('ofertasDelDia', JSON.stringify(cartItems));
+    
+  };
+
+  const agregarOferta=()=>{
+    addToCartLocalStorage({id, name, description, price, nationality});
+    // console.log({id, name, description, price, nationality})
+    const getOfertasDelDia= JSON.parse(localStorage.getItem('ofertasDelDia')) || [];
+    
+console.log(getOfertasDelDia)
+}
 
 
     return (
@@ -33,7 +48,7 @@ export default function CardOfertaDelDia({id, name, description, image, price, n
                
                                 <div className='Cards-Ofertas-del-dia-botones-edicion-plato'>
               
-                                <button onClick={eliminarDeCarrito} className="Cards-Ofertas-del-dia-boton-eliminar-carrito-en-card">+</button>
+                                <button onClick={agregarOferta} className="Cards-Ofertas-del-dia-boton-eliminar-carrito-en-card">+</button>
                        
 
 

@@ -26,7 +26,11 @@ import {
     PUT_BOOKING,
     PUT_BOOKING_ERROR,
     RESERVAS_ADMIN,
-    ORDERS_ADMIN
+    ORDERS_ADMIN,
+    ID_TAG,
+    ID_DISH,
+    DATA_FOR_EDIT_DISH,
+    AGREGAR_OFERTAS_DEL_DIA,
   } from "../actions/index";
 
 
@@ -62,15 +66,44 @@ const initialState = {
   infoBooking: [],
   responseBooking: [],
   reservasAdminTotal: [],
-  OrdersAdminTotal:[]
+  OrdersAdminTotal:[],
+  idTag:[],
+  idDish:[],
+  dataForEditDish:[],
+  ofertasDelDia:[]
 };
 
 
 function rootReducer(state = initialState, action) {
 
     switch (action.type) {
+case AGREGAR_OFERTAS_DEL_DIA:
+  return{
+    ...state,
+    ofertasDelDia: action.payload
+  }
 
-     
+
+case DATA_FOR_EDIT_DISH:
+  return{
+    ...state,
+    dataForEditDish: action.payload
+  }
+
+      case  ID_DISH:
+        return {
+          ...state,
+          idDish: action.payload,
+        
+        };
+
+      case  ID_TAG:
+        return {
+          ...state,
+          idTag: action.payload,
+        
+        };
+
       case  ORDERS_ADMIN:
         return {
           ...state,

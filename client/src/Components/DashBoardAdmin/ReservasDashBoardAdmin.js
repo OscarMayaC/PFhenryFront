@@ -28,17 +28,17 @@ function ReservasDashBoardAdmin(props) {
 
             <div className='dash-board-reservas-scroll'>
              {
-                reservas?.map((p) => {
-                    return (
-                        <div className='dash-board-reservas-matriz' key={p.id}>
-                        <p className='dash-board-reservas-data'>{p.User.name}</p>
-                        <p className='dash-board-reservas-data-email'>{p.User.email}</p>
-                        <p className='dash-board-reservas-data'>{p.costumers_quantity}</p>
-                        <p className='dash-board-reservas-data'>{p.tableId}</p>
-                        <p className='dash-board-reservas-data'>{p.time_start}</p>
-                         <p className='dash-board-reservas-data'>{p.date_start}</p>
-                         
-                        </div>
+            reservas?.map((p) => {
+                // console.log(p.id);
+                return (
+                <div className='dash-board-reservas-matriz' key={p.id}>
+                    <p className='dash-board-reservas-data'>{p.User? p.User.name : `Se fue sin avisar, ID: ${p.id}`}</p>
+                    <p className='dash-board-reservas-data-email'>{p.User? p.User.email : 'Correo electrónico no disponible'}</p>
+                    <p className='dash-board-reservas-data'>{p.costumers_quantity}</p>
+                    <p className='dash-board-reservas-data'>{p.tableId}</p>
+                    <p className='dash-board-reservas-data'>{p.time_start}</p>
+                    <p className='dash-board-reservas-data'>{p.date_start}</p>
+                </div>
                     )
                 })
             }

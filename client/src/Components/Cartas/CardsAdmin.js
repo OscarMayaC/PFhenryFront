@@ -1,26 +1,29 @@
 import React from 'react';
 import '../../Pages/Styles/CardsAdmin.modules.css'
-
-// import { agregarAlCarrito } from '../../redux/actions';
-// import { useDispatch } from 'react-redux';
+import { idDish, dataForEditDish} from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 
 export default function CardsAdmin({id, name, description, image, price, nationality}) {
+    
+    const dispatch = useDispatch();
 
-
-                    const editarPlato=(e)=>{
+                    const editarPlato=(event)=>{
                         let ventanaEdicion = document.getElementsByClassName("dash-board-platos-ventana-edicion-plato-seleccionado")
                         let fondoEdicion = document.getElementsByClassName("dash-board-platos-ventana-edicion-plato-seleccionado-fondo")
                         ventanaEdicion[0].style.display="flex"
                         fondoEdicion[0].style.display="flex"
+                        dispatch(dataForEditDish({id:id, name:name, description:description, image:image, price:price, nationality:nationality}))
+                        dispatch(idDish(id))
                     }
 
 
-                    const eliminarDeCarrito=()=>{
+                    const eliminarDeCarrito=(event)=>{
                         let ventanaEliminar = document.getElementsByClassName("dash-board-platos-ventana-eliminar-plato-seleccionado")
                         let fondoEliminar = document.getElementsByClassName("dash-board-platos-ventana-eliminar-plato-seleccionado-fondo")
                         ventanaEliminar[0].style.display="flex"
                         fondoEliminar[0].style.display="flex"
+                        dispatch(idDish(id))
                     }
 
 

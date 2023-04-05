@@ -2,39 +2,35 @@ import React from 'react';
 import '../../Pages/Styles/CardCrearPlato.modules.css'
 import { getAllTags, crearPlatoAdmin} from '../../redux/actions';
 import { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-// import {useHistory} from "react-router-dom"
+
 
 function CardAgregarPlato(props) {
     const dispatch = useDispatch();
-    // const history = useHistory();
     const tags = useSelector((state) => state.allTags);
+    const secciones = useSelector((state) => state.sections);
 //   console.log(tags)
-    // const [errors,setErrors] = useState({
-    //   name: "",
-    //   tags: [],
-    //   image: "https://st4.depositphotos.com/6591208/22979/i/450/depositphotos_229793786-stock-photo-empty-ceramic-black-plate-isolated.jpg",
-    //   sectionId:"",
-    //   description:"",
-    //   price:"",
-    //   nationality:"",
-    //   availability:"",
-
-    // });
-  
     const [platos, setPlatos] = useState({
         name: "",
-        tags: [],
         image: "https://st4.depositphotos.com/6591208/22979/i/450/depositphotos_229793786-stock-photo-empty-ceramic-black-plate-isolated.jpg",
-        sectionId:"",
+        sectionId:0,
         description:"",
-        price:"",
+        price:0,
         nationality:"",
-        availability:"",
+        availability:true,
+        tags: []
     });
   
 
 
+    const [tagsTexto, setTagsTexto] = useState({
+        tagsTexto:[]
+    })
+
+    const [seccionesTexto, setSeccionesTexto] = useState({
+        seccionesTexto:[]
+    })
 
 
 
@@ -49,14 +45,33 @@ function CardAgregarPlato(props) {
         ventanaAgregar[0].style.display="none"
         fondoAgregar[0].style.display="none"
     }
+    
+    function handleSelectSection(e) {
 
+        setPlatos({
+          ...platos,
+          sectionId: e.target.options.selectedIndex,
+        //   ACA GUARDA VALOR NUMERICO PARA LA COMPRACION EN BD 
+        });
+        
+        setSeccionesTexto({
+            ...seccionesTexto,
+           seccionesTexto: [e.target.value]
+        })
+        }
 
     function handleSelect(e) {
 
         setPlatos({
           ...platos,
-          tags: [...platos.tags, e.target.value],
+          tags: [...platos.tags, e.target.options.selectedIndex],
+        //   ACA GUARDA VALOR NUMERICO PARA LA COMPRACION EN BD 
         });
+        
+        setTagsTexto({
+            ...tagsTexto,
+           tagsTexto: [...tagsTexto.tagsTexto, e.target.value]
+        })
         }
 
 
@@ -66,33 +81,28 @@ function CardAgregarPlato(props) {
               ...platos,
               [e.target.name]: e.target.value,
             });
-            // setErrors(
-            //   validate({
-            //     ...platos,
-            //     [e.target.name]: e.target.value,
-            //   })
-            // );
+
         
           }
 
 
-          
+  
   function onSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     dispatch(crearPlatoAdmin(platos));
-    console.log(platos)
+   toggleDiv()
     alert("Plato creado con exito");
     setPlatos({
         name: "",
-        tags: [],
-        image: "https://st4.depositphotos.com/6591208/22979/i/450/depositphotos_229793786-stock-photo-empty-ceramic-black-plate-isolated.jpg",
-        sectionId:"",
         description:"",
-        price:"",
+        image: "https://st4.depositphotos.com/6591208/22979/i/450/depositphotos_229793786-stock-photo-empty-ceramic-black-plate-isolated.jpg",
+        price:0,
+        tags: [],
+        availability:true,
         nationality:"",
-        availability:"",
+        sectionId:0,
     });
-    // history.push("/home");
+
   }
 
 
@@ -112,9 +122,7 @@ function CardAgregarPlato(props) {
 
 
                 <div className="dash-board-ventana-form-div">
-                {/* <h1 className='dash-board-ventana-txt'>Nombre:</h1> */}
-                {/* <input className="dash-board-ventana-input" placeholder="El nombre del nuevo plato..."></input> */}
-                <label for="name"> Nombre: </label>
+                <label htmlFor="name"> Nombre: </label>
                     <input
                     className="dash-board-ventana-input" 
                     placeholder="El nombre del nuevo plato..."
@@ -130,11 +138,7 @@ function CardAgregarPlato(props) {
                 </div>
           
                 <div className="dash-board-ventana-form-div">
-
-                {/* <h1 className='dash-board-ventana-txt'>Descripción:</h1>
-                <input className="dash-board-ventana-input" placeholder="Describe el plato..."></input> */}
-
-                    <label > Descripción: </label>
+                   <label htmlFor="description"> Descripción: </label>
                             <input
                             onChange={onInputChange}
                             id="description"
@@ -150,22 +154,13 @@ function CardAgregarPlato(props) {
 
                 </div>
 
-                {/* <div className="dash-board-ventana-form-div">
-                <h1 className='dash-board-ventana-txt'>Imagen:</h1>
-                <input className="dash-board-ventana-input" placeholder="Por defecto la App le asigna una imagen..."></input>
-                </div> */}
-
-                <div className="dash-board-ventana-form-div">
-                {/* <h1 className='dash-board-ventana-txt'>Precio:</h1>
-                <input className="dash-board-ventana-input" placeholder='Precio exacto de tu plato...'></input> */}
-                                        <label htmlFor="price">Precio: </label>
+                  <div className="dash-board-ventana-form-div">
+                        <label htmlFor="price">Precio: </label>
                         <input
                         onChange={onInputChange}
                         name="price"
                         type="number"
                         value={platos.price}                    
-                        // min={1}
-                        // max={100}
                         className="dash-board-ventana-input" 
                         placeholder='Precio exacto de tu plato...'
                         />{" "}
@@ -174,9 +169,7 @@ function CardAgregarPlato(props) {
                 </div>
 
                 <div className="dash-board-ventana-form-div">
-                {/* <h1 className='dash-board-ventana-txt'>Nacionalidad:</h1>
-                <input className="dash-board-ventana-input" placeholder='Origen del plato...'></input> */}
-                <label for="nationality">Nacionalidad: </label>
+                  <label htmlFor="nationality">Nacionalidad: </label>
                             <input
                             className="dash-board-ventana-input" 
                             placeholder="Origen del plato..."
@@ -190,23 +183,46 @@ function CardAgregarPlato(props) {
                             {/* {errors.name && <p className="error"> {errors.name}</p>} */}
 
                 </div>
-
-                            <p className="types-s">
-                            <select onChange={handleSelect} className="option-input-form">
-                            <option selected="true" disabled="disabled">Tags del plato</option>
+                <div className='options-dash-board-crear-plato'>
+                    <div className='dash-board-ventana-form-div-select-tags'>
+                            <div className="types-s">
+                            <select onChange={handleSelect} className="option-input-form" defaultValue="tagsDelPlato">
+                            <option disabled="disabled" value="tagsDelPlato">Tags del plato</option>
                         
                             {tags.map((e) => (
-                                <option  value={e.description}>{e.description}</option>
+                                <option  value={e.description} key={e.id}>{e.description}</option>
                             ))}{" "}
                             </select>
                                             <ul className='ul-tags-en-plato-nuevo'>
-                                            {platos.tags.map((e) => <li className='li-tags-en-plato-nuevo'>{e}</li>)}
+                                            {tagsTexto.tagsTexto?.map((e) => <li className='li-tags-en-plato-nuevo'>{e}</li>)}
                                             </ul>
-                            </p>
+                            </div>
+                    </div>
+
+{/* ---------------------------------------------------------------- */}
+                    <div className='dash-board-ventana-form-div-select-section'>
+
+                        <div className='titular-dash-board-creacion-plato'>
+                            <h1 className='titulo-dash-board-creacion-plato'>Seccion</h1>
+                        </div>
+                        <div className='section-selector-dash-board-creacion-plato'>
+                            <div className="types-s">
+                            <select onChange={handleSelectSection} className="option-input-form" defaultValue="seccionesDelPlato">
+                            <option disabled="disabled" value="seccionesDelPlato">Secciones del plato</option>
+                        
+                            {secciones.map((e) => (
+                                <option  value={e.description} key={e.id}>{e.description}</option>
+                            ))}{" "}
+                            </select>
+                                            
+                            </div>
+                            </div>
+                    </div>
+                    </div>
 
                 <div className="dash-board-ventana-form-div-botones">
                 <button className='dash-board-ventana-button' onClick={cancelarAgregar}>CANCELAR</button>
-                <button className='dash-board-ventana-button' type="submit">CONFIRMAR</button>
+                <button className='dash-board-ventana-button' type="submit" onClick={onSubmit}>CONFIRMAR</button>
                 </div>
             </form>
         </div>

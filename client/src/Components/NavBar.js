@@ -6,21 +6,16 @@ import { Link } from "react-router-dom";
 import carroCompras from '../Pages/Misc/anadir-a-la-cesta.png'
 import { useSelector, useDispatch } from 'react-redux';
 import CartaCarritoCompra from './Cartas/CartaCarritoCompra';
-// import { actualizarTotalQuantity, agregarAlCarrito} from '../redux/actions';
 import { actualizarTotalQuantity} from '../redux/actions';
-// import { crearOrden } from '../redux/actions';
-import { useState } from 'react';
+;
 
 
 export default function NavBar() {
     const dispatch = useDispatch();
     const totalQuantity = useSelector(state => state.totalQuantityCart);
     const carrito = useSelector(state => state.Carrito);
-    const isLoggedIn = useSelector(state=> state.isLoggedIn)
-    const [Items, setItems] = useState([]);
+   
 
-
-    // ITEMS TIENE TODO LO QUE LOCALSTORAGE
     useEffect(() => {
       
         if (carrito.length <= 0) {
@@ -35,42 +30,21 @@ export default function NavBar() {
               btn[0].style.display = 'flex';
             }
           }
-
-    const storedItems = JSON.parse(localStorage.getItem('carrito')) || [];
-    setItems(storedItems);
-    dispatch(actualizarTotalQuantity(carrito));
-    // dispatch(agregarAlCarrito(storedItems));
-    // console.log(carrito)
-    // Agregar listener para actualizar estado cuando se modifique el localStorage
-    window.addEventListener('storage', handleStorageChange);
-
-    // Cleanup function para remover listener al desmontar el componente
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    }
-
-        
+            dispatch(actualizarTotalQuantity(carrito));
       }, [dispatch, carrito]);
 
       
-      function handleStorageChange(event) {
-        if (event.key === 'carrito') {
-          const storedItems = JSON.parse(event.newValue) || [];
-          setItems(storedItems);
-        }
-      }
-
+    
 
     function handleClick(event) {   
         const buttonId = event.target.id;
-        console.log(Items)
-        if(Items.length>0){
+        // if(totalQuantity.length>=0){
         mostrarPreCarrito(buttonId)
         
 
-    }else{
-        window.alert('carrito vacio');
-        console.log("carritoVacio")}       
+    // }else{
+    //     window.alert('carrito vacio');
+    //   }       
     }
 
       function mostrarPreCarrito(id) {

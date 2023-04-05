@@ -14,7 +14,7 @@
     display: none;
     flex-direction: column;
     justify-content: center;
-    height: 50%;
+    height: 60%;
     width: 50%;
     background-color: white;
     position: absolute;
@@ -75,7 +75,8 @@
         }
 
         .dash-board-ventana-button{
-            height: 30px;
+            margin-top: 20px;
+            height: 80px;
             width: 140px;
             border-radius: 5px;
             border-color: transparent;
@@ -91,11 +92,33 @@
         .ul-tags-en-plato-nuevo{
             display: flex;
             flex-direction: row;
-            /* justify-content: center; */
             height: 35px;
-
         }
 
         .li-tags-en-plato-nuevo{
             margin-right: 20px;
         }
+
+        .dash-board-ventana-form-div-select-tags{
+            /* background-color: red; */
+            height: 80px;
+            /* margin-top: -50px; */
+        }
+
+        .titular-dash-board-creacion-plato{
+            font-size: 8px;
+            font-weight: 400;
+            height: 10%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            text-align: center;
+            align-items: center;
+            border-color: transparent transparent grey  transparent ;
+
+            border-style: solid;
+        }
+        /* .dash-board-ventana-form-div-select-section{
+            height: 80px;
+            background-color: red;
+        } */

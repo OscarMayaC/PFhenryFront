@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { deleteTagAdmin } from '../../redux/actions/index';
 import '../../Pages/Styles/CardEliminarTag.modules.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 
 
 function CardEliminarTag(props) {
     const dispatch = useDispatch();
+    const tag = useSelector((state) => state.idTag)
 
     function cancelarEliminarTag(e){
         e.preventDefault();
@@ -19,31 +20,16 @@ function CardEliminarTag(props) {
         fondoEliminarTag[0].style.display="none"
     }
 
-    const [loading, setLoading] = useState(false);
 
 
     const handleEliminarTag = (e) => {
         e.preventDefault();
-        let ventanaEliminarTag = document.getElementsByClassName("dash-board-tags-ventana-eliminar-tag-seleccionado")
-        // let fondoEliminarTag = document.getElementsByClassName("dash-board-tags-ventana-eliminar-tag-seleccionado-fondo")
-        const payload = {
-        id: ventanaEliminarTag[0].id,
-      };
-  
-      setLoading(true);
-  
-      dispatch(deleteTagAdmin(payload))
-        .then(response => {
-          // Manejar la respuesta exitosa del servidor aquí
-          console.log(response);
-        })
-        .catch(error => {
-          // Manejar el error aquí
-          console.error(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+        try {
+            dispatch(deleteTagAdmin(tag));
+            toggleDiv();
+        } catch (error) {
+            console.error(error);
+        }
     };
   
     return (
@@ -57,7 +43,7 @@ function CardEliminarTag(props) {
 
                 <div className="dash-board-ventana-form-div-botones">
                 <button className='dash-board-ventana-button' onClick={cancelarEliminarTag}>CANCELAR</button>
-                <button className='dash-board-ventana-button'onClick={handleEliminarTag} disabled={loading}>ELIMINAR</button>
+                <button className='dash-board-ventana-button'onClick={handleEliminarTag}>ELIMINAR</button>
                 </div>
             </form>
         </div>

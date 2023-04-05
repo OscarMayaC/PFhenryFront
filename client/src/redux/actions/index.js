@@ -33,14 +33,104 @@ export const RESERVAS_ADMIN = 'RESERVAS_ADMIN';
 export const ORDERS_ADMIN = 'ORDERS_ADMIN';
 export const CREAR_PLATO = 'CREAR_PLATO';
 export const EDIT_DISH_ADMIN = 'EDIT_DISH_ADMIN';
+export const ID_TAG = 'ID_TAG';
+export const ID_DISH = 'ID_DISH';
+export const DATA_FOR_EDIT_DISH = 'DATA_FOR_EDIT_DISH';
+export const AGREGAR_OFERTAS_DEL_DIA = 'AGREGAR_OFERTAS_DEL_DIA';
+
+
+export function idTag(payload){
+  return{
+    type: ID_TAG,
+    payload: payload,
+  
+  };
+}
+
+export function idDish(payload){
+  return{
+    type: ID_DISH,
+    payload: payload,
+  
+  };
+}
+
+export function dataForEditDish(payload){
+  return{
+    type: DATA_FOR_EDIT_DISH,
+    payload: payload,
+  
+  };
+}
+
+export function eliminarPlatoAdmin(payload){
+  return async function (dispatch){
+    try {
+      let json = await axios.delete(`https://pfhenryback-production.up.railway.app/dishes/${payload.id}`);
+      console.log(json);
+      // return json.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+}
+
+
 
 export function crearPlatoAdmin(payload){
-  return async function () {
-    const response = await axios.post("https://pfhenryback-production.up.railway.app/dishes" , payload)
-    return response;
-  }
-  }
-  
+  console.log(payload)
+  return async function (dispatch){
+    try {
+      let json = await axios.post(`https://pfhenryback-production.up.railway.app/dishes`, {
+        name: payload.name,  
+        description: payload.description,
+        image: payload.image,
+        price: payload.price,
+        availability: payload.availability,
+        nationality: payload.nationality,
+        tagId: payload.tags,
+        sectionId: payload.sectionId,
+      }
+      );
+      console.log(json);
+      // return json.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+}
+
+
+
+
+export function editarPlatoAdmin(payload){
+  console.log(payload)
+  return async function (dispatch){
+    try {
+      let json = await axios.put(`https://pfhenryback-production.up.railway.app/dishes/${payload.id}`, {
+        id:payload.id,
+        name: payload.name,  
+        description: payload.description,
+        image: payload.image,
+        price: payload.price,
+        availability: payload.availability,
+        nationality: payload.nationality,
+        tagId: payload.tagId,
+        sectionId: payload.sectionId,
+      }
+      );
+      console.log(json);
+      // return json.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+}
+
+
 
 export function crearTagAdmin(payload){
   return async function (dispatch){
@@ -64,7 +154,7 @@ export function editTagAdmin(payload) {
       let json = await axios.put(`https://pfhenryback-production.up.railway.app/tags/${payload.id}`, {
         description: payload.description
       });
-      console.log(json);
+
       return json.data;
     } catch (error) {
       console.error(error);
@@ -75,9 +165,15 @@ export function editTagAdmin(payload) {
 
 export function deleteTagAdmin(payload){
   return async function (dispatch) {
+    const token  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImFkbWluIjp0cnVlLCJpYXQiOjE2ODA1NTM2NjUsImV4cCI6MTY4MDU2MDg2NX0.Nm0fXA-5RhWbFQfmTck9fUzTjw8ZU4HBBayammcRNJg"
     try {
-      let json = await axios.delete(`https://pfhenryback-production.up.railway.app/tags/${payload.id}`);
-      console.log(json);
+      let json = await axios.delete(`https://pfhenryback-production.up.railway.app/tags/${payload}`,
+      {
+        headers:{
+          Authorization: token
+        },
+       }
+      );
       return json.data;
     } catch (error) {
       console.error(error);
@@ -272,6 +368,15 @@ export const getUsersForProfile = (payload) => {
 export const agregarAlCarrito = (producto) => {
   return {
     type: AGREGAR_AL_CARRITO,
+    payload: producto,
+  };
+};
+
+
+export const agregarOfertasDelDia = (producto) => {
+  // console.log(producto)
+  return {
+    type: AGREGAR_OFERTAS_DEL_DIA,
     payload: producto,
   };
 };
