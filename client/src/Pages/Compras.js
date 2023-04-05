@@ -7,23 +7,55 @@ import { useSelector, } from 'react-redux';
 import flechaIzquierda from '../Pages/Misc/flecha-izquierda.png'
 import flechaDerecha from '../Pages/Misc/flecha-derecha.png'
 import CartaCarrito from '../Components/Cartas/CartaCarrito';
-import axios from 'axios'
+// import { crearOrden } from '../redux/actions';
+import axios from 'axios';
+// import { useState } from 'react';
+
 function Compras(props) {
     const carrito = useSelector((state) => state.Carrito)
     // const [ description, setDescription ] = useState('')
     let description = ''
-    let price = 0,time = 0;
     const [mostrarBoton, setMostrarBoton] = useState(false)
+    const [price, setPrice] = useState(0)
+    const [time, setTime] = useState('')
+
+    // const [preferenceId, setPreferenceId] = useState(null);
+
+
+
+
+// async function confirmacionCompra(event){
+   
+
+//        let payload = {        
+//             OrderDetails: [carrito],
+//             description:"casa azul, rejas amarillas",
+//             UserID: 1,}
+
+//         let response = await axios.post("https://pfhenryback-production.up.railway.app/orders", payload);
+    
+  
+//         console.log(response)
+    
+
+//      }
+
 
     // SUMA PRECIOS CARRITO NO FINAL 
-    carrito.forEach(prod => {
-        price += prod.price * prod.quantity
-    })
+    // carrito.forEach(prod => {
+    //     price += prod.price * prod.quantity
+    // })
 
 // GENERADOR ALEATORIO DE COSTO ENVIO 
+
+    //   function generarNumeroAleatorio() {
+    //    return Math.floor((3 - 1 + 1) * Math.random() + 1);
+    //  }
+
     //   function generarNumeroAleatorio() {
     //     return Math.floor((300 - 100 + 1) * Math.random() + 100);
     //   }
+
       
     //   const numeroAleatorio = generarNumeroAleatorio();
                          
@@ -36,6 +68,7 @@ function Compras(props) {
     //   }
       
     //   const numeroAleatorioEnvio = generarNumeroAleatorioEnvio();
+
       // MANEJADOR SLIDER IZQUIERDO, CON SELECCION GENERAL 
 
                           function handleSliderLeft(event) {
@@ -57,23 +90,19 @@ function Compras(props) {
     }
     
     async function mercadopago(description) {
-        if(description === '') {
-            alert('descripcion necesaria')
-            return
-        }
       
         const order = {
             OrderDetails: carrito,
             description: description,
-            userId: 1
+            userId: 22
         }
         let mpID = 1
          // renderizo el boton de mercadopago
         //  const response = await axios.post('http://localhost:3001/orders', order)
          const response = await axios.post('https://pfhenryback-production.up.railway.app/orders', order)
          mpID = response.data.mpId 
-         price = response.data.price
-         time = response.data.time
+         setPrice(response.data.price)
+         setTime(response.data.time)
 
         const addCheckout = async() => {
           const mp = await new window.MercadoPago('TEST-802c7a27-7e8f-4757-80eb-d9b843bc0c2c', {
@@ -119,7 +148,7 @@ function handlerDescription(e){
                                     <h1>Usuario: User</h1>
                                 </div>
                                 <div className='detalle-precio-descuento-final'>
-                                    <h1>Precio:  ${mostrarBoton ? price : 0}</h1>
+                                    <h1>Precio:  ${price}</h1>
                                     <h1>Descuento: 0%</h1>
                                     {/* <h1>Precio final: ${}</h1> */}
                                 </div>
@@ -173,7 +202,7 @@ function handlerDescription(e){
                             <div className='div-llega-en-mas-tiempo-y-costo-envio'>
                                     <div className='llega-en-texto-mas-tiempo-aprox'>
                                         <h1 className='texto-llega-en'>Tiempo estimado de llegada:</h1>
-                                        <h1 className='minutos-llega-aprox'>{mostrarBoton ? time : '15-45 min'}</h1>
+                                        <h1 className='minutos-llega-aprox'>{time ? time : '15-45 min'}</h1>
                                     </div>
 
                                     {/* <div className='div-envio-mas-precio'>
@@ -182,11 +211,20 @@ function handlerDescription(e){
                                     {/* </div> */} 
                             </div>
                 </div>
-                <div className='derecha-carrito-titulo-medio-pago'>DESCRIPCION</div>
+
+                <div className='derecha-carrito-titulo-medio-pago'>DESCRIPCIÓN</div>
+
                 
                 {/* <div className='derecha-carrito-seleccion-pago'> */}
                        
                        
+
+            
+                        <div className='monto-cantidad-efectivo-carrito-derecha'>
+                            {/* <h1 className='simbolo-efectivo-carrito-derecha'></h1> */}
+                            {/* <input type="text" className='cantidad-de-dinero-input' placeholder='Porton doble azul, casa techo bordo'/> */}
+                        </div>
+
                         {/* <div className='checkbox-efectivo-carrito-derecha'> */}
                             {/* <input type="checkbox"  className="checkbox-efectivo-carrito-check" />
                             <h1 className='efectivo-texto-carrito-derecha'>Efectivo</h1>
@@ -203,14 +241,24 @@ function handlerDescription(e){
                         {/* </div> */}
 
 
+
+
+               // </div>
+               
+               // {/* <div className='derecha-carrito-boton-pago'><button className='boton-pago-carrito' onClick={confirmacionCompra}>CONFIRMAR COMPRA</button></div> */}
+
+               // { mostrarBoton ? '' : <div className='derecha-carrito-boton-pago'><button onClick={mercadopago} style={{"cursor": "pointer"}} className='boton-pago-carrito'>Confirmar compra</button></div> }
+
                 {/* </div> */}
-                <h5>Ayudanos a llegar, por ej: "casa azul rejas blancas"</h5>
+                <h5 style={{"color": "gray"}} >Ayudanos a llegar, por ej: "casa azul rejas blancas"</h5>
                 <textarea onChange={handlerDescription} className='description-input'/>
                
                 { mostrarBoton ? '' : <div className='derecha-carrito-boton-pago'><button onClick={() => mercadopago(description)} style={{"cursor": "pointer"}} className='boton-pago-carrito'>Confirmar compra</button></div> }
+
                 <div className='cho-container' ></div>
+
             </div>
-        </div>
+        
     );
 }
 

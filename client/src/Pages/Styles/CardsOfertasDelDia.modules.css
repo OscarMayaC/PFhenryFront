@@ -1,0 +1,174 @@
+.CardOfertaDelDia{
+    height: 200px;
+    width: 540px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: 8px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 30px;
+    z-index: 2;
+    text-align: center;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.247);
+    /* cursor: pointer; */
+    transition: 500ms;
+    background-color: white;
+    margin-bottom: 10px;
+}
+.cantidad-plato-carta{
+    display: none;
+}
+/* .cards:hover{
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.247);
+    background-color: grey;
+} */
+
+.Cards-Ofertas-del-dia-zona-imagenes-carta-mas-boton{
+    width: 220px;
+    height: 130px;
+    padding-top: 50px;
+    background-color: grey;
+    border-radius: 30px 0px 0px 30px;
+    margin-top: 10px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+}
+
+
+.Cards-Ofertas-del-dia-zona-info-plato-texto{
+    text-align: center;
+    font-size: 5px;
+    width: 280px;
+    height: 100%;
+    border-radius:  0px 30px 0px 0px;
+    color: black;
+    /* background-color: red; */
+}
+.Cards-Ofertas-del-dia-descripcion-plato-carta{
+    margin-top: 50px;
+    height: 20px;
+    width: 90%;
+    margin-left: 6%;
+    font-weight: 550;
+}
+
+.Cards-Ofertas-del-dia-precio-nacionalidad{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    /* height: 0px; */
+}
+.Cards-Ofertas-del-dia-titulo-plato-carta{
+    height: 0px;
+    font-size: 20px;
+    font-style: none;
+    text-decoration: none;
+}
+.Cards-Ofertas-del-dia-precio-plato{
+    height: 5px;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.Cards-Ofertas-del-dia-nacionalidad-plato{
+    height: 5px;  
+}
+
+.Cards-Ofertas-del-dia-circulo-div-eliminar-carrito{
+    /* height: 30px; */
+    /* width: 30px; */
+    border-radius: 40px;
+    border-color: transparent;
+    /* margin-top: 70px; */
+    /* margin-left: 20px; */
+    cursor: pointer;
+    z-index: 15;
+}
+
+.Cards-Ofertas-del-dia-circulo-div-editar-plato-en-carrito{
+    height: 30px;
+    width: 30px;
+    border-radius: 40px;
+    border-color: transparent;
+    /* margin-top: 70px; */
+    /* margin-left: 20px; */
+    cursor: pointer;
+    z-index: 15;
+}
+
+
+.Cards-Ofertas-del-dia-boton-eliminar-carrito-en-card{
+    height: 30px;
+    width: 30px;
+    border-radius: 40px;
+    border-color: black;
+    border-style: solid;
+    background-color: transparent;
+    color: black;
+    transition: 500ms;
+    font-size: 20px;
+    font:bold;
+    cursor: pointer;
+    z-index: 25;
+}
+
+.Cards-Ofertas-del-dia-boton-eliminar-carrito-en-card:hover{
+    background-color: grey;
+    color: white;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.247);
+}
+
+
+
+.Cards-Ofertas-del-dia-circulo-div-editar-plato-en-carrito{
+    height: 30px;
+    width: 30px;
+    border-radius: 40px;
+    border-color: transparent;
+    margin-top: 70px;
+    margin-right: 200px;
+    cursor: pointer;
+    z-index: 15;
+}
+
+.Cards-Ofertas-del-dia-boton-editar-plato-en-card{
+    height: 30px;
+    width: 30px;
+    border-radius: 40px;
+    border-color: black;
+    border-style: solid;
+    background-color: transparent;
+    color: black;
+    transition: 500ms;
+    /* margin-top: 70px; */
+    /* margin-right: 200px; */
+    cursor: pointer;
+    z-index: 25;
+
+}
+.Cards-Ofertas-del-dia-boton-editar-plato-en-card:hover{
+    background-color: grey;
+    color: white;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.247);
+}
+.Cards-Ofertas-del-dia-img-carta{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.Cards-Ofertas-del-dia-botones-edicion-plato{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    gap: 20px;
+    /* height: 30px; */
+    margin-left: 20px;
+    /* background-color: red; */
+    justify-content: flex-end;
+}

@@ -8,13 +8,14 @@ function CartaCarrito({id, name, image, price, quantity}) {
         <div className='carta-carrito-en-compras'>
              <div className='zona-imagenes-carta-en-carrito-compras'>
                 <img src={image} alt='imagen de plato-en-carrito-compras'></img>
+                <button  className="boton-quitar-en-carrito-compras">X</button>
             </div>
             <div className='zona-info-plato-texto-en-carrito-compras'>
             <h1 className='titulo-plato-carta-en-carrito-compras' >{name}</h1>
-                <p className='quantity-plato-en-carrito-compras'>{quantity}</p>
+                <p className='quantity-plato-en-carrito-compras'>x{quantity}</p>
                 <p className='precio-plato-en-carrito-compras'>${price}</p>
     
-                <button  className="boton-quitar-en-carrito-compras">X</button>
+              
             </div>
 
         </div>
