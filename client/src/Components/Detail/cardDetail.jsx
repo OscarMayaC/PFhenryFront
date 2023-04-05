@@ -4,26 +4,37 @@ import bandera from "../../imgs/BanderaEspañola.jpg";
 
 
 const CardReseñas = ({nombre, calificacion, imagen, tags, descripcion, precio, nacionalidad}) => {
-
+  console.log(tags);
   return (
     <div className='cardDetail'>
     <div className='zonaIzquierda'>
-        <h1>{nombre}</h1>
+      <div className='header-detail'>
+        <div className='title-detail'>{nombre}</div>
+        <p className='score-detail'><strong>{calificacion}/10</strong> Calificación de Usuarios.</p>
+      </div>
+
         <img src={imagen} alt="Imagen no encontrada." className='foto'/>
-        <p>{calificacion}/10 Calificación de Usuarios.</p>
+        
 
     </div>
 
     <div className='zonaDerecha'>
 
-   <div> <button>BotonUser1</button><button>BotonUser2</button><button>BotonUser3</button></div>
+   <div className='detail-tags-zone'>   
+    {tags?.map((e) => {
+      return (
+      <li className='detail-tags' key={e.tagId}>    
+        {e.description}
+      </li>
+      )
+    })}    
+  </div>
+
    <div className='espacio'></div>
-   <a href='as'>{tags}</a>
+   <div className='des'><h1 className='title-desc'>Descripcion del plato</h1>{descripcion}</div>
+   <div className='precioBandera'> <img src={bandera} alt="Imagen no encontrada." className='bandera'/></div>
    <div className='espacio'></div>
-   <div className='des'><h1>Descripcion del plato</h1>{descripcion}</div>
-   <div className='espacio'></div>
-   <div className='precioBandera'><p>Precio ${precio}</p> <img src={bandera} alt="Imagen no encontrada." className='bandera'/></div>
-   <div className='abajo'><button className="bt-com">¡Añadir al Carrio!</button>  </div>
+   <div className='abajo'><button className="bt-com">¡Añadir al Carro!</button>  <p className='detail-price'>Precio ${precio}</p></div>
 
     </div>
            
