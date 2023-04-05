@@ -12,13 +12,14 @@ function Compras(props) {
     const carrito = useSelector((state) => state.Carrito)
     // const [ description, setDescription ] = useState('')
     let description = ''
-    let price = 0,time = 0;
     const [mostrarBoton, setMostrarBoton] = useState(false)
+    const [price, setPrice] = useState(0)
+    const [time, setTime] = useState('')
 
     // SUMA PRECIOS CARRITO NO FINAL 
-    carrito.forEach(prod => {
-        price += prod.price * prod.quantity
-    })
+    // carrito.forEach(prod => {
+    //     price += prod.price * prod.quantity
+    // })
 
 // GENERADOR ALEATORIO DE COSTO ENVIO 
     //   function generarNumeroAleatorio() {
@@ -57,23 +58,19 @@ function Compras(props) {
     }
     
     async function mercadopago(description) {
-        if(description === '') {
-            alert('descripcion necesaria')
-            return
-        }
       
         const order = {
             OrderDetails: carrito,
             description: description,
-            userId: 1
+            userId: 22
         }
         let mpID = 1
          // renderizo el boton de mercadopago
         //  const response = await axios.post('http://localhost:3001/orders', order)
          const response = await axios.post('https://pfhenryback-production.up.railway.app/orders', order)
          mpID = response.data.mpId 
-         price = response.data.price
-         time = response.data.time
+         setPrice(response.data.price)
+         setTime(response.data.time)
 
         const addCheckout = async() => {
           const mp = await new window.MercadoPago('TEST-802c7a27-7e8f-4757-80eb-d9b843bc0c2c', {
@@ -119,7 +116,7 @@ function handlerDescription(e){
                                     <h1>Usuario: User</h1>
                                 </div>
                                 <div className='detalle-precio-descuento-final'>
-                                    <h1>Precio:  ${mostrarBoton ? price : 0}</h1>
+                                    <h1>Precio:  ${price}</h1>
                                     <h1>Descuento: 0%</h1>
                                     {/* <h1>Precio final: ${}</h1> */}
                                 </div>
@@ -173,7 +170,7 @@ function handlerDescription(e){
                             <div className='div-llega-en-mas-tiempo-y-costo-envio'>
                                     <div className='llega-en-texto-mas-tiempo-aprox'>
                                         <h1 className='texto-llega-en'>Tiempo estimado de llegada:</h1>
-                                        <h1 className='minutos-llega-aprox'>{mostrarBoton ? time : '15-45 min'}</h1>
+                                        <h1 className='minutos-llega-aprox'>{time ? time : '15-45 min'}</h1>
                                     </div>
 
                                     {/* <div className='div-envio-mas-precio'>
@@ -204,7 +201,7 @@ function handlerDescription(e){
 
 
                 {/* </div> */}
-                <h5>Ayudanos a llegar, por ej: "casa azul rejas blancas"</h5>
+                <h5 style={{"color": "gray"}} >Ayudanos a llegar, por ej: "casa azul rejas blancas"</h5>
                 <textarea onChange={handlerDescription} className='description-input'/>
                
                 { mostrarBoton ? '' : <div className='derecha-carrito-boton-pago'><button onClick={() => mercadopago(description)} style={{"cursor": "pointer"}} className='boton-pago-carrito'>Confirmar compra</button></div> }
