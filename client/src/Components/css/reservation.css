@@ -4,7 +4,7 @@
     min-height: 170vh;
 }
 
-.css-16b5y55-MuiPickersLayout-contentWrapper{
+.css-lz05jy{
     width: 400px;
     height: 400px;
     background-color: #FAECED;
@@ -16,36 +16,36 @@
     width: 400px;
 }
 
-.css-4pax7l-MuiPickersLayout-root .MuiPickersLayout-toolbar{
+.css-1ho05b .MuiPickersLayout-toolbar{
     left: 20%;
 }
 
-.css-flbe84-MuiDayCalendar-weekContainer{
+.css-mvmu1r{
     height: 40px !important;
     font-family: system-ui !important;
     margin: 0.5px 0 !important;
 }
 
-.css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected{
+.css-116hegc.Mui-selected{
     font-size: 25px !important;
     font-family: system-ui !important;
     font-weight: 400 !important;
 }
 
 /* Etiqueta Hora:Minutos */
-.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root{
+.css-1kq7u7p{
     font-size: 2rem !important;
     font-family: system-ui !important;
     color: black !important;
     font-weight: 400 !important;
 }
 
-.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root:hover{
+.css-1kq7u7p:hover{
     background-color: #fcf4f5 !important;
     border-radius: 5px !important;
 }
 
-.css-1e4tpwf-MuiTypography-root-MuiPickersToolbarText-root-MuiDateTimePickerToolbar-separator{
+.css-1o5xgfj{
     font-size: 2rem !important;
     font-family: system-ui !important;
     color: black !important;
@@ -53,148 +53,148 @@
 }
 
 /* Etiqueta AM - PM */
-.css-ollblj-MuiDateTimePickerToolbar-amPmSelection .MuiDateTimePickerToolbar-ampmLabel{
+.css-cwxmbr .MuiDateTimePickerToolbar-ampmLabel{
     font-size: 0.8rem !important;
     font-family: system-ui !important;
     font-weight: 500;
 }
 
-.css-ollblj-MuiDateTimePickerToolbar-amPmSelection .MuiDateTimePickerToolbar-ampmLabel:hover{
+.css-cwxmbr .MuiDateTimePickerToolbar-ampmLabel:hover{
     background-color: #fcf4f5 !important;
     border-radius: 5px !important;
 }
 
-.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected{
-    color: black;
+.css-n4qtc0.Mui-selected{
+    color: black !important;
     font-weight: bold;
 }
 
-.css-31ca4x-MuiPickersFadeTransitionGroup-root{
+.css-1bx5ylf{
     font-family: system-ui;
 }
 
-.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel{
+.css-10qkmc3{
     font-family: system-ui !important;
     font-weight: 500 !important;
     color: black !important;
 }
 
-.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled{
+.css-bekps4.Mui-disabled{
     font-family: system-ui !important;
     font-weight: 400 !important;
 }
 
-.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root{
+.css-bekps4{
     font-family: system-ui !important;
     font-weight: 400 !important;
 }
 
-.css-1nkg345-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button{
+.css-1fklenr{
     color: black !important;
 }
 
-.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root:hover{
+.css-bekps4:hover{
     background-color: #F4D8DB !important;
 }
 
-.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+.css-bekps4.Mui-selected{
     background-color: #8D2B33 !important;
 }
 
-.css-7oawqu-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+.css-84ri5h.Mui-selected{
     background-color: #8D2B33 !important;
 }
 
-.css-7oawqu-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover{
+.css-84ri5h.Mui-selected:hover{
     background-color: #CA3E49 !important;
 }
 
-.css-y0fr9s-MuiButtonBase-root-MuiTab-root.Mui-selected{
+.css-1qtp7a4.Mui-selected{
     color: #CA3E49 !important;
 }
 
-.css-1aquho2-MuiTabs-indicator{
+.css-ttwr4n{
     background-color: #CA3E49 !important;
 }
 
-.css-d0vs79-MuiClockPointer-root{
+.css-7lip4c{
     background-color: #CA3E49 !important;
 }
 
-.css-rdq5h4-MuiClockPointer-root{
+.css-7lip4c{
     background-color: #CA3E49 !important;
 }
 
-.css-eg3pzz-MuiClockPointer-thumb{
+.css-118whkv{
     background-color: #FFFF !important;
     border: 16px solid #CA3E49 !important;
 }
 
-.css-12t0dn4-MuiClockPointer-thumb{
+.css-2ujp1m{
     border: 16px solid #CA3E49 !important;
 }
 
-.css-umzx0k-MuiClock-pin{
+.css-12ha4i7{
     background-color: #CA3E49 !important;
 }
 
-.css-1beqopj-MuiPickersYear-yearButton.Mui-selected{
+.css-1bqdsf2.Mui-selected{
     background-color: #8D2B33 !important;
 }
 
-.css-7oawqu-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected):hover{
+.css-1bqdsf2.Mui-selected:hover{
     background-color: #F4D8DB !important;
 }
 
 /*Dia Mes del reloj*/
-.css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root{
+.css-116hegc{
     font-size: 25px !important;
     font-family: system-ui !important;
 }
 
-.css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root:hover{
+.css-116hegc:hover{
     background-color: #fcf4f5 !important;
     border-radius: 5px !important;
 }
 
-.css-12vly6n-MuiDateTimePickerToolbar-timeContainer{
+.css-1xhj18k{
     width: 1130px;
 }
 
-.css-12vly6n-MuiDateTimePickerToolbar-timeContainer{
+.css-1xhj18k{
     padding-top: 25px;
 }
 
-.css-4pax7l-MuiPickersLayout-root{
+.css-1ho05b{
     padding-bottom: 25px;
     padding-left: 20px;
     background-color: #FFFF !important;
 }
 
 /*Titulo 'Selecciona Fecha y Hora*/
-.css-1hbyad5-MuiTypography-root{
+.css-1bzq5ag{
     font-family: system-ui !important;
     color: black !important;
     font-weight: 800 !important;
 }
 
 /*Titulo (Año)*/
-.css-13vtpvu-MuiTypography-root-MuiPickersToolbarText-root{
+.css-19xycpm{
     font-family: system-ui !important;
     color: black !important;
 }
 
-.css-13vtpvu-MuiTypography-root-MuiPickersToolbarText-root:hover{
+.css-19xycpm:hover{
     background-color: #fcf4f5 !important;
     border-radius: 5px !important;
 }
 
 /*Dia Mes del calendario*/
-.css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected{
+.css-116hegc.Mui-selected{
     font-family: system-ui;
 }
 
-.css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected:hover{
+.css-116hegc.Mui-selected:hover{
     background-color: #fcf4f5 !important;
     border-radius: 5px !important;
 }

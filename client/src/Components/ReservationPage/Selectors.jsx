@@ -69,7 +69,7 @@ function Selectors(props){
             hora_inicio: newDateFormat.hora_inicio,
             cantidad_comensales: parseInt(newDateFormat.cantidad_comensales),
             mesa: parseInt(selectedMesaId),
-            idUser: 7,
+            idUser: userId,
             nota: newDateFormat.nota
         }
 
