@@ -354,7 +354,8 @@ export function getUserByLogin(email, password) {
         "userToken",
         JSON.stringify(response.data.tokenSession)
       );
-
+      localStorage.setItem("admin", JSON.stringify(response.data.data.admin));
+      
       return dispatch({
         type: GET_USER_LOGIN,
         payload: response.data,
