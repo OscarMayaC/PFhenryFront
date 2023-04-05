@@ -19,6 +19,8 @@ export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART";
 export const AGREGAR_AL_CARRITO = "AGREGAR_AL_CARRITO";
 export const AUMENTO_CART = "AUMENTO_CART";
 export const GET_USER_INFO = "GET_USER_INFO";
+export const SAVE_INFO_BOOKING = 'SAVE_INFO_BOOKING';
+export const CHANGE_DATA = "CHANGE_DATA";
 export const SAVE_INFO_BOOKING = "SAVE_INFO_BOOKING";
 
 export function postUsers(payload) {
@@ -80,6 +82,29 @@ export const getUsersById = (id) => {
     }
   };
 };
+
+export const ChangeUserInfo = (id) => {
+  return async function (dispatch) {
+    const token = localStorage.getItem("userToken")
+    try {
+      const response = await axios.put("http://localhost:3001/users/" + id, {
+        headers: {
+          Authorization: token
+        }
+      })
+      .then(response => {
+        console.log(response.data)
+      })
+
+      return dispatch({
+        type: CHANGE_DATA,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 export const agregarAlCarrito = (producto) => {
   return {

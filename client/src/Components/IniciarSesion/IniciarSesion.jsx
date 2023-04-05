@@ -22,6 +22,7 @@ const IniciarSesion = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         try {
             if(!password || !email) {
                 return  Swal.fire({
@@ -32,6 +33,7 @@ const IniciarSesion = () => {
             
                 })
             } else {
+                console.log("hola")
                 dispatch(getUserByLogin(email, password));
                  history.push("/")
                  return Swal.fire({
@@ -77,8 +79,9 @@ const IniciarSesion = () => {
                     <br />
                     <button className='login-btn' type='submit'>Iniciar Sesion</button>
                     <p>- O -</p>
+
                     <button className='git' onClick={() => {
-                        const popup = window.open("https://pfhenryback-production.up.railway.app/login/github", // esta ruta es /login/github
+                        const popup = window.open("https://pfhenryback-production.up.railway.app/login/github",
                             "targetWindow",
                             `
                             toolbar=no,
@@ -93,24 +96,19 @@ const IniciarSesion = () => {
                         );
 
                         window.addEventListener("message", (e) => {
-                            if(e.origin === "https://pfhenryback-production.up.railway.app") { //esta ruta debe la principal del server
+                            if(e.origin === "https://pfhenryback-production.up.railway.app") {
                                 if (e.data) {
-                                    localStorage.setItem("user", JSON.stringify(e.data))
-                                    localStorage.setItem("userId", JSON.stringify(e.data.usuario.id))
-                                    localStorage.setItem("userEmail", JSON.stringify(e.data.usuario.email))
-                                    localStorage.setItem("userToken", JSON.stringify(e.data.token))
+                                    localStorage.setItem("userGit", JSON.stringify(e.data))
 
                                     popup?.close()
-                                    console.log(e.data);
-                                    console.log(e.data.usuario);
-                                    console.log(e.data.token);
-                                    
-                                    
+                                    console.log(e.data)
+                                    console.log(e.data.emails)
                                     
                                 }
                             }
                         })
                     }}>Login With GitHub<img src={gitlogo} width="20px" height="20px"/></button>
+                    
 
                     <p>
                         <b> ¿Aún no tienes cuenta? <Link to="/register">Registrate</Link> aquí. </b>
@@ -124,4 +122,3 @@ const IniciarSesion = () => {
 }
 
 export default IniciarSesion;
-

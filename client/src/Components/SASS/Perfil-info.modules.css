@@ -8,14 +8,14 @@
     
 }
 
-.perfil-info-main button {
+/* .perfil-info-main button {
     border-radius: 30px;
     border-color: transparent;
     height: 30px;
     width: 30px;
     margin-right: 50px;
 
-}
+} */
 
 .btn-info-user {
     display: flex;
@@ -39,4 +39,12 @@
 .option-buttons {
     background-color: black;
     color:white;
+}
+
+.info-edit {
+    height: 20px;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    
 }
