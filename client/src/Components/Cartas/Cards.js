@@ -34,8 +34,9 @@ const addToCartLocalStorage = (id, name, price) => {
         <div className='cards'>
             
             <div className='zona-imagenes-carta-mas-boton'>
+              <div className='imagenes-carta'>
                 <img src={image} alt='imagen de plato' className='img-carta'></img>
-               
+                </div>
                 <div className='circulo-div-agregar-carrito'>
                 <button onClick={sumarAcarrito} className="boton-agregar-carrito-en-card">+</button>
                 </div>
