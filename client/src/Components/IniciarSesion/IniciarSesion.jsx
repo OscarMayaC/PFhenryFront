@@ -35,7 +35,7 @@ const IniciarSesion = () => {
             } else {
                 console.log("hola")
                 dispatch(getUserByLogin(email, password));
-                 history.push("/")
+                history.push("/")
                  return Swal.fire({
                      title: "Éxito!!",
                      text: "Éxito al iniciar sesión",
@@ -108,6 +108,7 @@ const IniciarSesion = () => {
                                         localStorage.setItem("userToken", JSON.stringify(e.data.token))
                                     
                                     popup?.close()
+                                    history.push("/")
                                     console.log(e.data)
                                     console.log(e.data.emails)
                                     }
