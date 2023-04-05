@@ -18,6 +18,7 @@ import {
   SAVE_INFO_BOOKING,
   PUT_BOOKING,
   PUT_BOOKING_ERROR,
+  GET_USER_GITHUB
 } from "../actions/index";
 
 const initialState = {
@@ -29,6 +30,7 @@ const initialState = {
   userId: "",
   userToken: "",
   user: [],
+  admin: false,
   userData: [],
   sections: [],
   SearchDish: [],
@@ -131,12 +133,23 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         isLoggedIn: true,
+        admin: action.payload.data.admin,
         email: action.payload.data.email,
-        
         userId: action.payload.data.id,
         userData: action.payload.data,
         userToken: action.payload.tokenSession,
       };
+
+      case GET_USER_GITHUB:
+        return {
+          ...state,
+          isLoggedIn: true,
+          admin: action.payload.usuario.admin,
+          email: action.payload.usuario.email,
+          userId: action.payload.usuario.id,
+          userData: action.payload.usuario,
+          userToken: action.payload.token,
+        };
 
     case GET_USER_INFO:
       return {

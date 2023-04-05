@@ -20,6 +20,7 @@ export const AGREGAR_AL_CARRITO = "AGREGAR_AL_CARRITO";
 export const AUMENTO_CART = "AUMENTO_CART";
 export const GET_USER_INFO = "GET_USER_INFO";
 export const SAVE_INFO_BOOKING = "SAVE_INFO_BOOKING";
+export const GET_USER_GITHUB = "GET_USER_GITHUB"
 
 export function postUsers(payload) {
   return async function (dispatch) {
@@ -57,6 +58,25 @@ export function getUserByLogin(email, password) {
     }
   };
 }
+
+export const githubLogin = (data) => {
+  return async function (dispatch) {
+  try {
+    
+    return dispatch({
+      type: GET_USER_GITHUB,
+      payload: data,
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+    
+  
+  
+};}
+
+
 
 export const getUsersById = (id) => {
   return async function (dispatch) {
