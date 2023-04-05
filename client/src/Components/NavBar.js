@@ -15,7 +15,7 @@ export default function NavBar() {
     const totalQuantity = useSelector(state => state.totalQuantityCart);
     const carrito = useSelector(state => state.Carrito);
    
-
+console.log(totalQuantity)
     useEffect(() => {
       
         if (carrito.length <= 0) {
@@ -37,14 +37,8 @@ export default function NavBar() {
     
 
     function handleClick(event) {   
-        const buttonId = event.target.id;
-        // if(totalQuantity.length>=0){
-        mostrarPreCarrito(buttonId)
-        
-
-    // }else{
-    //     window.alert('carrito vacio');
-    //   }       
+      const buttonId = event.target.id;
+totalQuantity? mostrarPreCarrito(buttonId):window.alert('carrito vacio');
     }
 
       function mostrarPreCarrito(id) {
