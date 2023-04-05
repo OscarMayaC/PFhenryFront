@@ -22,6 +22,7 @@ const IniciarSesion = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         try {
             if(!password || !email) {
                 return  Swal.fire({
@@ -32,14 +33,15 @@ const IniciarSesion = () => {
             
                 })
             } else {
+                console.log("hola")
                 dispatch(getUserByLogin(email, password));
-                history.push("/")
-                return Swal.fire({
-                    title: "Éxito!!",
-                    text: "Éxito al iniciar sesión",
-                    icon: "success",
-                    timer: 2000
-                })
+                 history.push("/")
+                 return Swal.fire({
+                     title: "Éxito!!",
+                     text: "Éxito al iniciar sesión",
+                     icon: "success",
+                     timer: 2000
+                 })
                 
             }
             
@@ -48,11 +50,14 @@ const IniciarSesion = () => {
         }
       };
 
+    const params = new URL(document.location).searchParams;
+    const messageReserva = params.get("messageReserva");
 
     return (
         <>
          <NavBar />
         <div className='login-bg'>
+            {messageReserva && <p className='messageReserva'>{messageReserva}</p>}
             <div className='main-container'>
                 <form className='body-form' onSubmit={(e) => handleSubmit(e)}>
                     <div className='form-divs'>
@@ -77,8 +82,9 @@ const IniciarSesion = () => {
                     <br />
                     <button className='login-btn' type='submit'>Iniciar Sesion</button>
                     <p>- O -</p>
+
                     <button className='git' onClick={() => {
-                        const popup = window.open("http://localhost:3001/login/github",
+                        const popup = window.open("https://pfhenryback-production.up.railway.app/login/github",
                             "targetWindow",
                             `
                             toolbar=no,
@@ -93,18 +99,19 @@ const IniciarSesion = () => {
                         );
 
                         window.addEventListener("message", (e) => {
-                            if(e.origin === "http://localhost:3001") {
+                            if(e.origin === "https://pfhenryback-production.up.railway.app") {
                                 if (e.data) {
-                                    localStorage.setItem("user", JSON.stringify(e.data))
+                                    localStorage.setItem("userGit", JSON.stringify(e.data))
 
                                     popup?.close()
                                     console.log(e.data)
-                                    console.log(e.data.emails[0].value)
+                                    console.log(e.data.emails)
                                     
                                 }
                             }
                         })
                     }}>Login With GitHub<img src={gitlogo} width="20px" height="20px"/></button>
+                    
 
                     <p>
                         <b> ¿Aún no tienes cuenta? <Link to="/register">Registrate</Link> aquí. </b>
@@ -118,4 +125,3 @@ const IniciarSesion = () => {
 }
 
 export default IniciarSesion;
-

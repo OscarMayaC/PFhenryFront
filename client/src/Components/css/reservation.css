@@ -1,44 +1,164 @@
-body{
+.reservas{
     background-image: url('../../imgs/fondo.reserva.jpg');
     background-size: cover;
+    min-height: 170vh;
 }
 
 .css-16b5y55-MuiPickersLayout-contentWrapper{
-    width: 350px;
-    height: 330px;
+    width: 400px;
+    height: 400px;
     background-color: #FAECED;
+    position: relative;
+    left: 62%;
 }
 
 .css-jhsfre-MuiGrid-root-MuiPickersToolbar-content{
     width: 400px;
 }
 
+.css-4pax7l-MuiPickersLayout-root .MuiPickersLayout-toolbar{
+    left: 20%;
+}
+
 .css-flbe84-MuiDayCalendar-weekContainer{
-    height: 27px;
+    height: 40px !important;
+    font-family: system-ui !important;
+    margin: 0.5px 0 !important;
 }
 
 .css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected{
-    font-size: 25px;
+    font-size: 25px !important;
+    font-family: system-ui !important;
+    font-weight: 400 !important;
 }
 
-.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root{
-    font-size: 25px;
-}
-
+/* Etiqueta Hora:Minutos */
 .css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root{
     font-size: 2rem !important;
+    font-family: system-ui !important;
+    color: black !important;
+    font-weight: 400 !important;
+}
+
+.css-mvmxd9-MuiTypography-root-MuiPickersToolbarText-root:hover{
+    background-color: #fcf4f5 !important;
+    border-radius: 5px !important;
 }
 
 .css-1e4tpwf-MuiTypography-root-MuiPickersToolbarText-root-MuiDateTimePickerToolbar-separator{
     font-size: 2rem !important;
+    font-family: system-ui !important;
+    color: black !important;
+    font-weight: 400 !important;
 }
 
+/* Etiqueta AM - PM */
 .css-ollblj-MuiDateTimePickerToolbar-amPmSelection .MuiDateTimePickerToolbar-ampmLabel{
     font-size: 0.8rem !important;
+    font-family: system-ui !important;
+    font-weight: 500;
+}
+
+.css-ollblj-MuiDateTimePickerToolbar-amPmSelection .MuiDateTimePickerToolbar-ampmLabel:hover{
+    background-color: #fcf4f5 !important;
+    border-radius: 5px !important;
+}
+
+.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected{
+    color: black;
+    font-weight: bold;
+}
+
+.css-31ca4x-MuiPickersFadeTransitionGroup-root{
+    font-family: system-ui;
+}
+
+.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel{
+    font-family: system-ui !important;
+    font-weight: 500 !important;
+    color: black !important;
+}
+
+.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled{
+    font-family: system-ui !important;
+    font-weight: 400 !important;
+}
+
+.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root{
+    font-family: system-ui !important;
+    font-weight: 400 !important;
+}
+
+.css-1nkg345-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button{
+    color: black !important;
+}
+
+.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root:hover{
+    background-color: #F4D8DB !important;
+}
+
+.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+    background-color: #8D2B33 !important;
+}
+
+.css-7oawqu-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+    background-color: #8D2B33 !important;
+}
+
+.css-7oawqu-MuiButtonBase-root-MuiPickersDay-root.Mui-selected:hover{
+    background-color: #CA3E49 !important;
+}
+
+.css-y0fr9s-MuiButtonBase-root-MuiTab-root.Mui-selected{
+    color: #CA3E49 !important;
+}
+
+.css-1aquho2-MuiTabs-indicator{
+    background-color: #CA3E49 !important;
+}
+
+.css-d0vs79-MuiClockPointer-root{
+    background-color: #CA3E49 !important;
+}
+
+.css-rdq5h4-MuiClockPointer-root{
+    background-color: #CA3E49 !important;
+}
+
+.css-eg3pzz-MuiClockPointer-thumb{
+    background-color: #FFFF !important;
+    border: 16px solid #CA3E49 !important;
+}
+
+.css-12t0dn4-MuiClockPointer-thumb{
+    border: 16px solid #CA3E49 !important;
+}
+
+.css-umzx0k-MuiClock-pin{
+    background-color: #CA3E49 !important;
+}
+
+.css-1beqopj-MuiPickersYear-yearButton.Mui-selected{
+    background-color: #8D2B33 !important;
+}
+
+.css-7oawqu-MuiButtonBase-root-MuiPickersDay-root:not(.Mui-selected):hover{
+    background-color: #F4D8DB !important;
+}
+
+/*Dia Mes del reloj*/
+.css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root{
+    font-size: 25px !important;
+    font-family: system-ui !important;
+}
+
+.css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root:hover{
+    background-color: #fcf4f5 !important;
+    border-radius: 5px !important;
 }
 
 .css-12vly6n-MuiDateTimePickerToolbar-timeContainer{
-    width: 610px;
+    width: 1130px;
 }
 
 .css-12vly6n-MuiDateTimePickerToolbar-timeContainer{
@@ -48,15 +168,270 @@ body{
 .css-4pax7l-MuiPickersLayout-root{
     padding-bottom: 25px;
     padding-left: 20px;
-    background-color: #CF515B !important;
+    background-color: #FFFF !important;
+}
+
+/*Titulo 'Selecciona Fecha y Hora*/
+.css-1hbyad5-MuiTypography-root{
+    font-family: system-ui !important;
+    color: black !important;
+    font-weight: 800 !important;
+}
+
+/*Titulo (Año)*/
+.css-13vtpvu-MuiTypography-root-MuiPickersToolbarText-root{
+    font-family: system-ui !important;
+    color: black !important;
+}
+
+.css-13vtpvu-MuiTypography-root-MuiPickersToolbarText-root:hover{
+    background-color: #fcf4f5 !important;
+    border-radius: 5px !important;
+}
+
+/*Dia Mes del calendario*/
+.css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected{
+    font-family: system-ui;
+}
+
+.css-1b9e08i-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected:hover{
+    background-color: #fcf4f5 !important;
+    border-radius: 5px !important;
 }
 
 .customers{
     position: relative;
-    padding-left: 500px;
-    bottom: 300px;
+    padding-left: 900px;
+    bottom: 330px;
 }
 
-.modelo3d{
-    height: 600px;
+.searchTable{
+    position: relative;
+    position: relative;
+    margin-left: 955px;
+    bottom: 230px;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 7px;
+    font-family: system-ui;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.searchTable:hover{
+    transform: translateY(-20px);
+}
+
+.modelo3d {
+    height: 500px;
+}
+
+.input-customers{
+    background-color: #eeeeee;
+    border-radius: 20px;
+    margin-left: 10px;
+    border: 1.5px solid black;
+}
+
+.label-customers{
+    font-family: system-ui;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.title{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    background-color: rgba(239, 240, 234, 0.7);
+    color: black;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.confirmationTable{
+    position: relative;
+    left: 45%;
+    bottom: 530px;
+    margin-bottom: 20px;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 7px;
+    font-family: system-ui;
+    font-size: 15px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.confirmationTable:hover{
+    transform: translateY(-20px);
+}
+
+
+.confirmarNota{
+    background-color: white;
+    padding-bottom: 300px;
+}
+
+.nota{
+    position: relative;
+    top: 10px;
+    background-color: white;
+    padding-bottom: 200px;
+    padding-top: 100px;
+}
+
+.label-nota{
+    left: 35% !important;
+    position: relative;
+    font-family: system-ui;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.input-nota{
+    left: 35% !important;
+    top: 40px;
+    position: relative;
+    background-color: #d0cdcd;
+    border-radius: 10px;
+    margin-left: 10px;
+    border: 1.5px solid black;
+}
+
+.button-reservacion{
+    position: relative;
+    margin-left: 630px !important;
+    bottom: 100px;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 7px;
+    font-family: system-ui;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.button-reservacion:hover{
+    transform: translateY(-20px);
+}
+
+.card{
+    background-color: #eb7c86;
+    width: auto;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 100px;
+    border: 5px solid black;
+}
+
+.title-card{
+    font-family: fangsong;
+    font-size: 40px;
+}
+
+.info-card{
+    position: relative;
+    font-family: -webkit-body;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.leyenda{
+    font-family: cursive;
+    font-size: 18px !important;
+    font-weight: bold;
+}
+
+.otra-reserva{
+    position: relative;
+    top: 50px;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 7px;
+    font-family: system-ui;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.valor{
+    position: relative;
+    left: 180px;
+}
+
+.valor1{
+    position: relative;
+    left: 160px;
+}
+
+.valor2{
+    position: relative;
+    left: 25px;
+}
+
+.valor3{
+    position: relative;
+    left: 135px;
+}
+
+.valor4{
+    position: relative;
+    left: 190px;
+}
+
+.propiedad{
+    color: white;
+}
+
+.error{
+    font-family: system-ui;
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+    background-color: white;
+    padding: 6px;
+    border-radius: 10px;
+    position: relative;
+    left: 20%;
+}
+
+.error1{
+    font-family: system-ui;
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+    background-color: white;
+    padding: 6px;
+    border-radius: 10px;
+    position: relative;
+    left: 20%;
+}
+
+.messageReserva{
+    font-family: system-ui;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    background-color: #F4D8DB;
+    padding: 6px;
+    border-radius: 10px;
+    position: relative;
 }

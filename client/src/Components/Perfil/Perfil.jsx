@@ -27,7 +27,7 @@ const Perfil = () => {
     
 
     useEffect(()=> {            
-            dispatch(getUsersById(storedUser))            
+        dispatch(getUsersById(storedUser))            
     }, [dispatch])
 
 
@@ -83,6 +83,7 @@ const Perfil = () => {
         localStorage.removeItem("user")
         localStorage.removeItem("userToken")
         history.push("/iniciarsesion")  
+        window.location.replace('/iniciarsesion');
     }
 
     useEffect(()=> {

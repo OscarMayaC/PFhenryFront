@@ -77,7 +77,9 @@ function EditReservation(props){
     return(
     <>
     <form onSubmit={handleTableSubmit} >
-        {responseBooking && <span>{responseBooking}</span>}
+
+    {!confirmTable && <div>
+        {responseBooking && <span className="messageReserva">{responseBooking}</span>}
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDateTimePicker
             value={new Date(newDateFormat.fecha_inicio + 'T' + newDateFormat.hora_inicio)}
@@ -93,19 +95,22 @@ function EditReservation(props){
             />
         </LocalizationProvider>
 
-        <div>
-        <label>Número de personas</label>
+        <div className="customers">
+        <label className="label-customers">Número de personas</label>
             <input 
+            className="input-customers"
             type="number"
             name="cantidad_comensales"
             value={dataBookingSaved.cantidad_comensales}
             onChange={event => setDataBookingSaved({...dataBookingSaved, cantidad_comensales: event.target.value})}
             />
         </div>
+        </div>}
 
-        {confirmTable && <div>
-        <label>Nota</label>
-            <textarea 
+        {confirmTable && <div className="nota">
+        <label className="label-nota">Nota</label>
+            <textarea
+            className="input-nota" 
             type="text"
             name="nota"
             value={dataBookingSaved.nota}
@@ -114,11 +119,11 @@ function EditReservation(props){
         </div>}
 
         <br/>
-        {!confirmTable && <button type="submit">Buscar Mesas Disponibles</button>}
+        {!confirmTable && <button type="submit" className="searchTable">Buscar Mesas Disponibles</button>}
     </form>
 
     <form onSubmit={handleEditReservaSubmit}>
-        {confirmTable && <button type="submit">Confirmar Nueva Reserva</button>}
+        {confirmTable && <button type="submit" className="button-reservacion">Confirmar Nueva Reserva</button>}
     </form>
     </>
     )
