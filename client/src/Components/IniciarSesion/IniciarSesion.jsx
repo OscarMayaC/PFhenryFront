@@ -101,11 +101,16 @@ const IniciarSesion = () => {
                         window.addEventListener("message", (e) => {
                             if(e.origin === "https://pfhenryback-production.up.railway.app") {
                                 if (e.data) {
-                                    localStorage.setItem("userGit", JSON.stringify(e.data))
-
+                                    if (e.data) {
+                                        localStorage.setItem("user", JSON.stringify(e.data))
+                                        localStorage.setItem("userId", JSON.stringify(e.data.usuario.id))
+                                        localStorage.setItem("userEmail", JSON.stringify(e.data.usuario.email))
+                                        localStorage.setItem("userToken", JSON.stringify(e.data.token))
+                                    
                                     popup?.close()
                                     console.log(e.data)
                                     console.log(e.data.emails)
+                                    }
                                     
                                 }
                             }

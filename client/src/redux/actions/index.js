@@ -87,7 +87,7 @@ export const ChangeUserInfo = (id) => {
   return async function (dispatch) {
     const token = localStorage.getItem("userToken")
     try {
-      const response = await axios.put("http://localhost:3001/users/" + id, {
+      const response = await axios.put("https://pfhenryback-production.up.railway.app/users/" + id, {
         headers: {
           Authorization: token
         }
