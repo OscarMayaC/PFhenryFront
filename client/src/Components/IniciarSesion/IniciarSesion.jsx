@@ -22,6 +22,7 @@ const IniciarSesion = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         try {
             if(!password || !email) {
                 return  Swal.fire({
@@ -32,6 +33,7 @@ const IniciarSesion = () => {
             
                 })
             } else {
+                console.log("hola")
                 dispatch(getUserByLogin(email, password));
                 history.push("/")
                 return Swal.fire({
@@ -79,7 +81,23 @@ const IniciarSesion = () => {
                     
                     <p>- O -</p>
 
-                    <button className='git' onClick={() => {
+                    
+
+                    <p>
+                        <b> ¿Aún no tienes cuenta? <Link to="/register">Registrate</Link> aquí. </b>
+                    </p>
+
+                </form>
+            </div>          
+        </div>
+        </>
+    )
+}
+
+export default IniciarSesion;
+
+
+{/* <button className='git' onClick={() => {
                         const popup = window.open("http://localhost:3001/login/github",
                             "targetWindow",
                             `
@@ -97,29 +115,16 @@ const IniciarSesion = () => {
                         window.addEventListener("message", (e) => {
                             if(e.origin === "http://localhost:3001") {
                                 if (e.data) {
-                                    localStorage.setItem("user", JSON.stringify(e.data))
+                                    localStorage.setItem("userGit", JSON.stringify(e.data))
 
                                     popup?.close()
                                     console.log(e.data)
-                                    console.log(e.data.emails[0].value)
+                                    console.log(e.data.emails)
                                     
                                 }
                             }
                         })
-                    }}>Login With GitHub<img src={gitlogo} width="20px" height="20px"/></button>
-
-                    <p>
-                        <b> ¿Aún no tienes cuenta? <Link to="/register">Registrate</Link> aquí. </b>
-                    </p>
-
-                </form>
-            </div>          
-        </div>
-        </>
-    )
-}
-
-export default IniciarSesion;
+                    }}>Login With GitHub<img src={gitlogo} width="20px" height="20px"/></button> */}
 
 
                     {/* <div>

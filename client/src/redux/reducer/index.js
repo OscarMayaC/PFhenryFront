@@ -17,7 +17,8 @@ import {
     POST_BOOKING_ERROR,
     SAVE_INFO_BOOKING,
     PUT_BOOKING,
-    PUT_BOOKING_ERROR
+    PUT_BOOKING_ERROR,
+    CHANGE_DATA
   } from "../actions/index";
   
   
@@ -150,7 +151,17 @@ function rootReducer(state = initialState, action) {
           idUsuario: action.payload.id,
           userData: action.payload
         };
+        
+      case CHANGE_DATA: 
+        return {
+          ...state,
+          isLoggedIn: true,
+          email: action.payload.email,
+          password: action.payload.password,
+          idUsuario: action.payload.id,
+          userData: action.payload
 
+        }
       case GET_DETAILS:
           return{
             ...state,

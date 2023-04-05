@@ -20,12 +20,14 @@ export const AGREGAR_AL_CARRITO = 'AGREGAR_AL_CARRITO';
 export const AUMENTO_CART = 'AUMENTO_CART';
 export const GET_USER_INFO = "GET_USER_INFO";
 export const SAVE_INFO_BOOKING = 'SAVE_INFO_BOOKING';
+export const CHANGE_DATA = "CHANGE_DATA";
 
 
 
 export function postUsers(payload) {
   return async function (dispatch) {
-    let response = await axios.post("https://pfhenryback-production.up.railway.app/users", payload);
+    let response = await axios.post("http://localhost:3001/users", payload);
+    console.log(response)
     return response;
   };
 }
@@ -44,7 +46,7 @@ export function getUserByLogin(email, password) {
     localStorage.setItem("userToken", JSON.stringify(response.data.tokenSession))
     return dispatch({
       type: GET_USER_LOGIN,
-      payload: response,
+      payload: response.data,
     });
   };
 }
@@ -64,6 +66,29 @@ export const getUsersById = (id) => {
       type: GET_USER_INFO,
       payload: response.data
     })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const ChangeUserInfo = (id) => {
+  return async function (dispatch) {
+    const token = localStorage.getItem("userToken")
+    try {
+      const response = await axios.put("http://localhost:3001/users/" + id, {
+        headers: {
+          Authorization: token
+        }
+      })
+      .then(response => {
+        console.log(response.data)
+      })
+
+      return dispatch({
+        type: CHANGE_DATA,
+        payload: response.data
+      })
     } catch (error) {
       console.log(error)
     }
