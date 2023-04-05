@@ -88,7 +88,11 @@ const IniciarSesion = () => {
                     <br />
                     <button className='login-btn' type='submit'>Iniciar Sesion</button>
 
-                    <p>- O -</p>
+                    <p>
+                        <b> ¿Aún no tienes cuenta? <Link to="/register">Registrate</Link> aquí. </b>
+                    </p>
+                </form>
+                    
 
                     <button className='git' onClick={() => {
                         const popup = window.open("https://pfhenryback-production.up.railway.app/login/github",
