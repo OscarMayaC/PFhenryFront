@@ -1,0 +1,61 @@
+.cambiar-datos-fondo-ventana {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.384);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+.change-datos-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+.cambiar-datos-ventana {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    height: 50%;
+    width: 50%;
+    background-color: white;
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    z-index: 22;
+    padding-left: 3%;
+    padding-top: 3%;
+}
+
+.cerrar-ventana {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.data-change-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: aqua; */
+    padding: 10px;
+    font-size: large;
+    font-weight: bold;
+
+}
+
+.data-change-input {
+    margin-left: 15px;
+    height: 30px;
+    width: 200px;
+    border-radius: 20px;
+    margin: 10px;
+    background-color: whitesmoke;
+}
