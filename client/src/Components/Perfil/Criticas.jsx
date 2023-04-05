@@ -19,8 +19,8 @@ const Criticas = () => {
                 myUser.Critics?.map((c) => {
                     return (
                         <div className='criticas-info' key={c.id}>
-                            <p className='p-border-20'>{}</p>
-                            <p className='p-border-r'>{}</p>
+                            <p className='p-border-20'>{c.content}</p>
+                            <p className='p-border-r'>{c.score}</p>
                         </div>
                     )
                 })

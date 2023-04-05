@@ -1,3 +1,8 @@
+body{
+    background-image: url('../../imgs/WhatsApp_Image_2023-04-05_at_13.45.24.jpeg');
+    background-size: cover;
+}
+
 .reservas{
     background-image: url('../../imgs/fondo.reserva.jpg');
     background-size: cover;
