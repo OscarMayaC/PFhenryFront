@@ -21,7 +21,7 @@ export const AUMENTO_CART = "AUMENTO_CART";
 export const GET_USER_INFO = "GET_USER_INFO";
 export const SAVE_INFO_BOOKING = 'SAVE_INFO_BOOKING';
 export const CHANGE_DATA = "CHANGE_DATA";
-export const SAVE_INFO_BOOKING = "SAVE_INFO_BOOKING";
+
 
 export function postUsers(payload) {
   return async function (dispatch) {
