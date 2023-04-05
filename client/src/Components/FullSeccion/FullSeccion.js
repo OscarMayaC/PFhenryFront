@@ -88,7 +88,7 @@ setPlatillos(platosFiltrados)
 
                                     const sliderLeft=(buttonIdSlider)=>{
                                             var slider = document.getElementsByClassName("zona-tags-del-dia")
-                                            slider[buttonIdSlider-1].scrollLeft= -100
+                                            slider[buttonIdSlider-1].scrollLeft-= 500
                                                                         }
                                   
 
@@ -102,7 +102,7 @@ setPlatillos(platosFiltrados)
 
                                       const sliderRight=(buttonIdSlider)=>{
                                             var slider = document.getElementsByClassName("zona-tags-del-dia")
-                                            slider[buttonIdSlider-1].scrollLeft= +650
+                                            slider[buttonIdSlider-1].scrollLeft+= 500
                                                                           }
 
 
