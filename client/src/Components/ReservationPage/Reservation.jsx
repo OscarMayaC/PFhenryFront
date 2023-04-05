@@ -15,6 +15,7 @@ function Reservation(){
   const width = 20;
   const height = 20;
   const canvasRef = useRef();
+  const scrollRef = useRef();
 
   const { infoBooking, responseBooking } = useSelector(state => state)
 
@@ -43,6 +44,12 @@ function Reservation(){
   }};
 
   const [confirmSearchTables, setConfirmSearchTables] = useState(false)
+  
+  useEffect(() => {
+    if (confirmSearchTables === true) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [confirmSearchTables]);
 
   const [confirmTable, setConfirmTable] = useState(false)
 
@@ -50,22 +57,31 @@ function Reservation(){
     setConfirmTable(true)
   };
 
+  useEffect(() => {
+    if (confirmTable === true) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [confirmTable]);
+
   return(
-    <div className="reservas">
+    <div className="reservas" ref={scrollRef}>
       <NavBar/>
-      <h1>Reservas</h1>
+      <h1 className="title">Reservas</h1>
     
-      <div className="modelo3d"> 
+      <div> 
       {Object.keys(infoBooking).length > 0 ?
       <EditReservation selectedMesaId={selectedMesaId} confirmTable={confirmTable} setConfirmSearchTables={setConfirmSearchTables}/> : 
       <Selectors selectedMesaId={selectedMesaId} confirmTable={confirmTable} setConfirmSearchTables={setConfirmSearchTables}/>}
+      </div>
 
-      {errorMessage && <span>{errorMessage}</span>}
-      {responseBooking && <span>{responseBooking}</span>}
+{!confirmTable &&
+      <div className="modelo3d">
+      {errorMessage && <span className="error">{errorMessage}</span>}
+      {responseBooking && <span className="error1">{responseBooking}</span>}
       <Canvas ref={canvasRef}>
         <PerspectiveCamera
-        position={[0, 2.5, 10]}
-        rotation={[0, Math.PI, 0]}
+        position={[10, 10, 50]}
+        rotation={[-Math.PI / 2, 0, 0]}
         fov={60}
         aspect={width / height}
         near={0.1}
@@ -78,7 +94,9 @@ function Reservation(){
         />
         <OrbitControls />
         <Suspense fallback={null} onError={error => console.log(error)}>
-          <Mesas scale={[0.025, 0.025, 0.025]} 
+          <Mesas scale={[0.025, 0.025, 0.025]}
+          position={[-50, 1.5, -50]}
+          rotation={[-25, Math.PI/1.98, 0.12]}
           confirmTable={confirmTable} 
           setSelectedMesaId={setSelectedMesaId} 
           selectedMesaId={selectedMesaId}
@@ -87,8 +105,9 @@ function Reservation(){
           confirmSearchTables={confirmSearchTables}/>
         </Suspense>
       </Canvas>
-      {selectedMesaId !== null && !confirmTable ? <button onClick={handleConfirmTable}>Confirmar Mesa</button> : null}
-    </div>
+    </div>}
+      {selectedMesaId !== null && !confirmTable && !errorMessage  ? <button onClick={handleConfirmTable} className="confirmationTable">Confirmar Mesa</button> : null} 
+
   </div>
   )
 }

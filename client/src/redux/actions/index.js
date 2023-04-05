@@ -19,8 +19,10 @@ export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART";
 export const AGREGAR_AL_CARRITO = "AGREGAR_AL_CARRITO";
 export const AUMENTO_CART = "AUMENTO_CART";
 export const GET_USER_INFO = "GET_USER_INFO";
+export const CHANGE_DATA = "CHANGE_DATA";
 export const SAVE_INFO_BOOKING = "SAVE_INFO_BOOKING";
 export const GET_USER_GITHUB = "GET_USER_GITHUB"
+
 
 export function postUsers(payload) {
   return async function (dispatch) {
@@ -100,6 +102,29 @@ export const getUsersById = (id) => {
     }
   };
 };
+
+export const ChangeUserInfo = (id) => {
+  return async function (dispatch) {
+    const token = localStorage.getItem("userToken")
+    try {
+      const response = await axios.put("https://pfhenryback-production.up.railway.app/users/" + id, {
+        headers: {
+          Authorization: token
+        }
+      })
+      .then(response => {
+        console.log(response.data)
+      })
+
+      return dispatch({
+        type: CHANGE_DATA,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 export const agregarAlCarrito = (producto) => {
   return {
@@ -244,6 +269,7 @@ export const getTables = (body) => {
       ).data;
       dispatch({ type: GET_AVAILABLE_TABLES, payload: availableTables });
     } catch (error) {
+      dispatch({type: 'GET_AVAILABLE_TABLES_ERROR', payload: error.response.data.error})
       console.log(error.response.data.error);
     }
   };

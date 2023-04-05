@@ -1,4 +1,5 @@
 import {
+
   AGREGAR_AL_CARRITO,
   AUMENTO_CART,
   SEARCH_NAME,
@@ -18,7 +19,10 @@ import {
   SAVE_INFO_BOOKING,
   PUT_BOOKING,
   PUT_BOOKING_ERROR,
-  GET_USER_GITHUB
+
+  GET_USER_GITHUB,
+  CHANGE_DATA
+
 } from "../actions/index";
 
 const initialState = {
@@ -60,7 +64,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         // Carrito: [...state.Carrito, action.payload],
-        Quantity: [...(state.Quantity + action.payload)],
+        Quantity: [...state.Quantity + action.payload],
       };
 
     case GET_DISHES:
@@ -110,7 +114,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allDishes:
-          action.payload === "Filtro" ? state.allDishes : orderedDishes,
+          action.payload === "Filtro" ? state.allDishes : orderedDishes
       };
 
     case FILTER_BY_TAG:
@@ -138,6 +142,7 @@ function rootReducer(state = initialState, action) {
         userId: action.payload.data.id,
         userData: action.payload.data,
         userToken: action.payload.tokenSession,
+
       };
 
       case GET_USER_GITHUB:
@@ -158,9 +163,19 @@ function rootReducer(state = initialState, action) {
         email: action.payload.email,
         password: action.payload.password,
         idUsuario: action.payload.id,
-        userData: action.payload,
+        userData: action.payload
       };
 
+    case CHANGE_DATA:
+      return {
+        ...state,
+        isLoggedIn: true,
+        email: action.payload.email,
+        password: action.payload.password,
+        idUsuario: action.payload.id,
+        userData: action.payload
+
+      }
     case GET_DETAILS:
       return {
         ...state,
@@ -170,7 +185,8 @@ function rootReducer(state = initialState, action) {
     case POST_CRITIC:
       return {
         ...state,
-      };
+        Quantity: [...(state.Quantity + action.payload)],
+      }
 
     case GET_SECTIONS:
       return {
@@ -231,8 +247,13 @@ function rootReducer(state = initialState, action) {
     case PUT_BOOKING_ERROR:
       return {
         ...state,
-        responseBooking: action.payload,
+        responseBooking: action.payload
       };
+    case 'GET_AVAILABLE_TABLES_ERROR':
+      return {
+        ...state,
+        responseBooking: action.payload
+      }
     default:
       return state;
   }

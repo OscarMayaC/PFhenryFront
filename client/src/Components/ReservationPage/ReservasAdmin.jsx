@@ -67,6 +67,7 @@ export default function () {
                 bookings?.map((booking) => {
                     return (
                         <CardBooking
+                            UserId={booking.UserId}
                             idBooking={booking.id}
                             key={booking.id}
                             date_start={booking.date_start}

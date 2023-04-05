@@ -24,6 +24,7 @@ const IniciarSesion = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         try {
             if(!password || !email) {
                 return  Swal.fire({
@@ -55,11 +56,14 @@ const IniciarSesion = () => {
         }
       };
 
+    const params = new URL(document.location).searchParams;
+    const messageReserva = params.get("messageReserva");
 
     return (
         <>
          <NavBar />
         <div className='login-bg'>
+            {messageReserva && <p className='messageReserva'>{messageReserva}</p>}
             <div className='main-container'>
                 <form className='body-form' onSubmit={(e) => handleSubmit(e)}>
                     <div className='form-divs'>
@@ -83,15 +87,12 @@ const IniciarSesion = () => {
                     </div>
                     <br />
                     <button className='login-btn' type='submit'>Iniciar Sesion</button>
-                    
 
-                    <p>
-                        <b> ¿Aún no tienes cuenta? <Link to="/register">Registrate</Link> aquí. </b>
-                    </p>
+                    <p>- O -</p>
 
-                </form>
-                <button className='git' onClick={() => {
-                        const popup = window.open("https://pfhenryback-production.up.railway.app/login/github", // esta ruta es /login/github
+                    <button className='git' onClick={() => {
+                        const popup = window.open("https://pfhenryback-production.up.railway.app/login/github",
+
                             "targetWindow",
                             `
                             toolbar=no,
@@ -104,10 +105,12 @@ const IniciarSesion = () => {
                             height=700
                             `
                         );
+                    
 
                         window.addEventListener("message", (e) => {
-                            if(e.origin === "https://pfhenryback-production.up.railway.app") { //esta ruta debe la principal del server
+                            if(e.origin === "https://pfhenryback-production.up.railway.app") {
                                 if (e.data) {
+
                                     console.log(e.data);
                                     localStorage.setItem("user", JSON.stringify(e.data))
                                     localStorage.setItem("userId", JSON.stringify(e.data.usuario.id))
@@ -115,18 +118,21 @@ const IniciarSesion = () => {
                                     localStorage.setItem("userToken", JSON.stringify(e.data.token))
                                     
                                     dispatch(githubLogin(e.data))
+
+                                  
                                     
                                     popup?.close()
-                                    console.log(e.data);
-                                    console.log(e.data.usuario);
-                                    console.log(e.data.token);
-                                    
-                                    
+                                    history.push("/")
+                                    console.log(e.data)
+                                    console.log(e.data.emails)
+                                    }
                                     
                                 }
-                            }
+                            
                         })
                     }}>Login With GitHub<img src={gitlogo} width="20px" height="20px"/></button>
+
+
             </div>          
         </div>
         </>
@@ -134,4 +140,3 @@ const IniciarSesion = () => {
 }
 
 export default IniciarSesion;
-

@@ -45,6 +45,7 @@ export default function CardBooking(props) {
 
     return (
         <div>
+            <h1>Usuario: {props.UserId}</h1>
             <h1>Fecha de la reserva: {props.date_start}</h1>
             <h1>Hora de inicio de la reserva: {props.time_start}</h1>
             <h1>Fecha de finalizacion de la reserva: {props.date_end}</h1>
