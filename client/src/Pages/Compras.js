@@ -18,6 +18,13 @@ function Compras(props) {
     const [mostrarBoton, setMostrarBoton] = useState(false)
     const [price, setPrice] = useState(0)
     const [time, setTime] = useState('')
+    let user = {}
+    const obtenerDatos = () => {
+        user = JSON.parse(localStorage.getItem("user"))
+        }
+        
+        obtenerDatos()
+    
 
     // const [preferenceId, setPreferenceId] = useState(null);
 
@@ -94,7 +101,7 @@ function Compras(props) {
         const order = {
             OrderDetails: carrito,
             description: description,
-            userId: 22
+            userId: user.id
         }
         let mpID = 1
          // renderizo el boton de mercadopago
@@ -145,7 +152,7 @@ function handlerDescription(e){
                     </div>
                 <div className='izquierda-carrito-detalles-precio-usuario'>
                                 <div className='detalle-usuario-compras'>
-                                    <h1>Usuario: User</h1>
+                                    <h1>Usuario: {user.name}</h1>
                                 </div>
                                 <div className='detalle-precio-descuento-final'>
                                     <h1>Precio:  ${price}</h1>
