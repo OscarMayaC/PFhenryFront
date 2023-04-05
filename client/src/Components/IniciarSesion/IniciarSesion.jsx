@@ -14,12 +14,14 @@ import Swal from "sweetalert2"
 const IniciarSesion = () => {
     
     let itsAdmin = useSelector((state) => state.admin)
+    
     let dispatch = useDispatch();
     const history = useHistory();
-    
+    //console.log(itsAdmin);
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+                                        
 
 
     const handleSubmit = (e) => {
@@ -35,8 +37,8 @@ const IniciarSesion = () => {
 
                 })
             } else {
-                console.log("hola")
                 dispatch(getUserByLogin(email, password));
+
                 if(itsAdmin) {
                     history.push("/admin")
                 } else {
@@ -121,8 +123,8 @@ const IniciarSesion = () => {
                                     localStorage.setItem("userEmail", JSON.stringify(e.data.usuario.email))
                                     localStorage.setItem("userToken", JSON.stringify(e.data.token))
                                     
-                                    dispatch(githubLogin(e.data))
 
+                                    dispatch(githubLogin(e.data))
                                   
                                     
                                     popup?.close()

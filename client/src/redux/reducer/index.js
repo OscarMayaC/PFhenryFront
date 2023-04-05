@@ -49,7 +49,7 @@ const initialState = {
   userId: "",
   userToken: "",
   user: [],
-  admin: false,
+  admin: true,
   userData: [],
   sections: [],
   SearchDish: [],
@@ -277,7 +277,7 @@ case DATA_FOR_EDIT_DISH:
       return {
         ...state,
         isLoggedIn: true,
-        admin: action.payload.data.admin,
+        admin: true,
         email: action.payload.data.email,
         userId: action.payload.data.id,
         userData: action.payload.data,
