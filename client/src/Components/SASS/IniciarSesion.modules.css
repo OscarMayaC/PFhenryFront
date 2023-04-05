@@ -70,16 +70,15 @@ p {
 }
 
 .git {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 5px;
-	border-radius: 20px;
-	border: solid black 2px;
-	background-image: linear-gradient(to left, violet, indigo, green, blue, yellow, orange, red);
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
-	padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 20px;
+    border: solid black 2px;
+    
+    background-color: white;
+    color: black;
+    padding: 12px 15px;
+   
 }

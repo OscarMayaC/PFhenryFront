@@ -31,8 +31,12 @@ import {
     ID_DISH,
     DATA_FOR_EDIT_DISH,
     AGREGAR_OFERTAS_DEL_DIA,
-    CHANGE_DATA
+    CHANGE_DATA,   
+    SORT,
+    GET_USER_GITHUB,
   } from "../actions/index";
+
+
 
 
 
@@ -45,7 +49,7 @@ const initialState = {
   userId: "",
   userToken: "",
   user: [],
-  itsAdmin:false,
+  admin: false,
   userData: [],
   sections: [],
   SearchDish: [],
@@ -273,12 +277,24 @@ case DATA_FOR_EDIT_DISH:
       return {
         ...state,
         isLoggedIn: true,
-        email: action.payload.email,
-        password: action.payload.password,
-        userId: action.payload.id,
-        userData: action.payload,
-        itsAdmin: action.payload.admin
+        admin: action.payload.data.admin,
+        email: action.payload.data.email,
+        userId: action.payload.data.id,
+        userData: action.payload.data,
+        userToken: action.payload.tokenSession,
+
       };
+
+      case GET_USER_GITHUB:
+        return {
+          ...state,
+          isLoggedIn: true,
+          admin: action.payload.usuario.admin,
+          email: action.payload.usuario.email,
+          userId: action.payload.usuario.id,
+          userData: action.payload.usuario,
+          userToken: action.payload.token,
+        };
 
     case GET_USER_INFO:
       return {

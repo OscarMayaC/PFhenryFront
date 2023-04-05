@@ -20,6 +20,7 @@ export const AUMENTO_CART = "AUMENTO_CART";
 export const GET_USER_INFO = "GET_USER_INFO";
 export const CHANGE_DATA = "CHANGE_DATA";
 export const SAVE_INFO_BOOKING = "SAVE_INFO_BOOKING";
+export const GET_USER_GITHUB = "GET_USER_GITHUB"
 export const DISMINUYO_CART = 'DISMINUYO_CART';
 export const CREAR_ORDER = 'CREAR_ORDER';
 export const CREAR_ORDER_DETAIL = 'CREAR_ORDER_DETAIL';
@@ -363,6 +364,24 @@ export function getUserByLogin(email, password) {
     }
   };
 }
+
+export const githubLogin = (data) => {
+  return async function (dispatch) {
+  try {
+    
+    return dispatch({
+      type: GET_USER_GITHUB,
+      payload: data,
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+    
+  
+  
+};}
+
 
 
 export const getUsersById = (id) => {
