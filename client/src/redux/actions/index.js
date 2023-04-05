@@ -4,7 +4,6 @@ export const GET_DISHES = "GET_DISHES";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const GET_TAGS = "GET_TAGS";
 export const GET_SECTIONS = "GET_SECTIONS";
-export const SORT = "SORT";
 export const FILTER_BY_TAG = "FILTER_BY_TAG";
 export const CREATE_USER = "CREATE_USER";
 export const GET_USER_LOGIN = "GET_USER_LOGIN";
@@ -21,6 +20,311 @@ export const AUMENTO_CART = "AUMENTO_CART";
 export const GET_USER_INFO = "GET_USER_INFO";
 export const CHANGE_DATA = "CHANGE_DATA";
 export const SAVE_INFO_BOOKING = "SAVE_INFO_BOOKING";
+export const DISMINUYO_CART = 'DISMINUYO_CART';
+export const CREAR_ORDER = 'CREAR_ORDER';
+export const CREAR_ORDER_DETAIL = 'CREAR_ORDER_DETAIL';
+export const GET_DISH_ENTRADA = 'GET_DISH_BY_SECTION';
+export const GET_DISH_PEQUEÑA_BOTANA = 'GET_DISH_PEQUEÑA_BOTANA';
+export const GET_DISH_PRINCIPALES = 'GET_DISH_PRINCIPALES';
+export const GET_DISH_ACOMPAÑAMIENTOS = 'GET_DISH_ACOMPAÑAMIENTOS';
+export const GET_DISH_POSTRES = 'GET_DISH_POSTRES';
+export const GET_DISH_BEBIDAS = 'GET_DISH_BEBIDAS';
+export const DECREMENTAR_DEL_CARRITO = 'DECREMENTAR_DEL_CARRITO';
+export const RESERVAS_ADMIN = 'RESERVAS_ADMIN';
+export const ORDERS_ADMIN = 'ORDERS_ADMIN';
+export const CREAR_PLATO = 'CREAR_PLATO';
+export const EDIT_DISH_ADMIN = 'EDIT_DISH_ADMIN';
+export const ID_TAG = 'ID_TAG';
+export const ID_DISH = 'ID_DISH';
+export const DATA_FOR_EDIT_DISH = 'DATA_FOR_EDIT_DISH';
+export const AGREGAR_OFERTAS_DEL_DIA = 'AGREGAR_OFERTAS_DEL_DIA';
+
+
+export function idTag(payload){
+  return{
+    type: ID_TAG,
+    payload: payload,
+  
+  };
+}
+
+export function idDish(payload){
+  return{
+    type: ID_DISH,
+    payload: payload,
+  
+  };
+}
+
+export function dataForEditDish(payload){
+  return{
+    type: DATA_FOR_EDIT_DISH,
+    payload: payload,
+  
+  };
+}
+
+export function eliminarPlatoAdmin(payload){
+  return async function (dispatch){
+    try {
+      let json = await axios.delete(`https://pfhenryback-production.up.railway.app/dishes/${payload.id}`);
+      console.log(json);
+      // return json.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+}
+
+
+
+export function crearPlatoAdmin(payload){
+  console.log(payload)
+  return async function (dispatch){
+    try {
+      let json = await axios.post(`https://pfhenryback-production.up.railway.app/dishes`, {
+        name: payload.name,  
+        description: payload.description,
+        image: payload.image,
+        price: payload.price,
+        availability: payload.availability,
+        nationality: payload.nationality,
+        tagId: payload.tags,
+        sectionId: payload.sectionId,
+      }
+      );
+      console.log(json);
+      // return json.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+}
+
+
+
+
+export function editarPlatoAdmin(payload){
+  console.log(payload)
+  return async function (dispatch){
+    try {
+      let json = await axios.put(`https://pfhenryback-production.up.railway.app/dishes/${payload.id}`, {
+        id:payload.id,
+        name: payload.name,  
+        description: payload.description,
+        image: payload.image,
+        price: payload.price,
+        availability: payload.availability,
+        nationality: payload.nationality,
+        tagId: payload.tagId,
+        sectionId: payload.sectionId,
+      }
+      );
+      console.log(json);
+      // return json.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+}
+
+
+
+export function crearTagAdmin(payload){
+  return async function (dispatch){
+    try {
+      let json = await axios.post(`https://pfhenryback-production.up.railway.app/tags`, {
+        description: payload.description
+      });
+      console.log(json);
+      return json.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+}
+
+
+export function editTagAdmin(payload) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.put(`https://pfhenryback-production.up.railway.app/tags/${payload.id}`, {
+        description: payload.description
+      });
+
+      return json.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+}
+
+export function deleteTagAdmin(payload){
+  return async function (dispatch) {
+    const token  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImFkbWluIjp0cnVlLCJpYXQiOjE2ODA1NTM2NjUsImV4cCI6MTY4MDU2MDg2NX0.Nm0fXA-5RhWbFQfmTck9fUzTjw8ZU4HBBayammcRNJg"
+    try {
+      let json = await axios.delete(`https://pfhenryback-production.up.railway.app/tags/${payload}`,
+      {
+        headers:{
+          Authorization: token
+        },
+       }
+      );
+      return json.data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+}
+  
+
+export function editDishAdmin(payload){
+  return async function (dispatch){
+    let json = await axios.put(`https://pfhenryback-production.up.railway.app/dishes/${payload.id}`, payload)
+    
+    dispatch({
+      type: EDIT_DISH_ADMIN,
+      payload: json.data,
+      
+
+    });
+  }
+}
+// {[name:]}
+
+export function getPedidosAdmin(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/orders`)
+    
+    dispatch({
+      type: ORDERS_ADMIN,
+      payload: json.data,
+      
+
+    });
+  }
+}
+
+
+export function getReservasAdmin(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/admin`)
+    
+    dispatch({
+      type: RESERVAS_ADMIN,
+      payload: json.data,
+      
+
+    });
+  }
+}
+
+
+
+export function filterDishByTag(tag) {
+  return {
+    type: FILTER_BY_TAG,
+    payload: tag,
+  };
+}
+
+
+export function getDishEntrada(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/1`)
+    
+    dispatch({
+      type: GET_DISH_ENTRADA,
+      payload: json.data,
+      
+
+    });
+  }
+}
+
+
+export function getDishBotana(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/2`)
+    dispatch({
+      type: GET_DISH_PEQUEÑA_BOTANA,
+      payload: json.data,
+
+    });
+  }
+}
+
+export function getDishPrincipales(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/3`)
+    dispatch({
+      type: GET_DISH_PRINCIPALES,
+      payload: json.data,
+
+    });
+  }
+}
+
+export function getDishAcompañamientos(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/4`)
+    dispatch({
+      type: GET_DISH_ACOMPAÑAMIENTOS,
+      payload: json.data,
+
+    });
+  }
+}
+
+export function getDishPostres(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/5`)
+    dispatch({
+      type: GET_DISH_POSTRES,
+      payload: json.data,
+
+    });
+  }
+}
+
+export function getDishBebidas(){
+  return async function (dispatch){
+    let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/sections/6`)
+    dispatch({
+      type: GET_DISH_BEBIDAS,
+      payload: json.data,
+
+    });
+  }
+}
+
+
+
+
+
+
+// este POST 
+
+export function crearOrden(payload) {
+  return async function (dispatch) {
+    let response = await axios.post("https://pfhenryback-production.up.railway.app/orderDetail", payload);
+    return response;
+  };
+}
+
+
+export function crearOrdenDetail(payload) {
+  return async function (dispatch) {
+    let response = await axios.post("https://pfhenryback-production.up.railway.app/orderdetails", payload);
+    return response;
+  };
+}
 
 
 export function postUsers(payload) {
@@ -60,6 +364,7 @@ export function getUserByLogin(email, password) {
   };
 }
 
+
 export const getUsersById = (id) => {
   return async function (dispatch) {
     const token = localStorage.getItem("userToken");
@@ -86,6 +391,7 @@ export const getUsersById = (id) => {
 export const ChangeUserInfo = (id) => {
   return async function (dispatch) {
     const token = localStorage.getItem("userToken")
+
     try {
       const response = await axios.put("https://pfhenryback-production.up.railway.app/users/" + id, {
         headers: {
@@ -106,23 +412,49 @@ export const ChangeUserInfo = (id) => {
   }
 }
 
+
 export const agregarAlCarrito = (producto) => {
   return {
-    type: "AGREGAR_AL_CARRITO",
+    type: AGREGAR_AL_CARRITO,
     payload: producto,
   };
 };
 
-// UNO PARA AUMENTAR QUANTITY OTRO PARA RESTAR
-// UNO PARA SACAR PRODUCTO CON ID ESPECIFICO DE Carrito
 
-export const aumentarIndiceCart = () => {
+export const agregarOfertasDelDia = (producto) => {
+  // console.log(producto)
   return {
-    type: "AUMENTO_CART",
-    payload: 1,
+    type: AGREGAR_OFERTAS_DEL_DIA,
+    payload: producto,
   };
 };
 
+export const restarAlCarrito = (producto) => {
+  return {
+    type: DECREMENTAR_DEL_CARRITO,
+    payload: producto,
+  };
+};
+
+
+export const aumentarIndiceCart = () => {
+  return {
+    type: "AUMENTO_CART"
+  };
+};
+
+
+export const disminuirIndiceCart=()=>{
+  return {
+    type: "DISMINUYO_CART"
+  };
+}
+
+
+export const actualizarTotalQuantity = (items) => ({
+  type: 'UPDATE_TOTAL_QUANTITY',
+  payload: items.reduce((acc, item) => acc + item.quantity, 0)
+});
 // export function carritoAgrego(product){
 
 //       return {
@@ -147,10 +479,9 @@ export function getAllSections() {
 
 export function getAllTags() {
   return async function (dispatch) {
-    var json = await axios.get(
-      "https://pfhenryback-production.up.railway.app/tags"
-    );
-    // console.log(json.data)
+
+    var json = await axios.get("https://pfhenryback-production.up.railway.app/tags");
+
     dispatch({
       type: "GET_TAGS",
       payload: json.data,
@@ -170,12 +501,7 @@ export function getAllDishes() {
   };
 }
 
-export function Sort(order) {
-  return {
-    type: "SORT",
-    payload: order,
-  };
-}
+
 
 export function postDish(payload) {
   return async function () {
@@ -231,12 +557,7 @@ export function postCritic(payload) {
   };
 }
 
-export function filterDishByTag(payload) {
-  return {
-    type: "FILTER_BY_TAG",
-    payload,
-  };
-}
+
 
 export const getTables = (body) => {
   return async (dispatch) => {

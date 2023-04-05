@@ -70,9 +70,14 @@
     margin-left: 10%;
 }
 .cantidad-de-dinero-input{
-    height: 24px;
-    width: 70%;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: flex-start; */
+    height: 150px;
+    width: 90%;
     margin-left: 5%;
+    /* text-align:top; */
+    /* align-items: end; */
 }
 .tarje-texto-carrito-derecha{
     font-size: 14px;
@@ -287,7 +292,7 @@
 
 .izquierda-carrito-renderizado-miniatura-productos-seleccionados{
     width: 500px;
-    height: 200px;
+    height: 220px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

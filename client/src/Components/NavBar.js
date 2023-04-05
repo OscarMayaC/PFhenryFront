@@ -1,42 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from '../Pages/Misc/logo.png'
 import user from '../Pages/Misc/user.png'
 import '../Pages/Styles/NavBar.modules.css'
 import { Link } from "react-router-dom";
-import carroCompras from '../Pages/Misc/carro-de-compras.png'
-import { useSelector } from 'react-redux';
+import carroCompras from '../Pages/Misc/anadir-a-la-cesta.png'
+import { useSelector, useDispatch } from 'react-redux';
 import CartaCarritoCompra from './Cartas/CartaCarritoCompra';
-// import store from '../redux/store/index';
-// import { quantityCart } from './Cartas/Cards';
+import { actualizarTotalQuantity} from '../redux/actions';
+;
+
 
 export default function NavBar() {
-    // const Carrito = useSelector((state) => state.Carrito)
-  
-
-
-  const carrito = useSelector(state => state.Carrito);
-  const isLoggedIn = useSelector(state=> state.isLoggedIn)
-
-//   useEffect(() => {
-//     const unsubscribe = store.subscribe(() => {
-//     //   const newCarrito = store.getState().carrito;
-//       // Aquí se puede realizar cualquier acción necesaria cuando el carrito cambia
+    const isLoggedIn = useSelector(state=> state.isLoggedIn)
+    const dispatch = useDispatch();
+    const totalQuantity = useSelector(state => state.totalQuantityCart);
+    const carrito = useSelector(state => state.Carrito);
    
-//     });
-//   CON ESTE FUNCIONABA A TIEMPO EL RENDERIZADO DE LOS COMOPONENTES EN NAVBAR PERO PARECE QUE SOLO ERA EL USESELECTOR 
-//     return () => {
-//       unsubscribe();
-//     };
-//   }, []);
+console.log(totalQuantity)
+    useEffect(() => {
+      
+        if (carrito.length <= 0) {
+ 
+            let btn = document.getElementsByClassName("boton-carrito-ir-nav");;
+            if (btn) {
+              btn[0].style.display = 'none';
+            }
+          } else {
+            const btn = document.getElementsByClassName('boton-carrito-ir-nav');
+            if (btn) {
+              btn[0].style.display = 'flex';
+            }
+          }
+            dispatch(actualizarTotalQuantity(carrito));
+      }, [dispatch, carrito]);
 
-//  console.log(carrito)
+      
+    
+
     function handleClick(event) {   
-        const buttonId = event.target.id;
-        if(carrito.length>0){
-        mostrarPreCarrito(buttonId)
-    }else{
-        window.alert('carrito vacio');
-        console.log("carritoVacio")}       
+      const buttonId = event.target.id;
+totalQuantity? mostrarPreCarrito(buttonId):window.alert('carrito vacio');
     }
 
       function mostrarPreCarrito(id) {
@@ -111,7 +114,7 @@ export default function NavBar() {
             <div className='navbar-right-zone'>
           
 
-                    <button className='navbar-button-carrito' onClick={handleClick}><h1 className='numero-cantidad-compras-carrito'></h1>
+                    <button className='navbar-button-carrito' onClick={handleClick}><h1 className='numero-cantidad-compras-carrito'>{totalQuantity}</h1>
                     <img src={carroCompras} alt="carrito-compras" className='icon-carro-compras-nav'></img>
                     </button> 
 
@@ -159,11 +162,11 @@ export default function NavBar() {
 
         <div className='desplegable-carrito'> 
 
-{carrito?.map((p)=>{
-    return(<>
-    <CartaCarritoCompra id={p.id} name={p.name} image={p.image} price={p.price} quantity={p.quantity}/>
-    
-    </>)
+  {carrito?.map((p)=>{
+      return(<>
+      <CartaCarritoCompra id={p.id} name={p.name} image={p.image} price={p.price} quantity={p.quantity}/>
+      
+      </>)
 })}
 
 <Link to={"/carrito"} className="link-carrito-compras"> 
