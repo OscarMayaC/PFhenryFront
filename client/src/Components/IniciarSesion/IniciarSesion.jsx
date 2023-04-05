@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import NavBar from "../NavBar"
 import { getUserByLogin } from '../../redux/actions';
@@ -12,6 +12,8 @@ import Swal from "sweetalert2"
 
 const IniciarSesion = () => {
 
+    const itsAdmin = useSelector((state) => state.admin)
+    
     const dispatch = useDispatch();
     const history = useHistory();
     
@@ -34,8 +36,12 @@ const IniciarSesion = () => {
                 })
             } else {
                 console.log("hola")
-                dispatch(getUserByLogin(email, password));             
-                history.push("/")
+                dispatch(getUserByLogin(email, password));   
+                if(itsAdmin) {
+                    history.push("/admin")
+                } else {
+                    history.push("/")
+                }
                 return Swal.fire({
                     title: "Éxito!!",
                     text: "Éxito al iniciar sesión",
@@ -79,10 +85,15 @@ const IniciarSesion = () => {
                     <br />
                     <button className='login-btn' type='submit'>Iniciar Sesion</button>
                     
-                    <p>- O -</p>
 
-                    <button className='git' onClick={() => {
-                        const popup = window.open("http://localhost:3001/login/github",
+                    <p>
+                        <b> ¿Aún no tienes cuenta? <Link to="/register">Registrate</Link> aquí. </b>
+                    </p>
+
+                </form>
+
+                <button className='git' onClick={() => {
+                        const popup = window.open("https://pfhenryback-production.up.railway.app/login/github",
                             "targetWindow",
                             `
                             toolbar=no,
@@ -97,7 +108,7 @@ const IniciarSesion = () => {
                         );
 
                         window.addEventListener("message", (e) => {
-                            if(e.origin === "http://localhost:3001") {
+                            if(e.origin === "https://pfhenryback-production.up.railway.app") {
                                 if (e.data) {
                                     localStorage.setItem("userGit", JSON.stringify(e.data))
 
@@ -110,11 +121,6 @@ const IniciarSesion = () => {
                         })
                     }}>Login With GitHub<img src={gitlogo} width="20px" height="20px"/></button>
 
-                    <p>
-                        <b> ¿Aún no tienes cuenta? <Link to="/register">Registrate</Link> aquí. </b>
-                    </p>
-
-                </form>
             </div>          
         </div>
         </>
@@ -124,19 +130,4 @@ const IniciarSesion = () => {
 export default IniciarSesion;
 
 
-                    {/* <div>
-                    <div id="g_id_onload"
-                        data-client_id="104728938297-vh2a2s2aptlj5vqcqaqb4ri7o25mfnmg.apps.googleusercontent.com"
-                        data-login_uri="http://localhost:3001/auth"
-                        data-auto_prompt="false">
-                    </div>
-                    <div className="g_id_signin"
-                        data-type="standard"
-                        data-size="large"
-                        data-theme="outline"
-                        data-text="sign_in_with"
-                        data-shape="rectangular"
-                        data-logo_alignment="left">
-                    </div>
-                    </div>
-                    */}
+                

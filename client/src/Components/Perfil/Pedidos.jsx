@@ -8,13 +8,8 @@ import '../SASS/Pedidos-perfil.modules.css'
 const Pedidos = () => {
 
     const myUser = useSelector((state) => state.userData)
-
-    const id = "1"
-    const fecha = "01/04/2023"
-    const hora = "17:30"
-    const detalle = "ta weno"
-    const estado = "en reparto"
-    // console.log(myUser.Orders)
+    
+    console.log(myUser.Orders)
 
 
     return (

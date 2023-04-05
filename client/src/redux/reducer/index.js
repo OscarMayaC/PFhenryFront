@@ -31,6 +31,7 @@ const initialState = {
   password: "",
   userId: "",
   idUsuario: "",
+  admin: false,
   user: [],
   userData: [],
   sections: [],
@@ -136,6 +137,7 @@ function rootReducer(state = initialState, action) {
         return {
           ...state,
           isLoggedIn: true,
+          admin: action.payload.admin,
           email: action.payload.email,
           password: action.payload.password,
           userId: action.payload.id,
