@@ -36,7 +36,7 @@ export function getUserByLogin(email, password) {
 
   return async function (dispatch) {
     
-    let response = await axios.post("http://localhost:3001/login", {
+    let response = await axios.post("https://pfhenryback-production.up.railway.app/login", {
       email: email,
       password: password,
     });
@@ -56,7 +56,7 @@ export const getUsersById = (id) => {
   return async function(dispatch) {
     const token = localStorage.getItem("userToken")
     try {
-      let response = await axios.get("http://localhost:3001/users/" + id, {
+      let response = await axios.get("https://pfhenryback-production.up.railway.app/users/" + id, {
         headers: {
           Authorization: token
         }
@@ -76,7 +76,7 @@ export const ChangeUserInfo = (id) => {
   return async function (dispatch) {
     const token = localStorage.getItem("userToken")
     try {
-      const response = await axios.put("http://localhost:3001/users/" + id, {
+      const response = await axios.put("https://pfhenryback-production.up.railway.app/users/" + id, {
         headers: {
           Authorization: token
         }

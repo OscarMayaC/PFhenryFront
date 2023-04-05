@@ -34,7 +34,7 @@ const IniciarSesion = () => {
                 })
             } else {
                 console.log("hola")
-                dispatch(getUserByLogin(email, password));
+                dispatch(getUserByLogin(email, password));             
                 history.push("/")
                 return Swal.fire({
                     title: "Éxito!!",
@@ -108,8 +108,7 @@ const IniciarSesion = () => {
                                 }
                             }
                         })
-                    }}>Login With GitHub<img src={gitlogo} width="20px" height="20px"/></button> 
-                    
+                    }}>Login With GitHub<img src={gitlogo} width="20px" height="20px"/></button>
 
                     <p>
                         <b> ¿Aún no tienes cuenta? <Link to="/register">Registrate</Link> aquí. </b>
@@ -124,3 +123,20 @@ const IniciarSesion = () => {
 
 export default IniciarSesion;
 
+
+                    {/* <div>
+                    <div id="g_id_onload"
+                        data-client_id="104728938297-vh2a2s2aptlj5vqcqaqb4ri7o25mfnmg.apps.googleusercontent.com"
+                        data-login_uri="http://localhost:3001/auth"
+                        data-auto_prompt="false">
+                    </div>
+                    <div className="g_id_signin"
+                        data-type="standard"
+                        data-size="large"
+                        data-theme="outline"
+                        data-text="sign_in_with"
+                        data-shape="rectangular"
+                        data-logo_alignment="left">
+                    </div>
+                    </div>
+                    */}
