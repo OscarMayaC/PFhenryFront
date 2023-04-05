@@ -32,11 +32,18 @@
     align-items: center;
     text-align: center;
     font-weight: 800;
+    position: relative;
+    left: 150px;
+    top: -40px;
+}
+.quantity-plato-en-carrito-compras{
+    position: relative;
+    right: 10px;
 }
 .boton-quitar-en-carrito-compras:hover{
     background-color: red;
 }
 .titulo-plato-carta-en-carrito-compras{
-    font-size: 25px;
+    font-size: 15px;
     font-weight: 600;
 }

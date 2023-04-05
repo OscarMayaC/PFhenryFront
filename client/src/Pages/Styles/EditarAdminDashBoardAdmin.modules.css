@@ -1,0 +1,56 @@
+.dash-board-editar-admin-component{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: end;
+    height: 100%;
+    /* padding-top: 80px; */
+    padding-left: 50px;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+
+ 
+    
+.btn-info-edit-admin-data {
+    border-radius: 30px;
+    border-color: transparent;
+    height: 30px;
+    width: 30px;
+    margin-right: 50px;
+transition: 500ms;
+background-color: #CA3E49;
+cursor: pointer;
+}
+.btn-info-edit-admin-data:hover {
+    background-color: #7a020c;
+color: #b66c72;
+}
+
+.btn-info-admin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+
+}
+
+.info-admin-txt{
+    font-size: 20px;
+    font-weight: 200;
+}
+.btn-direcciones-admin {
+
+    padding: 0;
+    position: relative;
+}
+
+.btn-direcciones-info-admin{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+}

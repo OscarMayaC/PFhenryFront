@@ -1,0 +1,106 @@
+/* MAIN COMPONENT  */
+
+.dash-board-pedidos-component{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+
+}
+
+/* TITULARES  */
+.dash-board-pedidos-titulos{
+    /* display: flex;
+    flex-direction: row;
+    margin: 0;
+    width: 100%;
+    height: 58px; */
+    display: flex;
+flex-direction: row;
+margin: 0;
+width: 100%;
+height: 58px;
+border-top-color: transparent;
+}
+
+/* titulos  */
+.dash-board-pedidos-titles{
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 0;
+    padding: 8px;
+    height: 40px;
+    width: 168.5px;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: #CA3E49;
+    color: whitesmoke;
+}
+
+.dash-board-pedidos-titles-description{
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 0;
+    padding: 8px;
+    height: 40px;
+    width: 193.5px;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: #CA3E49;
+    color: whitesmoke;
+}
+
+
+/* ZONA RENDERIZADO DE DATA  */
+
+.dash-board-pedidos-matriz{
+display: flex;
+flex-direction: row;
+margin: 0;
+width: 78.5%;
+height: 58px;
+border-top-color: transparent;
+}
+
+/* data interna scroll zone  */
+
+.dash-board-pedidos-data{
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 0;
+    padding: 8px;
+    height: 40px;
+    width: 137.5px;
+    font-weight: 500;
+}
+
+.dash-board-pedidos-data-description{
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 0;
+    padding: 8px;
+    height: 40px;
+    width: 157.5px;
+    font-weight: 500;
+}
+
+/* SCROLL  */
+
+.dash-board-pedidos-scroll{
+    width: 1100px;
+    height: 330px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow-y: auto;
+    align-items: center;
+  }
+  
+  .pedidos-scroll > * {
+      min-width: 200px;
+      box-sizing: border-box;
+    }

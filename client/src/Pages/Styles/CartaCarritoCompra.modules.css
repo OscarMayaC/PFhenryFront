@@ -53,8 +53,15 @@
 
 .titulo-plato-carrito-previsualizacion{
     display: flex;
+    font-size: 15px;
+    height: 30px;
+    width: 180px;
 }
 
+.cantidad-plato-carrito-previsualizacion{
+    color:black;
+    width: 30px;
+}
 
 .precio-plato-carrito-previsualizacion{
     display: flex;
