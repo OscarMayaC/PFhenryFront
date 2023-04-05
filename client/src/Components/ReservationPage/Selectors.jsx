@@ -4,7 +4,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { converter } from '../ReservationValidations/FormatConverter';
 import { validationDate } from "../ReservationValidations/ValidationDate";
 import { getTables, postBooking } from "../../redux/actions/index.js";
-import { useDispatch, /*useSelector*/ } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import '../css/reservation.css';
 
@@ -43,6 +43,11 @@ function Selectors(props){
     
     const handleTableSubmit = (event) => {
         event.preventDefault();
+        if(!userId){
+            const messageReserva = "Por favor inicie sesión para continuar";
+            history.push(`/IniciarSesion?messageReserva=${messageReserva}`)
+            return;
+        }
     
         const info = {
             fecha_inicio: newDateFormat.fecha_inicio, 
@@ -64,7 +69,7 @@ function Selectors(props){
             hora_inicio: newDateFormat.hora_inicio,
             cantidad_comensales: parseInt(newDateFormat.cantidad_comensales),
             mesa: parseInt(selectedMesaId),
-            idUser: userId,
+            idUser: 7,
             nota: newDateFormat.nota
         }
 
@@ -83,6 +88,8 @@ function Selectors(props){
     return(       
     <>
     <form onSubmit={handleTableSubmit}>
+
+        {!confirmTable && <div>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDateTimePicker
             value={selectedDate}
@@ -102,8 +109,9 @@ function Selectors(props){
         </LocalizationProvider>
 
         <div className="customers">
-        <label>Número de personas</label>
+        <label className="label-customers">Número de personas</label>
             <input 
+            className="input-customers"
             type="number"
             min="1"
             name="cantidad_comensales"
@@ -111,10 +119,13 @@ function Selectors(props){
             onChange={event => handleOnChange(event)}
             />
         </div>
+        </div>}
+        
 
-        {confirmTable && <div>
-        <label>Nota</label>
+        {confirmTable && <div className="nota">
+        <label className="label-nota">Nota</label>
             <textarea 
+            className="input-nota"
             type="text"
             name="nota"
             value={newDateFormat.nota || ''}
@@ -124,11 +135,11 @@ function Selectors(props){
 
         <br/>
 
-        {!confirmTable && <button type="submit">Buscar Mesas Disponibles</button>}
+        {!confirmTable && <button type="submit" className="searchTable">Buscar Mesas Disponibles</button>}
     </form>
 
     <form onSubmit={handleReservaSubmit}>
-        {confirmTable && <button type="submit">Hacer reservación</button>}
+        {confirmTable && <button type="submit" className="button-reservacion">Hacer reservación</button>}
     </form>
     </>
 

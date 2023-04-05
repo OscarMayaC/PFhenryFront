@@ -183,6 +183,7 @@ export const getTables = (body) => {
           const availableTables = (await axios.post('https://pfhenryback-production.up.railway.app/tables/', body)).data
           dispatch({type: GET_AVAILABLE_TABLES, payload: availableTables})
       } catch (error) {
+          dispatch({type: 'GET_AVAILABLE_TABLES_ERROR', payload: error.response.data.error})
           console.log(error.response.data.error)
       }
   };
@@ -196,7 +197,7 @@ export const postBooking = (body) => {
       dispatch({type: POST_BOOKING, payload: reservationCreated})
     } catch (error) {
       dispatch({type: POST_BOOKING_ERROR, payload: error.response.data.error})
-      console.log(error.response.data.error)
+      console.log(error.response.data)
     }
   };
 };

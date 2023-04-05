@@ -22,10 +22,13 @@ const IniciarSesion = () => {
         dispatch(getUserByLogin(email, password));
       };
 
+    const params = new URL(document.location).searchParams;
+    const messageReserva = params.get("messageReserva");
 
     return (
         <div className='login-bg'>
             <NavBar />
+            {messageReserva && <p className='messageReserva'>{messageReserva}</p>}
             <div className='main-container'>
                 <form className='body-form' onSubmit={(e) => handleSubmit(e)}>
                     <div className='form-divs'>
