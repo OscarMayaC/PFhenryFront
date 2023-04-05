@@ -31,6 +31,7 @@ const initialState = {
   userId: "",
   userToken: "",
   user: [],
+  itsAdmin:false,
   userData: [],
   sections: [],
   SearchDish: [],
@@ -136,7 +137,8 @@ function rootReducer(state = initialState, action) {
         email: action.payload.email,
         password: action.payload.password,
         userId: action.payload.id,
-        userData: action.payload
+        userData: action.payload,
+        itsAdmin: action.payload.admin
       };
 
     case GET_USER_INFO:
