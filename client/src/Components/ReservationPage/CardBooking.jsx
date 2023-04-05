@@ -10,6 +10,7 @@ export default function CardBooking(props) {
 
     const history = useHistory();
 
+    const userId = JSON.parse(localStorage.getItem("userId"));
 
     const [showButtons, setShowButtons] = useState(true);
     function buttonsController() {
@@ -28,8 +29,7 @@ export default function CardBooking(props) {
     const [showAlert, setShowAlert] = useState(false);
 
     function cancelBooking() {
-        //se harcodea el segundo parametro que es el id del usuario en lo que se ve la manera final de obtenerlo.
-        dispatch(deleteBookingUser(props.idBooking, 8))
+        dispatch(deleteBookingUser(props.idBooking, userId))
         setShowAlert(false);
     }
 
@@ -45,6 +45,7 @@ export default function CardBooking(props) {
 
     return (
         <div>
+            <h1>Usuario: {props.UserId}</h1>
             <h1>Fecha de la reserva: {props.date_start}</h1>
             <h1>Hora de inicio de la reserva: {props.time_start}</h1>
             <h1>Fecha de finalizacion de la reserva: {props.date_end}</h1>

@@ -31,7 +31,9 @@ import {
     ID_DISH,
     DATA_FOR_EDIT_DISH,
     AGREGAR_OFERTAS_DEL_DIA,
+    CHANGE_DATA
   } from "../actions/index";
+
 
 
 const initialState = {
@@ -41,7 +43,10 @@ const initialState = {
   email: "",
   password: "",
   userId: "",
+  userToken: "",
   user: [],
+  itsAdmin:false,
+  userData: [],
   sections: [],
   SearchDish: [],
   Dishes: [],
@@ -71,10 +76,11 @@ const initialState = {
   idDish:[],
   dataForEditDish:[],
   ofertasDelDia:[]
+
 };
 
-
 function rootReducer(state = initialState, action) {
+
 
     switch (action.type) {
 case AGREGAR_OFERTAS_DEL_DIA:
@@ -215,7 +221,6 @@ case DATA_FOR_EDIT_DISH:
     //   };
 
 
-
       case GET_DISHES:
         return {
           ...state,
@@ -236,46 +241,12 @@ case DATA_FOR_EDIT_DISH:
   
 
 
-
-      case FILTER_BY_TAG:
-        const Entradas = state.Entradas;
-        // const EntradasAux = state.Entradas;
-        const tagFiltered =
-          action.payload === "type"
-            ? Entradas
-            : Entradas.filter((e) => e.tags.description.includes(action.payload));
-        return {
-          ...state,
-          EntradasFiltrado: tagFiltered,
-        };
-        
-
-
-
-
-
-
-
-
       case CREATE_USER:
         return {
           ...state,
         };
 
-      case GET_USER_LOGIN:
-        return {
-          ...state,
-          isLoggedIn: true,
-          email: action.payload.email,
-          password: action.payload.password,
-          userId: action.payload.id,
-        };
-
-      case GET_USER_INFO: 
-        return {
-          ...state,
-          user: action.payload
-        };
+ 
 
       case GET_DETAILS:
           return{
@@ -283,68 +254,127 @@ case DATA_FOR_EDIT_DISH:
             detail: action.payload,
           };
       
-      case POST_CRITIC:
-            return{
-              ...state
-            }    
-  
+
+
+    case FILTER_BY_TAG:
+      const allDishes = state.allDishes;
+      const typeFiltered =
+        action.payload === "type"
+          ? allDishes
+          : allDishes.filter((e) => e.sectionId.includes(action.payload));
+      return {
+        ...state,
+        Dishes: typeFiltered,
+      };
+
+   
+
+    case GET_USER_LOGIN:
+      return {
+        ...state,
+        isLoggedIn: true,
+        email: action.payload.email,
+        password: action.payload.password,
+        userId: action.payload.id,
+        userData: action.payload,
+        itsAdmin: action.payload.admin
+      };
+
+    case GET_USER_INFO:
+      return {
+        ...state,
+        isLoggedIn: true,
+        email: action.payload.email,
+        password: action.payload.password,
+        idUsuario: action.payload.id,
+        userData: action.payload
+      };
+
+    case CHANGE_DATA:
+      return {
+        ...state,
+        isLoggedIn: true,
+        email: action.payload.email,
+        password: action.payload.password,
+        idUsuario: action.payload.id,
+        userData: action.payload
+
+      }
+    case GET_DETAILS:
+      return {
+        ...state,
+        detail: action.payload,
+      };
+
+    case POST_CRITIC:
+      return {
+        ...state,
+        Quantity: [...(state.Quantity + action.payload)],
+      }
+
+
     case GET_SECTIONS:
       return {
         ...state,
         sections: action.payload,
       };
 
-      case GET_AVAILABLE_TABLES:
-        return{
-            ...state,
-            tables: action.payload
-        };
-      case POST_BOOKING:
-        return{
-          ...state,
-          reserva: action.payload
-        };
-      case POST_BOOKING_ERROR:
-        return{
-          ...state,
-          responseBooking: action.payload
-        };
+    case GET_AVAILABLE_TABLES:
+      return {
+        ...state,
+        tables: action.payload,
+      };
+    case POST_BOOKING:
+      return {
+        ...state,
+        reserva: action.payload,
+      };
+    case POST_BOOKING_ERROR:
+      return {
+        ...state,
+        responseBooking: action.payload,
+      };
     case "saveBookingsUser":
       return {
         ...state,
-        bookingsUser: action.payload
+        bookingsUser: action.payload,
       };
     case "saveIdBookingUpdate":
       return {
         ...state,
-        bookingUpdateId: action.payload
+        bookingUpdateId: action.payload,
       };
     case "saveAllBookingsAdmin":
       return {
         ...state,
-        allBookingsAdmin: action.payload
+        allBookingsAdmin: action.payload,
       };
     case "filterBookingsInThisDateAdmin":
       return {
         ...state,
-        allBookingsAdmin: action.payload
+        allBookingsAdmin: action.payload,
       };
     case "filterBookingsInThisDateUser":
       return {
         ...state,
-        bookingsUser: action.payload
+        bookingsUser: action.payload,
       };
-      case SAVE_INFO_BOOKING:
+    case SAVE_INFO_BOOKING:
       return {
         ...state,
-        infoBooking: action.payload
+        infoBooking: action.payload,
       };
     case PUT_BOOKING:
       return {
         ...state,
-        responseBooking: action.payload
+        responseBooking: action.payload,
       };
     case PUT_BOOKING_ERROR:
+      return {
+        ...state,
+        responseBooking: action.payload
+      };
+    case 'GET_AVAILABLE_TABLES_ERROR':
       return {
         ...state,
         responseBooking: action.payload

@@ -125,22 +125,34 @@ totalQuantity? mostrarPreCarrito(buttonId):window.alert('carrito vacio');
             </Link>
 
             <Link to={"/reseñas"}> <button className='navbar-button-reseñas'>Reseñas!</button> </Link>
+          
 
-
-            <Link to={"/iniciarsesion"}>
+            {
+            isLoggedIn === true ? (
+                <Link to={"/perfil"}>
                     <button className='navbar-button-iniciar-sesion'>
-                   
-                    <div className='contenedor-button-navbar-inciarsesion'>
-       
-                    <img src={user} alt="img-user" className="navbar-iniciar-user-icon"  width="40px" height="40px"></img>
-                    <h2 className='txt-navbar-iniciarsesion'>Iniciar sesión!</h2> 
-       
-                    </div>
-                   
+                        <div className='contenedor-button-navbar-inciarsesion'>
+                            <img src={user} alt="user-img" className='navbar-iniciar-user-icon' width="30px" height="20px"></img>
+                            <h2 className='txt-navbar-iniciarsesion'>Perfil</h2>
+                        </div>
                     </button>
-            </Link>
-
-
+                </Link>
+            ) : (
+                <Link to={"/iniciarsesion"}>
+                <button className='navbar-button-iniciar-sesion'>
+               
+                <div className='contenedor-button-navbar-inciarsesion'>
+   
+                <img src={user} alt="img-user" className="navbar-iniciar-user-icon"  width="40px" height="40px"></img>
+                <h2 className='txt-navbar-iniciarsesion'>Iniciar sesión!</h2> 
+   
+                </div>
+               
+                </button>
+                </Link>
+            )
+            }
+      
             </div>
 
 

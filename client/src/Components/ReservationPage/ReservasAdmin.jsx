@@ -12,7 +12,7 @@ export default function () {
     const [datesWithBookings, setDatesWithBookings] = useState();
 
     useEffect(() => {
-        fetch(`https://pfhenryback-production.up.railway.app/bookings`)
+        fetch(`https://pfhenryback-production.up.railway.app/bookings/admin/`)
             .then((response) => response.json())
             .then((bookings) => {
                 if (bookings) {
@@ -24,7 +24,7 @@ export default function () {
             .catch((err) => {
                 console.log(err.message);
             });
-        fetch(`https://pfhenryback-production.up.railway.app/bookings/datesAdmin`)
+        fetch(`https://pfhenryback-production.up.railway.app/bookings/admin/dates`)
             .then((response) => response.json())
             .then((dates) => {
                 if (dates) {
@@ -67,6 +67,7 @@ export default function () {
                 bookings?.map((booking) => {
                     return (
                         <CardBooking
+                            UserId={booking.UserId}
                             idBooking={booking.id}
                             key={booking.id}
                             date_start={booking.date_start}

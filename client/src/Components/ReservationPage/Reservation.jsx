@@ -5,8 +5,9 @@ import Mesas from "./Mesas";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from 'three'
 import { useSelector } from "react-redux";
-import CardConfirmation from "./CardConfirmation";
 import EditReservation from "./EditReservation";
+import '../css/reservation.css';
+import NavBar from '../../Components/NavBar/NavBar';
 
 
 function Reservation(){
@@ -14,14 +15,14 @@ function Reservation(){
   const width = 20;
   const height = 20;
   const canvasRef = useRef();
+  const scrollRef = useRef();
 
-  const { reserva, infoBooking, responseBooking } = useSelector(state => state)
-  
-  const [showCardConfirmation, setShowCardConfirmation] = useState(false)
+  const { infoBooking, responseBooking } = useSelector(state => state)
 
   const [errorMessage, setErrorMessage] = useState('');
   
   const [selectedMesaId, setSelectedMesaId] = useState(null);
+
 
   const CanvasComponent = () => {
     const { camera } = useThree();
@@ -43,42 +44,59 @@ function Reservation(){
   }};
 
   const [confirmSearchTables, setConfirmSearchTables] = useState(false)
+  
+  useEffect(() => {
+    if (confirmSearchTables === true) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [confirmSearchTables]);
 
   const [confirmTable, setConfirmTable] = useState(false)
 
   const handleConfirmTable = () => {
     setConfirmTable(true)
-    setShowCardConfirmation(true)
   };
 
-  return(
-    <div>
-      <h1>Reservas</h1>
-    
+  useEffect(() => {
+    if (confirmTable === true) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [confirmTable]);
 
-      {showCardConfirmation && Object.keys(reserva).length > 0 ? <CardConfirmation reserva={reserva} setShowCardConfirmation={setShowCardConfirmation}/> : (
-        
-      <div>
-      {infoBooking.length > 0 ?
+  return(
+    <div className="reservas" ref={scrollRef}>
+      <NavBar/>
+      <h1 className="title">Reservas</h1>
+    
+      <div> 
+      {Object.keys(infoBooking).length > 0 ?
       <EditReservation selectedMesaId={selectedMesaId} confirmTable={confirmTable} setConfirmSearchTables={setConfirmSearchTables}/> : 
       <Selectors selectedMesaId={selectedMesaId} confirmTable={confirmTable} setConfirmSearchTables={setConfirmSearchTables}/>}
+      </div>
 
-      {errorMessage && <span>{errorMessage}</span>}
-      {responseBooking && <span>{responseBooking}</span>}
-      <Canvas style={{ height: '90%' }} ref={canvasRef}>
+{!confirmTable &&
+      <div className="modelo3d">
+      {errorMessage && <span className="error">{errorMessage}</span>}
+      {responseBooking && <span className="error1">{responseBooking}</span>}
+      <Canvas ref={canvasRef}>
         <PerspectiveCamera
-        left={-width / 2}
-        right={width / 2}
-        top={height / 2}
-        bottom={-height / 2}
+        position={[10, 10, 50]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        fov={60}
+        aspect={width / height}
         near={0.1}
-        far={100}
+        far={150}
         />
         <ambientLight/>
-        <pointLight />
+        <directionalLight
+        position={[30, 5, 20]} // mueve la luz hacia arriba y atrás
+        intensity={2}
+        />
         <OrbitControls />
         <Suspense fallback={null} onError={error => console.log(error)}>
-          <Mesas scale={[0.025, 0.025, 0.025]} 
+          <Mesas scale={[0.025, 0.025, 0.025]}
+          position={[-50, 1.5, -50]}
+          rotation={[-25, Math.PI/1.98, 0.12]}
           confirmTable={confirmTable} 
           setSelectedMesaId={setSelectedMesaId} 
           selectedMesaId={selectedMesaId}
@@ -87,9 +105,9 @@ function Reservation(){
           confirmSearchTables={confirmSearchTables}/>
         </Suspense>
       </Canvas>
-      {selectedMesaId !== null && !confirmTable ? <button onClick={handleConfirmTable}>Confirmar Mesa</button> : null}
-    </div>
-    )}
+    </div>}
+      {selectedMesaId !== null && !confirmTable && !errorMessage  ? <button onClick={handleConfirmTable} className="confirmationTable">Confirmar Mesa</button> : null} 
+
   </div>
   )
 }

@@ -9,16 +9,17 @@ export const CREATE_USER = "CREATE_USER";
 export const GET_USER_LOGIN = "GET_USER_LOGIN";
 export const GET_DETAILS = "GET_DETAILS";
 export const POST_CRITIC = "POST_CRITIC";
-export const GET_AVAILABLE_TABLES = 'GET_AVAILABLE_TABLES';
-export const POST_BOOKING = 'POST_BOOKING';
-export const POST_BOOKING_ERROR = 'POST_BOOKING_ERROR';
-export const PUT_BOOKING = 'PUT_BOOKING';
-export const PUT_BOOKING_ERROR = 'PUT_BOOKING_ERROR';
+export const GET_AVAILABLE_TABLES = "GET_AVAILABLE_TABLES";
+export const POST_BOOKING = "POST_BOOKING";
+export const POST_BOOKING_ERROR = "POST_BOOKING_ERROR";
+export const PUT_BOOKING = "PUT_BOOKING";
+export const PUT_BOOKING_ERROR = "PUT_BOOKING_ERROR";
 export const ADD_PRODUCT_CART = "ADD_PRODUCT_CART";
-export const AGREGAR_AL_CARRITO = 'AGREGAR_AL_CARRITO';
-export const AUMENTO_CART = 'AUMENTO_CART';
+export const AGREGAR_AL_CARRITO = "AGREGAR_AL_CARRITO";
+export const AUMENTO_CART = "AUMENTO_CART";
 export const GET_USER_INFO = "GET_USER_INFO";
-export const SAVE_INFO_BOOKING = 'SAVE_INFO_BOOKING';
+export const CHANGE_DATA = "CHANGE_DATA";
+export const SAVE_INFO_BOOKING = "SAVE_INFO_BOOKING";
 export const DISMINUYO_CART = 'DISMINUYO_CART';
 export const CREAR_ORDER = 'CREAR_ORDER';
 export const CREAR_ORDER_DETAIL = 'CREAR_ORDER_DETAIL';
@@ -326,38 +327,85 @@ export function crearOrdenDetail(payload) {
 }
 
 
-
 export function postUsers(payload) {
   return async function (dispatch) {
-    let response = await axios.post("https://pfhenryback-production.up.railway.app/users", payload);
+    let response = await axios.post(
+      "https://pfhenryback-production.up.railway.app/users",
+      payload
+    );
     return response;
   };
 }
 
 export function getUserByLogin(email, password) {
   return async function (dispatch) {
-    let response = await axios.post("https://pfhenryback-production.up.railway.app/users/login", {
-      email: email,
-      password: password,
-    });
-    console.log(response.data);
-    localStorage.setItem("user", JSON.stringify(response.data))
-    return dispatch({
-      type: GET_USER_LOGIN,
-      payload: response.data,
-    });
+    try {
+      let response = await axios.post("https://pfhenryback-production.up.railway.app/login", {
+        email: email,
+        password: password,
+      });
+      console.log(response.data);
+      console.log(response.data.data);
+      console.log(response.data.tokenSession);
+      localStorage.setItem("userId", JSON.stringify(response.data.data.id));
+      localStorage.setItem("user", JSON.stringify(response.data.data));
+      localStorage.setItem(
+        "userToken",
+        JSON.stringify(response.data.tokenSession)
+      );
+
+      return dispatch({
+        type: GET_USER_LOGIN,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
 
-export const getUsersForProfile = (payload) => {
-  return async function(dispatch) {
+export const getUsersById = (id) => {
+  return async function (dispatch) {
+    const token = localStorage.getItem("userToken");
     try {
-      let response = await axios.get(`https://pfhenryback-production.up.railway.app/users/${payload}` )
-    return dispatch({
-      type: GET_USER_INFO,
-      payload: response.data
-    })
+      let response = await axios.get(
+        "https://pfhenryback-production.up.railway.app/users/" + id,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      // console.log(response.data)
+      return dispatch({
+        type: GET_USER_INFO,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const ChangeUserInfo = (id) => {
+  return async function (dispatch) {
+    const token = localStorage.getItem("userToken")
+
+    try {
+      const response = await axios.put("https://pfhenryback-production.up.railway.app/users/" + id, {
+        headers: {
+          Authorization: token
+        }
+      })
+      .then(response => {
+        console.log(response.data)
+      })
+
+      return dispatch({
+        type: CHANGE_DATA,
+        payload: response.data
+      })
     } catch (error) {
       console.log(error)
     }
@@ -389,12 +437,11 @@ export const restarAlCarrito = (producto) => {
 };
 
 
-
 export const aumentarIndiceCart = () => {
   return {
     type: "AUMENTO_CART"
   };
-}
+};
 
 
 export const disminuirIndiceCart=()=>{
@@ -419,7 +466,9 @@ export const actualizarTotalQuantity = (items) => ({
 
 export function getAllSections() {
   return async function (dispatch) {
-    var json = await axios.get("https://pfhenryback-production.up.railway.app/sections");
+    var json = await axios.get(
+      "https://pfhenryback-production.up.railway.app/sections"
+    );
     // console.log(json.data)
     dispatch({
       type: "GET_SECTIONS",
@@ -430,18 +479,21 @@ export function getAllSections() {
 
 export function getAllTags() {
   return async function (dispatch) {
+
     var json = await axios.get("https://pfhenryback-production.up.railway.app/tags");
-  
+
     dispatch({
       type: "GET_TAGS",
       payload: json.data,
     });
   };
-};
+}
 
 export function getAllDishes() {
   return async function (dispatch) {
-    var json = await axios.get("https://pfhenryback-production.up.railway.app/dishes");
+    var json = await axios.get(
+      "https://pfhenryback-production.up.railway.app/dishes"
+    );
     dispatch({
       type: "GET_DISHES",
       payload: json.data,
@@ -453,7 +505,10 @@ export function getAllDishes() {
 
 export function postDish(payload) {
   return async function () {
-    const response = await axios.post("https://pfhenryback-production.up.railway.app/dishes", payload);
+    const response = await axios.post(
+      "https://pfhenryback-production.up.railway.app/dishes",
+      payload
+    );
     return response;
   };
 }
@@ -461,7 +516,9 @@ export function postDish(payload) {
 export function searchDish(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("https://pfhenryback-production.up.railway.app/dishes?name=" + name);
+      var json = await axios.get(
+        "https://pfhenryback-production.up.railway.app/dishes?name=" + name
+      );
       return dispatch({
         type: "SEARCH_NAME",
         payload: json.data,
@@ -476,47 +533,66 @@ export function getDetail(id) {
   console.log(id);
   return async function (dispatch) {
     try {
-      let json = await axios.get(`https://pfhenryback-production.up.railway.app/dishes/${id}`);
+      let json = await axios.get(
+        `https://pfhenryback-production.up.railway.app/dishes/${id}`
+      );
       return dispatch({
-        type: 'GET_DETAILS',
-        payload: json.data
-      })
+        type: "GET_DETAILS",
+        payload: json.data,
+      });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
 
 export function postCritic(payload) {
   return async function (dispatch) {
-    const json = await axios.post("https://pfhenryback-production.up.railway.app/critics/", payload);
+    const json = await axios.post(
+      "https://pfhenryback-production.up.railway.app/critics/",
+      payload
+    );
     console.log(json);
     return json;
-  }
+  };
 }
 
 
 
 export const getTables = (body) => {
-  return async(dispatch) => {
-      try {
-          const availableTables = (await axios.post('https://pfhenryback-production.up.railway.app/tables/', body)).data
-          dispatch({type: GET_AVAILABLE_TABLES, payload: availableTables})
-      } catch (error) {
-          console.log(error.response.data.error)
-      }
+  return async (dispatch) => {
+    try {
+      const availableTables = (
+        await axios.post(
+          "https://pfhenryback-production.up.railway.app/tables/",
+          body
+        )
+      ).data;
+      dispatch({ type: GET_AVAILABLE_TABLES, payload: availableTables });
+    } catch (error) {
+      dispatch({type: 'GET_AVAILABLE_TABLES_ERROR', payload: error.response.data.error})
+      console.log(error.response.data.error);
+    }
   };
 };
 
 export const postBooking = (body) => {
   return async (dispatch) => {
     try {
-      const reservationCreated = (await axios.post('https://pfhenryback-production.up.railway.app/bookings/', body)).data
-      console.log(reservationCreated)
-      dispatch({type: POST_BOOKING, payload: reservationCreated})
+      const reservationCreated = (
+        await axios.post(
+          "https://pfhenryback-production.up.railway.app/bookings/",
+          body
+        )
+      ).data;
+      console.log(reservationCreated);
+      dispatch({ type: POST_BOOKING, payload: reservationCreated });
     } catch (error) {
-      dispatch({type: POST_BOOKING_ERROR, payload: error.response.data.error})
-      console.log(error.response.data.error)
+      dispatch({
+        type: POST_BOOKING_ERROR,
+        payload: error.response.data.error,
+      });
+      console.log(error.response.data.error);
     }
   };
 };
@@ -524,68 +600,89 @@ export const postBooking = (body) => {
 export function saveBookingsUser(bookings) {
   return {
     type: "saveBookingsUser",
-    payload: bookings
-  }
+    payload: bookings,
+  };
 }
 
 export function deleteBookingUser(idBooking, idUser) {
   return async (dispatch) => {
     try {
-      await axios.delete(`https://pfhenryback-production.up.railway.app/bookings/${idBooking}`);
+      await axios.delete(
+        `https://pfhenryback-production.up.railway.app/bookings/${idBooking}`
+      );
       if (idUser) {
-        const refreshBookings = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/${idUser}`);
+        const refreshBookings = await axios.get(
+          `https://pfhenryback-production.up.railway.app/bookings/${idUser}`
+        );
         dispatch(saveBookingsUser(refreshBookings.data));
       }
-      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings`);
+      const refreshBookingsAdmin = await axios.get(
+        `https://pfhenryback-production.up.railway.app/bookings/admin/`
+      );
       dispatch(saveAllBookingsAdmin(refreshBookingsAdmin.data));
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
 
 export function saveIdBookingUpdate(idBooking) {
   return {
     type: "saveIdBookingUpdate",
-    payload: idBooking
-  }
+    payload: idBooking,
+  };
 }
 
 export function saveAllBookingsAdmin(bookings) {
   return {
     type: "saveAllBookingsAdmin",
-    payload: bookings
-  }
+    payload: bookings,
+  };
 }
 
-export function saveInfoBooking(infoBooking){
+export function saveInfoBooking(infoBooking) {
   return {
     type: SAVE_INFO_BOOKING,
-    payload: infoBooking
-  }
+    payload: infoBooking,
+  };
 }
 
-export function putBooking(newData, bookingUpdateId){
+export function putBooking(newData, bookingUpdateId) {
   return async (dispatch) => {
     try {
-      const updatedReservation = (await axios.put(`https://pfhenryback-production.up.railway.app/bookings/${bookingUpdateId}`, newData)).data
-      dispatch({type: PUT_BOOKING, payload: updatedReservation})
+      const updatedReservation = (
+        await axios.put(
+          `https://pfhenryback-production.up.railway.app/bookings/${bookingUpdateId}`,
+          newData
+        )
+      ).data;
+      dispatch({ type: PUT_BOOKING, payload: updatedReservation });
     } catch (error) {
-      dispatch({type: PUT_BOOKING_ERROR, payload: error.response.data.error})
-      console.log(error.response.data.error)
+      dispatch({ type: PUT_BOOKING_ERROR, payload: error.response.data.error });
+      console.log(error.response.data.error);
     }
-  }
+  };
 }
 
 export function filterBookingsInThisDate(date, idUser) {
   return async (dispatch) => {
     try {
       if (idUser) {
-        const bookinsInThisDate = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/bookingsInThisDate?date=${date}&idUser=${idUser}`);
-        dispatch({ type: "filterBookingsInThisDateUser", payload: bookinsInThisDate.data })
+        const bookinsInThisDate = await axios.get(
+          `https://pfhenryback-production.up.railway.app/bookings/bookingsInThisDate?date=${date}&idUser=${idUser}`
+        );
+        dispatch({
+          type: "filterBookingsInThisDateUser",
+          payload: bookinsInThisDate.data,
+        });
       } else {
-        const bookinsInThisDate = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/bookingsInThisDate?date=${date}&idUser=`);
-        dispatch({ type: "filterBookingsInThisDateAdmin", payload: bookinsInThisDate.data })
+        const bookinsInThisDate = await axios.get(
+          `https://pfhenryback-production.up.railway.app/bookings/bookingsInThisDate?date=${date}&idUser=`
+        );
+        dispatch({
+          type: "filterBookingsInThisDateAdmin",
+          payload: bookinsInThisDate.data,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -596,7 +693,9 @@ export function filterBookingsInThisDate(date, idUser) {
 export function refreshAdminBookings() {
   return async (dispatch) => {
     try {
-      const refreshBookingsAdmin = await axios.get(`https://pfhenryback-production.up.railway.app/bookings`);
+      const refreshBookingsAdmin = await axios.get(
+        `https://pfhenryback-production.up.railway.app/bookings/admin/`
+      );
       dispatch(saveAllBookingsAdmin(refreshBookingsAdmin.data));
     } catch (error) {
       console.log(error);
@@ -607,11 +706,12 @@ export function refreshAdminBookings() {
 export function refreshUserBookings(idUser) {
   return async (dispatch) => {
     try {
-      const refreshBookings = await axios.get(`https://pfhenryback-production.up.railway.app/bookings/${idUser}`);
+      const refreshBookings = await axios.get(
+        `https://pfhenryback-production.up.railway.app/bookings/${idUser}`
+      );
       dispatch(saveBookingsUser(refreshBookings.data));
     } catch (error) {
       console.log(error);
     }
   };
 }
-

@@ -1,0 +1,58 @@
+.reservas-info-main {
+    display: flex;
+    flex-direction: column;
+    width: end;
+    height: 600px;
+    padding-top: 150px;
+    padding-right: 130px;
+}
+
+
+.div-reservas-perfil {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    width: 100%;
+    height: 58px;
+}
+
+.p-reservas-perfil {
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 0;
+    padding: 8px;
+    height: 40px;
+    width: 250px;
+    font-weight: 500;
+
+}
+
+.reservas-p {
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 0;
+    padding: 8px;
+    height: 40px;
+    width: 250px;
+    font-weight: 500;
+    font-size: 20px;
+    background-color: #CA3E49;
+    color: whitesmoke;
+}
+
+.reservas-scroll {
+    width: 1100px;
+    height: 233px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow-y: auto;
+    align-items: center;
+}
+
+.reservas-scroll > * {
+    min-width: 200px;
+    box-sizing: border-box;
+  }
