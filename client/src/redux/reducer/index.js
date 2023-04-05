@@ -230,8 +230,13 @@ function rootReducer(state = initialState, action) {
     case PUT_BOOKING_ERROR:
       return {
         ...state,
-        responseBooking: action.payload,
+        responseBooking: action.payload
       };
+    case 'GET_AVAILABLE_TABLES_ERROR':
+      return {
+        ...state,
+        responseBooking: action.payload
+      }
     default:
       return state;
   }

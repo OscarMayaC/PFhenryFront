@@ -50,11 +50,14 @@ const IniciarSesion = () => {
         }
       };
 
+    const params = new URL(document.location).searchParams;
+    const messageReserva = params.get("messageReserva");
 
     return (
         <>
          <NavBar />
         <div className='login-bg'>
+            {messageReserva && <p className='messageReserva'>{messageReserva}</p>}
             <div className='main-container'>
                 <form className='body-form' onSubmit={(e) => handleSubmit(e)}>
                     <div className='form-divs'>
