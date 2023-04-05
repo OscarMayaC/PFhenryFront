@@ -20,6 +20,7 @@ export const AGREGAR_AL_CARRITO = "AGREGAR_AL_CARRITO";
 export const AUMENTO_CART = "AUMENTO_CART";
 export const GET_USER_INFO = "GET_USER_INFO";
 export const CHANGE_DATA = "CHANGE_DATA";
+export const SAVE_INFO_BOOKING = "SAVE_INFO_BOOKING";
 
 
 export function postUsers(payload) {
