@@ -7,7 +7,7 @@ import * as THREE from 'three'
 import { useSelector } from "react-redux";
 import EditReservation from "./EditReservation";
 import '../css/reservation.css';
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from '../NavBar';
 
 
 function Reservation(){

@@ -7,21 +7,23 @@ import CardEdicionInfoAdmin from '../Cartas/CardEdicionInfoAdmin'
 
 
 const EditarAdminDashBoardAdmin = () => {
+    const admin = JSON.parse(localStorage.getItem("user"));
 
     // const myUser = useSelector((state) => state.userData)
 
-    const editarInfoAdmin=(e)=>{
+    const editarInfoAdmin = (e) => {
         let ventanaEdicion = document.getElementsByClassName("dash-board-info-admin-ventana-edicion-admin-seleccionado-fondo")
         let fondoEdicion = document.getElementsByClassName("dash-board-info-admin-ventana-edicion-admin-seleccionado")
-        ventanaEdicion[0].style.display="flex"
-        fondoEdicion[0].style.display="flex"
+        ventanaEdicion[0].style.display = "flex"
+        fondoEdicion[0].style.display = "flex"
     }
+    
 
 
 
     return (
-        <div className="dash-board-editar-admin-component"> 
-  <CardEdicionInfoAdmin></CardEdicionInfoAdmin>
+        <div className="dash-board-editar-admin-component">
+            <CardEdicionInfoAdmin></CardEdicionInfoAdmin>
             <div className='btn-info-admin'>
                 <img src={user} alt='imagen sin colocar' width="70px" height="50px"></img>
                 {/* <button className="btn-info-edit-admin-data" onClick={editarInfoAdmin}>...</button> */}
@@ -32,7 +34,7 @@ const EditarAdminDashBoardAdmin = () => {
                 <h1 className="info-admin-txt">Admin user</h1>
                 {/* <button className="btn-info-edit-admin-data" onClick={editarInfoAdmin}>...</button> */}
             </div>
-            
+
             {/* <div className='btn-info-admin'>
                 <h1 className="info-admin-txt">********d4t</h1>
                 // <button className="btn-info-edit-admin-data" onClick={editarInfoAdmin}>...</button>
@@ -40,13 +42,13 @@ const EditarAdminDashBoardAdmin = () => {
 
             <div className='btn-info-admin'>
                 {/* <h3>{myUser.email}</h3> */}
-                <h1 className="info-admin-txt">rosadelviento@gmail.com</h1>
+                <h1 className="info-admin-txt">{admin.email}</h1>
                 {/* <button className="btn-info-edit-admin-data" onClick={editarInfoAdmin}>...</button> */}
             </div>
 
             <div className='btn-info-admin'>
                 {/* <h4>{myUser.phoneNumber}</h4> */}
-                <h1 className="info-admin-txt">5480-4930</h1>
+                <h1 className="info-admin-txt">{admin.phoneNumber}</h1>
                 {/* <button className="btn-info-edit-admin-data" onClick={editarInfoAdmin}>...</button> */}
             </div>
 
@@ -54,10 +56,10 @@ const EditarAdminDashBoardAdmin = () => {
                 {/* <p>{myUser.Addresses}</p> */}
                 <h1 className="info-admin-txt">Calle tradicion 120</h1>
                 <div className='btn-direcciones-info-admin'>
-                <button className='btn-info-edit-admin-data' onClick={editarInfoAdmin}>...</button>
+                    <button className='btn-info-edit-admin-data' onClick={editarInfoAdmin}>...</button>
                 </div>
             </div>
-     
+
         </div>
     )
 }
