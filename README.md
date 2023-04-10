@@ -6,4 +6,6 @@ hacer login, agregar, quitar o modificar platos y secciones.
 
 
 Primeros pasos:
+
+
 Para probar este proyecto localmente realiza "npm install" para instalar las dependencias necesarias, seguido por "npm start" para levantar el proyecto.
